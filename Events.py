@@ -226,14 +226,10 @@ class Events:
         try:
             data = datetime.now().strftime("%d/%m/%Y")
             labelStatus = QtWidgets.QLabel()
-            labelStatus.setText("Date: " + data + " - ")
-            labelStatus.setFixedSize(100, 20)
-            labelStatus.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)
-            Globals.ui.statusbar.addWidget(labelStatus)
-            labelVersion = QtWidgets.QLabel()
-            labelVersion.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)
-            labelVersion.setText("Version 0.0.1")
-            Globals.ui.statusbar.addWidget(labelVersion)
+            labelStatus.setText("Date: " + data + " - Version 0.0.1")
+            labelStatus.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            labelStatus.setStyleSheet("color: white; font-weight: bold; font-size: 10px;")
+            Globals.ui.statusbar.addPermanentWidget(labelStatus, 1)
 
         except Exception as error:
             print("There was an error while loading the status bar: ", error)

@@ -63,7 +63,7 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.chk_historico.setChecked(True)
         Globals.ui.chk_historico.stateChanged.connect(Customers.customersHistorical)
 
-        # functions
+        # statusBar Functions
         Events.loadStatusBar()
 
 

@@ -1,0 +1,86 @@
+QTabWidget {
+    background-color: #F8F8F8;
+}
+
+QLabel {
+    color: #000000;
+}
+
+QLineEdit, QComboBox {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+    color: #212121;
+}
+
+QLineEdit:focus {
+    border: 1px solid #1976D2;
+    background-color: #FAFAFA;
+}
+
+QPushButton {
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+QPushButton:hover {
+    background-color: #1565C0;
+}
+
+QPushButton#btn_delete {
+    background-color: #E57373;
+}
+
+QPushButton#btn_delete:hover {
+    background-color: #D66B6B;
+}
+
+QPushButton#btn_search {
+    background-color: #F8F8F8;
+}
+
+QPushButton#btn_fechaAltaCliente {
+    background-color: #F8F8F8;
+}
+
+QTableWidget {
+    background-color: #FFFFFF;
+    gridline-color: #E0E0E0;
+    selection-background-color: #90CAF9;
+    color: black;
+}
+
+QHeaderView::section {
+    background-color: #1976D2;
+    color: white;
+    font-weight: bold;
+    padding: 4px;
+    border: none;
+}
+
+QRadioButton {
+    color: black;
+}
+
+QRadioButton::indicator:checked {
+    border-radius: 8px;
+    border: 3px solid;
+    background-color: #1976D2;
+}
+
+QCheckBox::indicator:checked {
+    border: 2px solid;
+    border-radius: 4px;
+    background-color: #1976D2;
+}
+
+QMessageBox {
+    background-color: #FFFFFF;
+    color: #212121;
+}
+
+QCheckBox {
+    color: black;
+}

@@ -1769,6 +1769,7 @@
      <string>About</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionExit_About"/>
    </widget>
    <widget class="QMenu" name="menuReports">
     <property name="title">
@@ -1792,6 +1793,8 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionExit"/>
+   <addaction name="actionBackup"/>
+   <addaction name="actionRestore_Backup"/>
   </widget>
   <action name="actionReports">
    <property name="text">
@@ -1804,11 +1807,19 @@
    </property>
   </action>
   <action name="actionBackup">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/export_backup.png</normaloff>assets/export_backup.png</iconset>
+   </property>
    <property name="text">
     <string>Backup</string>
    </property>
   </action>
   <action name="actionRestore_Backup">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/import_backup.png</normaloff>assets/import_backup.png</iconset>
+   </property>
    <property name="text">
     <string>Restore Backup</string>
    </property>
@@ -1825,6 +1836,11 @@
   <action name="actionCustomers">
    <property name="text">
     <string>Customers</string>
+   </property>
+  </action>
+  <action name="actionExit_About">
+   <property name="text">
+    <string>Exit About</string>
    </property>
   </action>
  </widget>

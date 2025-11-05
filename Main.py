@@ -30,7 +30,6 @@ class Main(QtWidgets.QMainWindow):
 
         # menu bar Functions:
         Globals.ui.menuAbout.triggered.connect(Events.aboutMessage)
-        Globals.ui.actionAbout.triggered.connect(Events.exitMessage)
         Globals.ui.actionBackup.triggered.connect(Events.saveBackup)
         Globals.ui.actionRestore_Backup.triggered.connect(Events.restoreBackup)
         Globals.ui.actionCustomers.triggered.connect(Events.exportCsvCustomers)

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1431</width>
-    <height>941</height>
+    <height>943</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1775,6 +1775,7 @@
     <property name="title">
      <string>Reports</string>
     </property>
+    <addaction name="actionCustomer_Reports"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
@@ -1841,6 +1842,11 @@
   <action name="actionExit_About">
    <property name="text">
     <string>Exit About</string>
+   </property>
+  </action>
+  <action name="actionCustomer_Reports">
+   <property name="text">
+    <string>Customer Reports</string>
    </property>
   </action>
  </widget>

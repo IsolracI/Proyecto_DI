@@ -1,6 +1,9 @@
 QTabWidget {
     background-color: #F8F8F8;
 }
+QToolBar {
+    background-color: #F8F8F8
+}
 
 QLabel {
     color: #000000;

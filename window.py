@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1431, 941)
+        MainWindow.resize(1431, 943)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -591,6 +591,8 @@ class Ui_MainWindow(object):
         self.actionCustomers.setObjectName("actionCustomers")
         self.actionExit_About = QtGui.QAction(parent=MainWindow)
         self.actionExit_About.setObjectName("actionExit_About")
+        self.actionCustomer_Reports = QtGui.QAction(parent=MainWindow)
+        self.actionCustomer_Reports.setObjectName("actionCustomer_Reports")
         self.menuExport_Data.addAction(self.actionCustomers)
         self.menuFile.addAction(self.menuExport_Data.menuAction())
         self.menuFile.addSeparator()
@@ -599,6 +601,7 @@ class Ui_MainWindow(object):
         self.menuTools.addAction(self.actionRestore_Backup)
         self.menuAbout.addAction(self.actionAbout)
         self.menuAbout.addAction(self.actionExit_About)
+        self.menuReports.addAction(self.actionCustomer_Reports)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuTools.menuAction())
         self.menubar.addAction(self.menuReports.menuAction())
@@ -698,3 +701,4 @@ class Ui_MainWindow(object):
         self.actionExit.setText(_translate("MainWindow", "Exit"))
         self.actionCustomers.setText(_translate("MainWindow", "Customers"))
         self.actionExit_About.setText(_translate("MainWindow", "Exit About"))
+        self.actionCustomer_Reports.setText(_translate("MainWindow", "Customer Reports"))

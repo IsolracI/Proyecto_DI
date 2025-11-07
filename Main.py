@@ -3,6 +3,7 @@ from AuxiliaryWindow import *
 from PyQt6 import QtWidgets
 from Connection import *
 from Customers import *
+from Reports import *
 from Events import *
 import Globals
 import Styles
@@ -33,7 +34,7 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.actionBackup.triggered.connect(Events.saveBackup)
         Globals.ui.actionRestore_Backup.triggered.connect(Events.restoreBackup)
         Globals.ui.actionCustomers.triggered.connect(Events.exportCsvCustomers)
-
+        Globals.ui.actionCustomer_Reports.triggered.connect(Reports.customersReports)
 
         # lineEdit Functions:
         Globals.ui.txt_DNICliente.editingFinished.connect(Customers.checkDni)

@@ -66,6 +66,11 @@ class Main(QtWidgets.QMainWindow):
         # statusBar Functions
         Events.loadStatusBar()
 
+        # Ejemplos
+        # (cómo cargar un combo desde un array)
+        iva = ["4%", "12%", "21%"]
+        Globals.ui.cmb_IVA.addItems(iva)
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

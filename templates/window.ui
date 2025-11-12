@@ -36,7 +36,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_ustomers">
        <attribute name="title">
@@ -52,137 +52,16 @@
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="6" column="2">
-          <spacer name="horizontalSpacer_29">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>30</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="txt_apellidosCliente">
-           <property name="minimumSize">
-            <size>
-             <width>250</width>
-             <height>0</height>
-            </size>
-           </property>
+         <item row="4" column="4">
+          <widget class="QLineEdit" name="txt_numeroTelefono">
            <property name="maximumSize">
             <size>
-             <width>250</width>
+             <width>175</width>
              <height>20</height>
             </size>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLineEdit" name="txt_nombresCliente">
-           <property name="minimumSize">
-            <size>
-             <width>250</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>250</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="lbl_nombresCliente">
-           <property name="maximumSize">
-            <size>
-             <width>65</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="text">
-            <string> First Name:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="lbl_apellidosCliente">
-           <property name="maximumSize">
-            <size>
-             <width>65</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="text">
-            <string> Last Name:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0" alignment="Qt::AlignLeft">
-          <widget class="QLabel" name="lbl_dirCliente">
-           <property name="minimumSize">
-            <size>
-             <width>55</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>55</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="text">
-            <string> Address:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="10">
-          <widget class="QPushButton" name="btn_fechaAltaCliente">
-           <property name="minimumSize">
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>assets/calendar_icon3.png</normaloff>assets/calendar_icon3.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
            </property>
           </widget>
          </item>
@@ -205,24 +84,21 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="9">
-          <widget class="QLineEdit" name="txt_fechaAlta">
-           <property name="minimumSize">
+         <item row="7" column="1">
+          <spacer name="verticalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
             <size>
-             <width>65</width>
-             <height>20</height>
+             <width>20</width>
+             <height>3</height>
             </size>
            </property>
-           <property name="maximumSize">
-            <size>
-             <width>65</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
-           </property>
-          </widget>
+          </spacer>
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="lbl_DNICliente">
@@ -246,54 +122,22 @@
            </property>
           </widget>
          </item>
-         <item row="7" column="1">
-          <spacer name="verticalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
+         <item row="0" column="9">
+          <widget class="QLineEdit" name="txt_fechaAlta">
+           <property name="minimumSize">
             <size>
-             <width>20</width>
-             <height>3</height>
+             <width>65</width>
+             <height>20</height>
             </size>
            </property>
-          </spacer>
-         </item>
-         <item row="4" column="4">
-          <widget class="QLineEdit" name="txt_numeroTelefono">
            <property name="maximumSize">
             <size>
-             <width>175</width>
+             <width>65</width>
              <height>20</height>
             </size>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="8" colspan="3" alignment="Qt::AlignRight">
-          <widget class="QCheckBox" name="chk_historico">
-           <property name="minimumSize">
-            <size>
-             <width>80</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>80</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Historical</string>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -316,22 +160,19 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="1">
-          <widget class="QLineEdit" name="txt_dirCliente">
-           <property name="minimumSize">
-            <size>
-             <width>300</width>
-             <height>20</height>
-            </size>
-           </property>
+         <item row="2" column="3">
+          <widget class="QLabel" name="lbl_emailCliente">
            <property name="maximumSize">
             <size>
-             <width>300</width>
+             <width>45</width>
              <height>20</height>
             </size>
            </property>
+           <property name="text">
+            <string>e-mail:</string>
+           </property>
            <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -357,16 +198,57 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="3">
-          <widget class="QLabel" name="lbl_emailCliente">
+         <item row="8" column="8" colspan="3" alignment="Qt::AlignRight">
+          <widget class="QCheckBox" name="chk_historico">
+           <property name="minimumSize">
+            <size>
+             <width>80</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>45</width>
+             <width>80</width>
              <height>20</height>
             </size>
            </property>
            <property name="text">
-            <string>e-mail:</string>
+            <string>Historical</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLineEdit" name="txt_dirCliente">
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>300</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLabel" name="lbl_numeroTelefono">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Phone:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -389,22 +271,6 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="3">
-          <widget class="QLabel" name="lbl_numeroTelefono">
-           <property name="maximumSize">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Phone:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
          <item row="6" column="3">
           <widget class="QLabel" name="lbl_provinciaCliente">
            <property name="maximumSize">
@@ -420,6 +286,22 @@
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
           </widget>
+         </item>
+         <item row="5" column="1">
+          <spacer name="verticalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>3</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item row="0" column="1" colspan="7">
           <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -512,8 +394,174 @@
            </item>
           </layout>
          </item>
-         <item row="5" column="1">
-          <spacer name="verticalSpacer_5">
+         <item row="6" column="2">
+          <spacer name="horizontalSpacer_29">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>30</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="txt_nombresCliente">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="lbl_nombresCliente">
+           <property name="maximumSize">
+            <size>
+             <width>65</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="text">
+            <string> First Name:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="txt_apellidosCliente">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="10">
+          <widget class="QPushButton" name="btn_fechaAltaCliente">
+           <property name="minimumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>assets/calendar_icon3.png</normaloff>assets/calendar_icon3.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" alignment="Qt::AlignLeft">
+          <widget class="QLabel" name="lbl_dirCliente">
+           <property name="minimumSize">
+            <size>
+             <width>55</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>55</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="text">
+            <string> Address:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="lbl_apellidosCliente">
+           <property name="maximumSize">
+            <size>
+             <width>65</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="text">
+            <string> Last Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="6">
+          <widget class="QComboBox" name="cmb_ciudadCliente">
+           <property name="minimumSize">
+            <size>
+             <width>180</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>180</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>3</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="3" column="1">
+          <spacer name="verticalSpacer_4">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
@@ -623,54 +671,6 @@
             </spacer>
            </item>
           </layout>
-         </item>
-         <item row="6" column="6">
-          <widget class="QComboBox" name="cmb_ciudadCliente">
-           <property name="minimumSize">
-            <size>
-             <width>180</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>180</width>
-             <height>20</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <spacer name="verticalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>3</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="1">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>3</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>

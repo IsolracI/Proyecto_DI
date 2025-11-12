@@ -45,6 +45,7 @@ class Main(QtWidgets.QMainWindow):
 
         # comboBox Funtions:
         Events.loadProvinces()
+#        Events.loadCities()
         Globals.ui.cmb_provinciaCliente.currentIndexChanged.connect(Events.loadCities)
 
         # button Functions:

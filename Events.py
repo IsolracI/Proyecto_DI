@@ -91,10 +91,12 @@ class Events:
     def loadProvinces():   ###loadProv
         try:
             Globals.ui.cmb_provinciaCliente.clear()
+            Globals.ui.cmb_provinciaCliente.addItems(["      — Select a Province —"])
             provinces = Connection.getProvinces()
             # con conexionserver
 ##          provinces = conexionserver.ConexionServer.listaProv()
             Globals.ui.cmb_provinciaCliente.addItems(provinces)
+            Globals.ui.cmb_provinciaCliente.setCurrentIndex(0)
 
         except Exception as error:
             print("There was an error loading the provinces list: ", error)
@@ -102,10 +104,13 @@ class Events:
 
     @staticmethod
     def loadCities():   ###loadMuniCli
-        # me gustaría ver cómo hacer para que las ciudades ya aparezcan desde el principio, sin necesidad de volver a seleccionar A Coruña para que aparezcan sus ciudades
         try:
             Globals.ui.cmb_ciudadCliente.clear()
             province = Globals.ui.cmb_provinciaCliente.currentText()
+
+            if not province or province[0] == "—":
+                return
+
             cities = Connection.getCities(province)
             # con conexionserver
 #           cities = conexion.ConexionServer.listMuniProv(province)

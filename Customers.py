@@ -139,11 +139,6 @@ class Customers:
 
             Globals.status = customerData[10]
 
-            if Globals.status == "True":
-                Globals.ui.lbl_status.setText("Active customer")
-            else:
-                Globals.ui.lbl_status.setText("Inactive customer")
-
         except Exception as error:
             print("There was an error while showing customer info: ", error)
 
@@ -218,7 +213,7 @@ class Customers:
             mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
             mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
 
-            if not mbox.exec():
+            if mbox.exec() == QtWidgets.QMessageBox.StandardButton.No:
                 mbox.hide()
                 return
 
@@ -241,8 +236,10 @@ class Customers:
                 mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
 
-                if mbox.exec():
+                if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
                     Globals.status = "True"
+                else:
+                    Globals.status = "False"
 
             allDataBoxes.append(Globals.status)
 
@@ -293,11 +290,6 @@ class Customers:
                 Globals.ui.rb_eInvoice.setChecked(True)
 
             Globals.status = customerData[10]
-
-            if Globals.status == "True":
-                Globals.ui.lbl_status.setText("Active customer")
-            else:
-                Globals.ui.lbl_status.setText("Inactive customer")
 
         except Exception as error:
             print("There was an error while searching for the customer: ", error)

@@ -19,13 +19,15 @@ class Reports:
             c.drawString(55, 650, str(items[0]))
             c.drawString(125, 650, str(items[1]))
             c.drawString(210, 650, str(items[2]))
-            c.drawString(280, 650, str(items[3]))
-            c.drawString(330, 650, str(items[4]))
-            c.drawString(390, 650, str(items[5]))
+            c.drawString(270, 650, str(items[3]))
+            c.drawString(340, 650, str(items[4]))
+            c.drawString(385, 650, str(items[5]))
             c.drawString(480, 650, str(items[6]))
             c.line(50, 645, 525, 645)
             x = 55
             y = 630
+
+            Reports.footer(c, "Customers Report")
 
             for record in records:
                 if y <= 90:
@@ -36,7 +38,7 @@ class Reports:
                     c.setFont("Helvetica-Bold", 10)
                     c.drawString(55, 650, str(items[0]))
                     c.drawString(125, 650, str(items[1]))
-                    c.drawString(230, 650, str(items[2]))
+                    c.drawString(210, 650, str(items[2]))
                     c.drawString(280, 650, str(items[3]))
                     c.drawString(330, 650, str(items[4]))
                     c.drawString(390, 650, str(items[5]))
@@ -48,15 +50,15 @@ class Reports:
                 c.setFont("Helvetica", 8)
                 dni = "***" + str(record[0][4:7] + "***")
                 c.drawCentredString(x + 19, y, dni)
-                c.drawString(x + 70, y, record[2])
-                c.drawString(x + 140, y, record[3])
-                c.drawCentredString(x + 270, y, str(record[5]))
-                c.drawString(x + 3280, y, record[8])
-                c.drawString(x + 360, y, record[9])
+                c.drawString(x + 62, y, record[2])
+                c.drawString(x + 155, y, record[3])
+                c.drawCentredString(x + 234, y, str(record[5]))
+                c.drawString(x + 277, y, record[8])
+                c.drawString(x + 350, y, record[9])
                 if str(record[10]) == "True":
-                    c.drawString(x + 430,  y, "Active")
+                    c.drawString(x + 434,  y, "Active")
                 else:
-                    c.drawString(x + 430,  y, "Inactive")
+                    c.drawString(x + 431,  y, "Inactive")
                 y = y - 25
 
             c.save()
@@ -65,18 +67,50 @@ class Reports:
                 if file.endswith(customerReportName):
                     os.startfile(pdfPath)
 
+
+
         except Exception as error:
             print("There was an error with customersReports: ", error)
 
-        @staticmethod
-        def footer(c):
-            try:
-                c.line(35,50, 525, 50)
-                day = datetime.date.today()
-                day = day.strftime("%d/%m/%Y %H:%M:%S")
-                c.setFont("Helvetica", 7)
-                c.drawString(30, 40, day)
 
+    @staticmethod
+    def footer(c, title):
+        try:
+            day = datetime.date.today()
+            day = day.strftime("%d/%m/%Y %H:%M:%S")
+            c.line(35, 50, 350, 50)
+            c.setFont("Helvetica", 7)
+            c.drawString(30, 40, day)
+            c.drawString(30, 30, title)
+            c.drawString(400, 50, str("Página: " + str(c.getPageNumber())))
 
-            except Exception as error:
-                print("There was an error with footer: ", error)
+        except Exception as error:
+            print("There was an error with footer: ", error)
+
+    """@staticmethod
+    def header(title):
+        try:
+            path_logo = ".\\assets\\logo.png"
+            logo = Image.open(path_logo)
+            if isinstance(logo, Image.Image):
+                self.c.line(35, 60, 525, 60)
+                self.c.setFont('Helvetica-Bold', 0)
+                self.c.drawString(55, 785, "EMPRESA TEIS")
+                self.c.drawCentredString(300, 675, titulo)
+                self.c.line(35, 665, 525, 665)
+                # Logo
+                self.c.drawImage(path_logo, 490, 765, width=40, height=40)
+                # Company details
+                self.c.setFont('Helvetica', 9)
+                self.c.drawString(55, 760, "CIF: B12345678")
+                self.c.drawString(55, 745, "Dirección: Calle Galicia, 123")
+                self.c.drawString(55, 730, "Vigo 36215 - España")
+                self.c.drawString(55, 715, "Teléfono: +34 986 123 456")
+                self.c.drawString(55, 700, "Email: teis@mail.com")
+
+                self.c.rect(30, 690, 200, 80)
+            else:
+                print('No se pudo cargar el logo')
+
+        except Exception as e:
+            print('Error en toreport', e)"""

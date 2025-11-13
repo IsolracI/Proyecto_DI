@@ -119,14 +119,22 @@ class Customers:
     @staticmethod
     def showCustomerInfo():   ###selectCustomer
         try:
-            dni = Globals.ui.txt_DNICliente.text()
-            customerData = Connection.getCustomerInfo(dni)
+            selectedRow = Globals.ui.tbl_customerList.selectedItems()
+            selectedCustomerMobile = selectedRow[2].text()
+            customerDni = Connection.getCustomersDni(selectedCustomerMobile)
+
+            customerData = Connection.getCustomerInfo(customerDni)
 
             allDataBoxes = [Globals.ui.txt_DNICliente, Globals.ui.txt_fechaAlta, Globals.ui.txt_apellidosCliente, Globals.ui.txt_nombresCliente, Globals.ui.txt_emailCliente,
                             Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente, Globals.ui.cmb_provinciaCliente, Globals.ui.cmb_ciudadCliente]
 
             for i in range(len(allDataBoxes)):
-                allDataBoxes[i].setText(str(customerData[i]))
+
+                if hasattr(allDataBoxes[i], "setText"):
+                    allDataBoxes[i].setText(str(customerData[i]))
+                if hasattr(allDataBoxes[i], "setCurrenText"):
+                    allDataBoxes[i].setCurrentText(str(customerData[i]))
+
 
             Globals.ui.cmb_provinciaCliente.setCurrentText(str(customerData[7]))
             Globals.ui.cmb_ciudadCliente.setCurrentText(str(customerData[8]))

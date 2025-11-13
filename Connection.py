@@ -115,6 +115,26 @@ class Connection():
 
 
     @staticmethod
+    def getCustomersDni(mobile):
+        try:
+
+            query = QtSql.QSqlQuery()
+            mobile = str(mobile).strip()
+            customerDni = query.prepare("SELECT  dni_nie"
+                                        "    FROM customers"
+                                        "    WHERE mobile = :mobile")
+            query.bindValue(":mobile", mobile)
+
+            if query.exec():
+                while query.next():
+                    customerDni = query.value("dni_nie")
+            return customerDni
+
+        except Exception as error:
+            print("An error ocurred while trying to get the customer DNI: ", error)
+
+
+    @staticmethod
     def deleteCustomer(dni):   ###deleteCli
         try:
             query = QtSql.QSqlQuery()

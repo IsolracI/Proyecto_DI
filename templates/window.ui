@@ -1789,7 +1789,6 @@
      <string>About</string>
     </property>
     <addaction name="actionAbout"/>
-    <addaction name="actionExit_About"/>
    </widget>
    <widget class="QMenu" name="menuReports">
     <property name="title">

@@ -14,7 +14,7 @@ import os
 class Events:
 
     @staticmethod
-    def exitMessage():   ###messageExit
+    def exitWindow():   ###messageExit
         try:
             mbox = QtWidgets.QMessageBox()
             mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
@@ -40,7 +40,7 @@ class Events:
     @staticmethod
     def showAbout():
         try:
-            Globals.about.show()
+            Globals.ui.about.show()
 
         except Exception as error:
             print("There was an error with showAbout: ", error)
@@ -49,18 +49,10 @@ class Events:
     @staticmethod
     def closeAbout():
         try:
-            Globals.about.hide()
+            Globals.ui.about.hide()
 
         except Exception as error:
             print("There was an error with closeAbout: ", error)
-
-    @staticmethod
-    def aboutMessage():
-        try:
-            Globals.ui.about.show()
-
-        except Exception as error:
-            print("There was an error with aboutMessage: ", error)
 
 
     @staticmethod

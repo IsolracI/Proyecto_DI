@@ -94,15 +94,15 @@ class Connection():
 
 
     @staticmethod
-    def getCustomerInfo(phoneNumber):   #dataOneCustomer
+    def getCustomerInfo(dni):   #dataOneCustomer
         try:
             customerData = []
             query = QtSql.QSqlQuery()
-            phoneNumber = str(phoneNumber).strip()
+            dni = str(dni).strip().upper()
             query.prepare("SELECT  *"
                           "    FROM customers"
-                          "    WHERE mobile = :mobile")
-            query.bindValue(":mobile", phoneNumber)
+                          "    WHERE dni_nie = :dni")
+            query.bindValue(":dni", dni)
 
             if query.exec():
                 while query.next():

@@ -119,12 +119,11 @@ class Customers:
     @staticmethod
     def showCustomerInfo():   ###selectCustomer
         try:
-            selectedRow = Globals.ui.tbl_customerList.selectedItems()
-            selectedCustomerPhone = selectedRow[2].text()
-            customerData = Connection.getCustomerInfo(str(selectedCustomerPhone))
+            dni = Globals.ui.txt_DNICliente.text()
+            customerData = Connection.getCustomerInfo(dni)
 
-            allDataBoxes = [Globals.ui.txt_DNICliente, Globals.ui.txt_fechaAlta, Globals.ui.txt_apellidosCliente, Globals.ui.txt_nombresCliente,
-                            Globals.ui.txt_emailCliente, Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente]
+            allDataBoxes = [Globals.ui.txt_DNICliente, Globals.ui.txt_fechaAlta, Globals.ui.txt_apellidosCliente, Globals.ui.txt_nombresCliente, Globals.ui.txt_emailCliente,
+                            Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente, Globals.ui.cmb_provinciaCliente, Globals.ui.cmb_ciudadCliente]
 
             for i in range(len(allDataBoxes)):
                 allDataBoxes[i].setText(str(customerData[i]))
@@ -265,8 +264,8 @@ class Customers:
     @staticmethod
     def searchCustomer():   ###buscaCli
         try:
-            customerPhone = Globals.ui.txt_numeroTelefono.text()
-            customerData = Connection.getCustomerInfo(customerPhone)
+            dni = Globals.ui.txt_DNICliente.text()
+            customerData = Connection.getCustomerInfo(dni)
 
             if not customerData:
                 mbox = QtWidgets.QMessageBox()
@@ -276,13 +275,14 @@ class Customers:
                 mbox.exec()
 
             allDataBoxes = [Globals.ui.txt_DNICliente, Globals.ui.txt_fechaAlta, Globals.ui.txt_apellidosCliente, Globals.ui.txt_nombresCliente, Globals.ui.txt_emailCliente,
-                            Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente, Globals.ui.cmb_provinciaCliente, Globals.ui.cmb_ciudadCliente]
+                            Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente]
 
             for i in range(len(allDataBoxes)):
-                allDataBoxes[i].setText(customerData[i])
+
+                allDataBoxes[i].setText(str(customerData[i]))
 
             Globals.ui.cmb_provinciaCliente.setCurrentText(str(customerData[7]))
-            Globals.ui.cmb_ciudadCliente.setText(str(customerData[8]))
+            Globals.ui.cmb_ciudadCliente.setCurrentText(str(customerData[8]))
 
             if str(customerData[9]) == "paper":
                 Globals.ui.rb_paperBiling.setChecked(True)

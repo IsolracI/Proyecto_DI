@@ -30,11 +30,12 @@ class Main(QtWidgets.QMainWindow):
         Events.resizeCustomerTable()
 
         # menu bar Functions:
-        Globals.ui.menuAbout.triggered.connect(Events.aboutMessage)
+        Globals.ui.menuAbout.triggered.connect(Events.showAbout)
         Globals.ui.actionBackup.triggered.connect(Events.saveBackup)
         Globals.ui.actionRestore_Backup.triggered.connect(Events.restoreBackup)
         Globals.ui.actionCustomers.triggered.connect(Events.exportCsvCustomers)
         Globals.ui.actionCustomer_Reports.triggered.connect(Reports.customersReports)
+        Globals.ui.actionExit.triggered.connect(Events.exitWindow)
 
         # lineEdit Functions:
         Globals.ui.txt_DNICliente.editingFinished.connect(Customers.checkDni)

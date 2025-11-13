@@ -22,7 +22,6 @@ class About(QtWidgets.QDialog):
         Globals.about = Ui_dlg_about()
         Globals.about.setupUi(self)
         Globals.about.btn_CloseAbout.clicked.connect(Events.closeAbout)
-#        Globals.about.btn_CloseAbout.clicked.connect(lambda: Globals.about.hide())
 
 class FileDialogOpen(QtWidgets.QFileDialog):
     def __init__(self):

@@ -230,3 +230,20 @@ class Events:
 
         except Exception as error:
             print("There was an error while loading the status bar: ", error)
+
+
+    @staticmethod
+    def resizeProductTable():  ###resizeTabCustomer
+        try:
+            header = Globals.ui.tbl_productList.horizontalHeader()
+
+            for i in range(header.count()):
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+                headerItems = Globals.ui.tbl_customerList.horizontalHeaderItem(i)
+                # Cabezera en Negrilla
+                font = headerItems.font()
+                font.setBold(True)
+                header.setFont(font)
+
+        except Exception as error:
+            print("There was an error in resizeCustomerTable: ", error)

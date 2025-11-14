@@ -3,6 +3,7 @@ from AuxiliaryWindow import *
 from PyQt6 import QtWidgets
 from Connection import *
 from Customers import *
+from Products import *
 from Reports import *
 from Events import *
 import Globals
@@ -55,7 +56,7 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.btn_save.clicked.connect(Customers.saveNewCustomer)
         Globals.ui.btn_modif.clicked.connect(Customers.modifyCustomer)
         Globals.ui.btn_search.clicked.connect(Customers.searchCustomer)
-        Globals.ui.btn_clearCli.clicked.connect(Customers.clearFields)
+        Globals.ui.btn_clearCli.clicked.connect(Customers.clearCustomerFields)
 
         # table Functions
         Globals.ui.tbl_customerList.clicked.connect(Customers.showCustomerInfo)
@@ -68,10 +69,20 @@ class Main(QtWidgets.QMainWindow):
         # statusBar Functions
         Events.loadStatusBar()
 
-        # Ejemplos
-        # (cómo cargar un combo desde un array)
-        iva = ["4%", "12%", "21%"]
-        Globals.ui.cmb_IVA.addItems(iva)
+
+
+        # Products
+        productFamilies = ["   - select -", "Foods", "Furnitures", "Clothes", "Electronics"]
+        Globals.ui.cmb_productFamily.addItems(productFamilies)
+        Products.loadProductsTable()
+        Events.resizeProductTable()
+
+        # Product table functions
+        Globals.ui.tbl_productList.clicked.connect(Products.showProductInfo)
+
+        # Product button Functions:
+        Globals.ui.btn_clearProductFields.clicked.connect(Products.clearProductFields)
+
 
 
 if __name__ == '__main__':

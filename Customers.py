@@ -84,7 +84,6 @@ class Customers:
             Globals.ui.txt_numeroTelefono.setPlaceholderText("Invalid number")
 
 
-# surname, name, mobile, province, city invoice
     @staticmethod
     def loadCustomerTable(historicalOnly = True):   #loadTableCli
         try:
@@ -304,7 +303,7 @@ class Customers:
 
 
     @staticmethod
-    def clearFields():
+    def clearCustomerFields():
         try:
             allDataBoxes = [Globals.ui.txt_DNICliente, Globals.ui.txt_fechaAlta, Globals.ui.txt_apellidosCliente, Globals.ui.txt_nombresCliente, Globals.ui.txt_emailCliente,
                             Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente, Globals.ui.cmb_provinciaCliente, Globals.ui.cmb_ciudadCliente]

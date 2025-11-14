@@ -218,3 +218,77 @@ class Connection():
         except Exception as error:
             print("An error occurred while trying to modify the customer's data : ", error)
 
+
+    @staticmethod
+    def getProducts():
+        queryOrder = ("SELECT  *"
+                      "    FROM products")
+
+        productsList = []
+        query = QtSql.QSqlQuery()
+        query.prepare(queryOrder)
+
+        if query.exec():
+            while query.next():
+                row = [query.value(i) for i in range(query.record().count())]
+                productsList.append(row)
+
+        return productsList
+
+
+    @staticmethod
+    def getProductInfo(code):
+        try:
+            prodcutData = []
+            query = QtSql.QSqlQuery()
+            code = str(code).strip().upper()
+            query.prepare("SELECT  *"
+                          "    FROM products"
+                          "    WHERE Code = :code")
+            query.bindValue(":code", code)
+
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        prodcutData.append(query.value(i))
+            return prodcutData
+
+        except Exception as error:
+            print("An error ocurred while trying to get the product info: ", error)
+
+
+"""
+    @staticmethod
+    def addProduct(data):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO products "
+                           "(Name, Stock, Family, UnitPrice)"
+                           "VALUES "
+                           "(:Name, :Stock, :Family, :UnitPrice)")
+
+            orderValues = [":Name, :Stock, :Family, :UnitPrice"]
+
+            for i in range(len(orderValues)):
+                value = data[i]
+
+                if hasattr(value, "text"):
+                    valueText = value.text()
+                elif hasattr(value, "currentText"):
+                    valueText = value.currentText()
+                else:
+                    valueText = str(value)
+
+                query.bindValue(orderValues[i], valueText)
+
+            if not query.exec():
+                print("An error ocurred in the query while trying to add the product: ", query.lastError().text())
+                return False
+            return True
+
+        except Exception as error:
+            print("An error ocurred while trying to add the product: ", error)
+"""
+
+
+

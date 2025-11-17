@@ -1,8 +1,9 @@
 from PyQt6 import QtCore
 from Connection import *
-from Events import *
 import Globals
 import re
+
+
 
 class Customers:
 
@@ -119,7 +120,6 @@ class Customers:
     def showCustomerInfo():   ###selectCustomer
         try:
             selectedRow = Globals.ui.tbl_customerList.selectedItems()
-            print(selectedRow)
             selectedCustomerMobile = selectedRow[2].text()
             customerDni = Connection.getCustomersDni(selectedCustomerMobile)
 
@@ -307,15 +307,15 @@ class Customers:
     def clearCustomerFields():
         try:
             allDataBoxes = [Globals.ui.txt_DNICliente, Globals.ui.txt_fechaAlta, Globals.ui.txt_apellidosCliente, Globals.ui.txt_nombresCliente, Globals.ui.txt_emailCliente,
-                            Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente, Globals.ui.cmb_provinciaCliente, Globals.ui.cmb_ciudadCliente]
+                            Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente]
 
             for i in range(len(allDataBoxes)):
                 allDataBoxes[i].clear()
 
-            Events.loadProvinces()
-            Events.loadCities()
             Globals.ui.rb_eInvoice.setChecked(True)
             Globals.ui.txt_DNICliente.setEnabled(True)
+            Globals.ui.cmb_provinciaCliente.setCurrentIndex(0)
+
 
         except Exception as error:
             print("There was an error while clearing the fields: ", error)

@@ -257,7 +257,6 @@ class Connection():
             print("An error ocurred while trying to get the product info: ", error)
 
 
-"""
     @staticmethod
     def addProduct(data):
         try:
@@ -267,7 +266,7 @@ class Connection():
                            "VALUES "
                            "(:Name, :Stock, :Family, :UnitPrice)")
 
-            orderValues = [":Name, :Stock, :Family, :UnitPrice"]
+            orderValues = [":Name", ":Stock", ":Family", ":UnitPrice"]
 
             for i in range(len(orderValues)):
                 value = data[i]
@@ -288,7 +287,5 @@ class Connection():
 
         except Exception as error:
             print("An error ocurred while trying to add the product: ", error)
-"""
-
 
 

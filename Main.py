@@ -70,7 +70,6 @@ class Main(QtWidgets.QMainWindow):
         Events.loadStatusBar()
 
 
-
         # Products
         productFamilies = ["   - select -", "Foods", "Furnitures", "Clothes", "Electronics"]
         Globals.ui.cmb_productFamily.addItems(productFamilies)
@@ -82,6 +81,7 @@ class Main(QtWidgets.QMainWindow):
 
         # Product button Functions:
         Globals.ui.btn_clearProductFields.clicked.connect(Products.clearProductFields)
+        Globals.ui.btn_saveProduct.clicked.connect(Products.saveNewProduct)
 
 
 

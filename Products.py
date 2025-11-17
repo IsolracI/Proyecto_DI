@@ -33,10 +33,13 @@ class Products:
     @staticmethod
     def clearProductFields():
         try:
-            allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice]
+            allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.txt_productPrice]
 
             for i in range(len(allDataBoxes)):
                 allDataBoxes[i].clear()
+
+            Globals.ui.cmb_productFamily.setCurrentIndex(0)
+
 
         except Exception as error:
             print("There was an error while clearing the fields: ", error)
@@ -63,12 +66,6 @@ class Products:
             print("There was an error while showing product info: ", error)
 
 
-
-
-
-
-
-"""
     @staticmethod
     def saveNewProduct():
         try:
@@ -91,5 +88,3 @@ class Products:
 
         except Exception as error:
             print("There was an error while adding the product: ", error)
-
-"""

@@ -119,6 +119,7 @@ class Customers:
     def showCustomerInfo():   ###selectCustomer
         try:
             selectedRow = Globals.ui.tbl_customerList.selectedItems()
+            print(selectedRow)
             selectedCustomerMobile = selectedRow[2].text()
             customerDni = Connection.getCustomersDni(selectedCustomerMobile)
 

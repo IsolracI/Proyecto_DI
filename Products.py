@@ -45,8 +45,8 @@ class Products:
     @staticmethod
     def showProductInfo():
         try:
-            selectedRow = Globals.ui.tbl_productList.selectedItems()
-            selectedProductId = selectedRow[0].text()
+            selectedRow = Globals.ui.tbl_productList.currentRow()
+            selectedProductId = Globals.ui.tbl_productList.item(selectedRow, 0).text()
 
             productData = Connection.getProductInfo(selectedProductId)
 
@@ -61,9 +61,6 @@ class Products:
 
         except Exception as error:
             print("There was an error while showing product info: ", error)
-
-
-
 
 
 

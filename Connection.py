@@ -239,7 +239,7 @@ class Connection():
     @staticmethod
     def getProductInfo(code):
         try:
-            prodcutData = []
+            productData = []
             query = QtSql.QSqlQuery()
             code = str(code).strip().upper()
             query.prepare("SELECT  *"
@@ -250,8 +250,8 @@ class Connection():
             if query.exec():
                 while query.next():
                     for i in range(query.record().count()):
-                        prodcutData.append(query.value(i))
-            return prodcutData
+                        productData.append(query.value(i))
+            return productData
 
         except Exception as error:
             print("An error ocurred while trying to get the product info: ", error)

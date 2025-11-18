@@ -16,6 +16,7 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui = Ui_MainWindow()
         Globals.ui.setupUi(self)
 
+            ## GENERAL ##
         # instances
         Globals.vencal = Calendar()
         Globals.ui.about = About()
@@ -25,10 +26,8 @@ class Main(QtWidgets.QMainWindow):
         self.setStyleSheet(Styles.load_stylesheet())
 
         # DB Connection:
-        historicalOnly = True
         Connection.dbConnection()
-        Customers.loadCustomerTable(historicalOnly)
-        Events.resizeCustomerTable()
+
 
         # menu bar Functions:
         Globals.ui.menuAbout.triggered.connect(Events.showAbout)
@@ -37,6 +36,13 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.actionCustomers.triggered.connect(Events.exportCsvCustomers)
         Globals.ui.actionCustomer_Reports.triggered.connect(Reports.customersReports)
         Globals.ui.actionExit.triggered.connect(Events.exitWindow)
+
+
+        # Customers DB connection
+        historicalOnly = True
+        Customers.loadCustomerTable(historicalOnly)
+        Events.resizeCustomerTable()
+
 
         # lineEdit Functions:
         Globals.ui.txt_DNICliente.editingFinished.connect(Customers.checkDni)
@@ -47,7 +53,7 @@ class Main(QtWidgets.QMainWindow):
 
         # comboBox Funtions:
         Events.loadProvinces()
-#        Events.loadCities()
+#        Events.loadCities()   # actualmente tengo para que las ciudades se carguen DESPUÉS de que elijas la provincia, pero
         Globals.ui.cmb_provinciaCliente.currentIndexChanged.connect(Events.loadCities)
 
         # button Functions:

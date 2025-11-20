@@ -16,18 +16,21 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui = Ui_MainWindow()
         Globals.ui.setupUi(self)
 
-            ## GENERAL ##
+
+            #-# GENERAL #-#
         # instances
         Globals.vencal = Calendar()
         Globals.ui.about = About()
         Globals.dlgOpen = FileDialogOpen()
 
-        # load StyleSheet
-        self.setStyleSheet(Styles.load_stylesheet())
+        # statusBar Functions
+        Events.loadStatusBar()
 
         # DB Connection:
         Connection.dbConnection()
 
+        # load StyleSheet
+        self.setStyleSheet(Styles.load_stylesheet())
 
         # menu bar Functions:
         Globals.ui.menuAbout.triggered.connect(Events.showAbout)
@@ -38,25 +41,26 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.actionExit.triggered.connect(Events.exitWindow)
 
 
+
+            #-# CUSTOMERS #-#
         # Customers DB connection
         historicalOnly = True
         Customers.loadCustomerTable(historicalOnly)
         Events.resizeCustomerTable()
 
-
-        # lineEdit Functions:
+        # Customers lineEdit Functions:
         Globals.ui.txt_DNICliente.editingFinished.connect(Customers.checkDni)
         Globals.ui.txt_emailCliente.editingFinished.connect(lambda: Customers.checkMail(Globals.ui.txt_emailCliente.text()))
-        Globals.ui.txt_nombresCliente.editingFinished.connect(lambda: Customers.capitalize(Globals.ui.txt_nombresCliente.text(), Globals.ui.txt_nombresCliente))
-        Globals.ui.txt_apellidosCliente.editingFinished.connect(lambda: Customers.capitalize(Globals.ui.txt_apellidosCliente.text(), Globals.ui.txt_apellidosCliente))
+        Globals.ui.txt_nombresCliente.editingFinished.connect(lambda: Customers.capitalizeCustomerName(Globals.ui.txt_nombresCliente.text(), Globals.ui.txt_nombresCliente))
+        Globals.ui.txt_apellidosCliente.editingFinished.connect(lambda: Customers.capitalizeCustomerName(Globals.ui.txt_apellidosCliente.text(), Globals.ui.txt_apellidosCliente))
         Globals.ui.txt_numeroTelefono.editingFinished.connect(lambda: Customers.checkMobile(Globals.ui.txt_numeroTelefono.text()))
 
-        # comboBox Funtions:
+        # Customers comboBox Funtions:
         Events.loadProvinces()
-#        Events.loadCities()   # actualmente tengo para que las ciudades se carguen DESPUÉS de que elijas la provincia, pero
+#        Events.loadCities()   # actualmente tengo para que las ciudades se carguen DESPUÉS de que elijas la provincia
         Globals.ui.cmb_provinciaCliente.currentIndexChanged.connect(Events.loadCities)
 
-        # button Functions:
+        # Customers button Functions:
         Globals.ui.btn_fechaAltaCliente.clicked.connect(Events.openCalendar)
         Globals.ui.btn_delete.clicked.connect(Customers.deleteSelectedCustomer)
         Globals.ui.btn_save.clicked.connect(Customers.saveNewCustomer)
@@ -64,30 +68,33 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.btn_search.clicked.connect(Customers.searchCustomer)
         Globals.ui.btn_clearCli.clicked.connect(Customers.clearCustomerFields)
 
-        # table Functions
+        # Customers table Functions
         Globals.ui.tbl_customerList.clicked.connect(Customers.showCustomerInfo)
         Globals.ui.tbl_customerList_3.clicked.connect(Customers.showCustomerInfo)
 
-        # check Historical
+        # Customers check Historical
         Globals.ui.chk_historico.setChecked(True)
         Globals.ui.chk_historico.stateChanged.connect(Customers.customersHistorical)
 
-        # statusBar Functions
-        Events.loadStatusBar()
 
 
-        # Products
+            #-# Products #-#
+        # Products table functions
         productFamilies = ["   - select -", "Foods", "Furnitures", "Clothes", "Electronics"]
         Globals.ui.cmb_productFamily.addItems(productFamilies)
+        Globals.ui.tbl_productList.clicked.connect(Products.showProductInfo)
         Products.loadProductsTable()
         Events.resizeProductTable()
-
-        # Product table functions
-        Globals.ui.tbl_productList.clicked.connect(Products.showProductInfo)
 
         # Product button Functions:
         Globals.ui.btn_clearProductFields.clicked.connect(Products.clearProductFields)
         Globals.ui.btn_saveProduct.clicked.connect(Products.saveNewProduct)
+        Globals.ui.btn_deleteProduct.clicked.connect(Products.deleteSelectedProduct)
+        Globals.ui.btn_modifyProduct.clicked.connect(Products.modifyProduct)
+
+        # Products lineEdit Functions:
+        Globals.ui.txt_productName.editingFinished.connect(lambda: Products.capitalizeProductName(Globals.ui.txt_productName.text(), Globals.ui.txt_productName))
+
 
 
 

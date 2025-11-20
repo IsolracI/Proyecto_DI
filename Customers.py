@@ -63,7 +63,7 @@ class Customers:
 
 
     @staticmethod
-    def capitalize(text, widget):   ###capitalizar
+    def capitalizeCustomerName(text, widget):   ###capitalizar
         try:
             text = text.title()
             widget.setText(text)

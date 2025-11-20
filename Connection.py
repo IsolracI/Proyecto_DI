@@ -1,3 +1,5 @@
+import re
+
 from PyQt6 import QtSql, QtWidgets
 import Globals
 import os
@@ -220,6 +222,33 @@ class Connection():
 
 
     @staticmethod
+    def _checkPrice(price):
+        pattern = r'^\d+(,\d{1,2})?[\s]*€?$'
+
+        try:
+            if re.match(pattern, price):
+                Globals.ui.txt_productPrice.setStyleSheet("background-color: rgb(255, 255, 220); color black")
+                checkedPrice = price + " €"
+                return checkedPrice
+
+            else:
+                Globals.ui.txt_productPrice.setStyleSheet("background-color: #FFC0CB; color black")
+                Globals.ui.txt_productPrice.setText(None)
+                Globals.ui.txt_productPrice.setPlaceholderText("Invalid price format")
+
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle("Error")
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                mbox.setText("Please, use formats like:\n"
+                             "0,00\t 99,99\t 12,50")
+                mbox.exec()
+                return False
+
+        except Exception as error:
+            print("There was an error while checking price: ", error)
+
+
+    @staticmethod
     def getProducts():
         queryOrder = ("SELECT  *"
                       "    FROM products")
@@ -266,6 +295,9 @@ class Connection():
                            "VALUES "
                            "(:Name, :Stock, :Family, :UnitPrice)")
 
+            print("data 3 en addproduct", data[3].text())
+            data[3] = Connection._checkPrice(data[3].text())
+
             orderValues = [":Name", ":Stock", ":Family", ":UnitPrice"]
 
             for i in range(len(orderValues)):
@@ -281,11 +313,57 @@ class Connection():
                 query.bindValue(orderValues[i], valueText)
 
             if not query.exec():
-                print("An error ocurred in the query while trying to add the product: ", query.lastError().text())
+                print("An error ocurred in the query while trying to add the product in the database: ", query.lastError().text())
                 return False
             return True
 
         except Exception as error:
-            print("An error ocurred while trying to add the product: ", error)
+            print("An error ocurred while trying to add the product in the database: ", error)
 
 
+    @staticmethod
+    def deleteProduct(productName):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("DELETE  FROM products "
+                          "    WHERE Name = :productName;")
+            query.bindValue(":productName", productName)
+
+            if not query.exec():
+                return False
+            return True
+        except Exception as error:
+            print("An error ocurred while trying to delete the product in the database: ", error)
+        return True
+
+
+    @staticmethod
+    def modifyProductData(data):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE products set "
+                          "Stock = :Stock, Family = :Family, UnitPrice = :UnitPrice "
+                          "WHERE Name = :Name;")
+
+            print("data 3 en modifyproduct", data[3].text())
+            data[3] = Connection._checkPrice(data[3].text())
+
+            orderValues = [":Name", ":Stock", ":Family", ":UnitPrice"]
+
+            for i in range(len(orderValues)):
+                value = data[i]
+
+                if hasattr(value, "text"):
+                    valueText = value.text()
+                elif hasattr(value, "currentText"):
+                    valueText = value.currentText()
+                else:
+                    valueText = str(value)
+                query.bindValue(orderValues[i], valueText)
+
+            if not query.exec():
+                return False
+            return True
+
+        except Exception as error:
+            print("An error occurred while trying to modify the product in the database: ", error)

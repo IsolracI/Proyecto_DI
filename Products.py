@@ -30,6 +30,17 @@ class Products:
         except Exception as error:
             print("There was an error while loading products table: ", error)
 
+
+    @staticmethod
+    def capitalizeProductName(text, widget):   ###capitalizar
+        try:
+            text = text.title()
+            widget.setText(text)
+
+        except Exception as error:
+            print("There was an error while capitalizing: ", error)
+
+
     @staticmethod
     def clearProductFields():
         try:
@@ -75,7 +86,7 @@ class Products:
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle("Information")
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setText("The product has been added.")
+                mbox.setText("The product has been added successfully.")
                 mbox.exec()
                 Products.loadProductsTable()
             else:
@@ -88,3 +99,66 @@ class Products:
 
         except Exception as error:
             print("There was an error while adding the product: ", error)
+
+    @staticmethod
+    def deleteSelectedProduct():
+        try:
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle("Warning")
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            mbox.setText("Delete Product?")
+            mbox.setStandardButtons(
+                QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+            mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
+            productName = Globals.ui.txt_productName.text()
+
+            if Connection.deleteProduct(productName):
+                successMbox = QtWidgets.QMessageBox()
+                successMbox.setWindowTitle("Information")
+                successMbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                successMbox.setText("The product has been deleted.")
+                successMbox.exec()
+                Products.loadProductsTable()
+
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle("Error")
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+            mbox.setText("An error has occurred while deleting the product.")
+
+        except Exception as error:
+            print("There was an error while deleting the product: ", error)
+
+
+    @staticmethod
+    def modifyProduct():   ###modifyCli
+        try:
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle("Modify")
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
+            mbox.setText("Do you want to modify the product's data?")
+            mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+            mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
+
+            if mbox.exec() == QtWidgets.QMessageBox.StandardButton.No:
+                mbox.hide()
+                return
+
+            allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice]
+
+            if Connection.modifyProductData(allDataBoxes):
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle("Information")
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText("The product has been modified.")
+                mbox.exec()
+                Products.loadProductsTable()
+
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle("Error")
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                mbox.setText("An error has occurred while trying to modify the product's data.")
+                mbox.exec()
+
+        except Exception as error:
+            print("There was an error while modifying the products's data: ", error)

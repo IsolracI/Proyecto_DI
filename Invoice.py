@@ -19,7 +19,12 @@ class Invoice:
                 Globals.ui.lbl_invoiceType.setText(record[9])
                 Globals.ui.lbl_addressFac.setText(record[6] + " " + record[8] + " " + record[7])
                 Globals.ui.lbl_mobileFac.setText(record[5])
-                Globals.ui.lbl_statusFac.setText(record[10])
+
+                if record[10] == "True":
+                    Globals.ui.lbl_statusFac.setText("Activo")
+                else:
+                    Globals.ui.lbl_statusFac.setText("Inactivo")
+
             else:
                 print("WTF hermano??")
 

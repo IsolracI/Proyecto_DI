@@ -223,13 +223,16 @@ class Connection():
 
     @staticmethod
     def _checkPrice(price):
-        pattern = r'^\d+(,\d{1,2})?[\s]*€?$'
+        pattern = r'^\d+(,\d{1,2})?[\s]€?$'
 
         try:
             if re.match(pattern, price):
+
                 Globals.ui.txt_productPrice.setStyleSheet("background-color: rgb(255, 255, 220); color black")
-                checkedPrice = price + " €"
-                return checkedPrice
+                if price[-1] == "€":
+                    price.strip(" ")
+                    price = price + " €"
+                return price
 
             else:
                 Globals.ui.txt_productPrice.setStyleSheet("background-color: #FFC0CB; color black")
@@ -240,7 +243,9 @@ class Connection():
                 mbox.setWindowTitle("Error")
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
                 mbox.setText("Please, use formats like:\n"
-                             "0,00\t 99,99\t 12,50")
+                             "0,00\t 99,99\t 12,50\n"
+                             "or\n"
+                             "0,00 €\t 99,99 €\t 12,50 €\n")
                 mbox.exec()
                 return False
 
@@ -295,7 +300,6 @@ class Connection():
                            "VALUES "
                            "(:Name, :Stock, :Family, :UnitPrice)")
 
-            print("data 3 en addproduct", data[3].text())
             data[3] = Connection._checkPrice(data[3].text())
 
             orderValues = [":Name", ":Stock", ":Family", ":UnitPrice"]
@@ -345,7 +349,6 @@ class Connection():
                           "Stock = :Stock, Family = :Family, UnitPrice = :UnitPrice "
                           "WHERE Name = :Name;")
 
-            print("data 3 en modifyproduct", data[3].text())
             data[3] = Connection._checkPrice(data[3].text())
 
             orderValues = [":Name", ":Stock", ":Family", ":UnitPrice"]
@@ -367,3 +370,8 @@ class Connection():
 
         except Exception as error:
             print("An error occurred while trying to modify the product in the database: ", error)
+
+
+    @staticmethod
+    def wawawiwi():
+        weee = ""

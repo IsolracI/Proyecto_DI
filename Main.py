@@ -4,6 +4,7 @@ from PyQt6 import QtWidgets
 from Connection import *
 from Customers import *
 from Products import *
+from Invoice import *
 from Reports import *
 from Events import *
 import Globals
@@ -95,6 +96,11 @@ class Main(QtWidgets.QMainWindow):
         # Products lineEdit Functions:
         Globals.ui.txt_productName.editingFinished.connect(lambda: Products.capitalizeProductName(Globals.ui.txt_productName.text(), Globals.ui.txt_productName))
 
+
+
+            #-# Invoice #-#
+        # papa
+        Globals.ui.btn_saveFactura.clicked.connect(lambda: Invoice.saveInvoice(Globals.ui.txt_dniFactura))
 
 
 

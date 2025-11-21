@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7662a6-e650-4107-8b59-e8e8f88efefb" name="Changes" comment="chismes de Invoice :v">
-      <change beforePath="$PROJECT_DIR$/Invoice.py" beforeDir="false" afterPath="$PROJECT_DIR$/Invoice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +92,7 @@
       <workItem from="1763468246759" duration="1773000" />
       <workItem from="1763537501623" duration="6235000" />
       <workItem from="1763628746076" duration="5323000" />
-      <workItem from="1763716329713" duration="5286000" />
+      <workItem from="1763716329713" duration="6426000" />
     </task>
     <task id="LOCAL-00001" summary="proyecto sin venv">
       <option name="closed" value="true" />
@@ -238,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763720969104</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="chismes de Invoice :v">
+      <option name="closed" value="true" />
+      <created>1763723216613</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1763723216613</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

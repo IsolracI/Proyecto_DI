@@ -373,5 +373,18 @@ class Connection():
 
 
     @staticmethod
-    def wawawiwi():
-        weee = ""
+    def insertInvoice(dni, data):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO Invoice"
+                          "VALUES"
+                          "(:dni, :data)")
+            query.bindValue(":dni", str(dni))
+            query.bindValue(":data", str(data))
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as error:
+            print("There was an error inserting the invoice", error)

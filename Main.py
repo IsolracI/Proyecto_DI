@@ -100,7 +100,7 @@ class Main(QtWidgets.QMainWindow):
 
             #-# Invoice #-#
         # papa
-        Globals.ui.btn_saveFactura.clicked.connect(lambda: Invoice.saveInvoice(Globals.ui.txt_dniFactura))
+        Globals.ui.btn_saveFactura.clicked.connect(lambda: Invoice.verifyCustomer(Globals.ui.txt_dniFactura))
 
 
 

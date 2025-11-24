@@ -899,7 +899,7 @@
         <property name="frameShadow">
          <enum>QFrame::Plain</enum>
         </property>
-        <widget class="QLabel" name="lbl_numFactura">
+        <widget class="QLabel" name="lbl_numFacturaTitle">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -950,7 +950,7 @@
           </property>
          </column>
         </widget>
-        <widget class="QLabel" name="lbl_dateFactura">
+        <widget class="QLabel" name="lbl_dateFacturaTitle">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -989,19 +989,6 @@
           <string>Refresh</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="txt_numFactura">
-         <property name="geometry">
-          <rect>
-           <x>120</x>
-           <y>10</y>
-           <width>113</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(246, 255, 187);</string>
-         </property>
-        </widget>
         <widget class="QLineEdit" name="txt_dniFactura">
          <property name="geometry">
           <rect>
@@ -1015,17 +1002,36 @@
           <string notr="true">background-color: rgb(246, 255, 187);</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="txt_dateFactura">
+        <widget class="QLabel" name="lbl_numFactura">
          <property name="geometry">
           <rect>
            <x>120</x>
-           <y>90</y>
-           <width>113</width>
+           <y>10</y>
+           <width>111</width>
            <height>21</height>
           </rect>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(246, 255, 187);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lbl_dateFactura">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>90</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(246, 255, 187);</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>
@@ -1168,11 +1174,23 @@
        <widget class="QLabel" name="label_14">
         <property name="geometry">
          <rect>
-          <x>940</x>
-          <y>50</y>
-          <width>71</width>
+          <x>820</x>
+          <y>30</y>
+          <width>80</width>
           <height>21</height>
          </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>21</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>21</height>
+         </size>
         </property>
         <property name="text">
          <string>Invoice Type</string>
@@ -1196,9 +1214,21 @@
          <rect>
           <x>450</x>
           <y>30</y>
-          <width>101</width>
+          <width>300</width>
           <height>21</height>
          </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>21</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>21</height>
+         </size>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(246, 255, 187);</string>
@@ -1212,9 +1242,21 @@
          <rect>
           <x>450</x>
           <y>90</y>
-          <width>101</width>
+          <width>150</width>
           <height>21</height>
          </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>21</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>21</height>
+         </size>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(246, 255, 187);</string>
@@ -1228,9 +1270,21 @@
          <rect>
           <x>450</x>
           <y>60</y>
-          <width>101</width>
+          <width>350</width>
           <height>21</height>
          </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>350</width>
+          <height>21</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>350</width>
+          <height>21</height>
+         </size>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(246, 255, 187);</string>
@@ -1239,7 +1293,7 @@
          <string/>
         </property>
        </widget>
-       <widget class="QLabel" name="lbl_InvoiceType">
+       <widget class="QLabel" name="lbl_invoiceType">
         <property name="geometry">
          <rect>
           <x>1040</x>

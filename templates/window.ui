@@ -976,7 +976,7 @@
           <string>Save</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="btn_facturaFields">
          <property name="geometry">
           <rect>
            <x>180</x>
@@ -986,7 +986,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>Refresh</string>
+          <string>Clear</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="txt_dniFactura">

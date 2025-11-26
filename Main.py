@@ -87,21 +87,28 @@ class Main(QtWidgets.QMainWindow):
         Products.loadProductsTable()
         Events.resizeProductTable()
 
-        # Product button Functions:
+        # Product button Functions
         Globals.ui.btn_clearProductFields.clicked.connect(Products.clearProductFields)
         Globals.ui.btn_saveProduct.clicked.connect(Products.saveNewProduct)
         Globals.ui.btn_deleteProduct.clicked.connect(Products.deleteSelectedProduct)
         Globals.ui.btn_modifyProduct.clicked.connect(Products.modifyProduct)
 
-        # Products lineEdit Functions:
+        # Products lineEdit Functions
         Globals.ui.txt_productName.editingFinished.connect(lambda: Products.capitalizeProductName(Globals.ui.txt_productName.text(), Globals.ui.txt_productName))
 
 
 
             #-# Invoice #-#
-        # papa
-        Globals.ui.btn_saveFactura.clicked.connect(lambda: Invoice.verifyCustomer(Globals.ui.txt_dniFactura))
+        # General
+        Globals.ui.txt_dniFactura.editingFinished.connect(Invoice.verifyCustomer)
+        Events.resizeInvoiceTable()
+
+        # Invoice button Functions
+        Globals.ui.btn_saveFactura.clicked.connect(Invoice.saveInvoice)
         Globals.ui.btn_facturaFields.clicked.connect(Invoice.cleanFac)
+
+        # Invoice table Functions
+        Invoice.loadTableFac()
 
 
 

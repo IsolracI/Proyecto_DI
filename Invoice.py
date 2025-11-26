@@ -1,8 +1,7 @@
+from PyQt6 import QtWidgets, QtCore
 from datetime import datetime
-
-from PyQt6 import QtWidgets
-
 from Connection import *
+from time import sleep
 import Globals
 
 class Invoice:
@@ -28,7 +27,13 @@ class Invoice:
                     Globals.ui.lbl_statusFac.setText("Inactivo")
 
             else:
-                print("WTF hermano??")
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setWindowTitle("Warning")
+                mbox.setText("Missing fields or data")
+                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Ok:
+                    mbox.hide()
 
         except Exception as e:
             print("error alta factura", e)
@@ -56,15 +61,47 @@ class Invoice:
             dni = Globals.ui.txt_dniFactura.text()
             data = datetime.now().strftime("%d/%m/%Y")
             if dni != "" and data != "":
+                Globals.ui.lbl_dateFactura.setText(data)
                 if Connection.insertInvoice(dni, data):
-                    print("invoice successfully saved")
+                    Invoice.loadTableFac()
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setWindowTitle("Invoice")
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setText("Invoice created successfully")
+                    sleep(2)
+                    mbox.hide()
                 else:
                     mbox =QtWidgets.QMessageBox()
                     mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
                     mbox.setWindowTitle("Warning")
                     mbox.setText("Missing fields or data")
                     mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-                    mbox.exec()
+                    if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Ok:
+                        mbox.hide()
 
         except Exception as e:
             print("There was an error while saving the Invoice: ", e)
+
+
+    @staticmethod
+    def loadTableFac():
+        try:
+            invoices = Connection.getInvoices()
+
+            index = 0
+            uiTable = Globals.ui.tbl_invoiceTable
+
+            for invoice in invoices:
+                uiTable.setRowCount(index + 1)
+                uiTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(invoice[0])))
+                uiTable.setItem(index, 1, QtWidgets.QTableWidgetItem(str(invoice[1])))
+                uiTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(invoice[2])))
+
+                uiTable.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                uiTable.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                uiTable.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                index += 1
+
+        except Exception as e:
+            print("There was an error while loading the Invoice table: ", e)

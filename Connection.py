@@ -35,6 +35,8 @@ class Connection():
                                               QtWidgets.QMessageBox.StandardButton.Ok)
 
 
+
+    #-# CUSTOMERS #-#
     @staticmethod
     def getProvinces():   ###listProv
         provincesList = []
@@ -221,6 +223,8 @@ class Connection():
             print("An error occurred while trying to modify the customer's data : ", error)
 
 
+
+    #-# PRODUCTS #-#
     @staticmethod
     def _checkPrice(price):
         pattern = r'^\d+(,\d{1,2})?[\s]€?$'
@@ -372,6 +376,8 @@ class Connection():
             print("An error occurred while trying to modify the product in the database: ", error)
 
 
+
+    #-# INVOICE #-#
     @staticmethod
     def insertInvoice(dni, data):
         try:
@@ -388,3 +394,20 @@ class Connection():
 
         except Exception as error:
             print("There was an error inserting the invoice", error)
+
+
+    @staticmethod
+    def getInvoices():   ### allInvoices
+        try:
+            invoices = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT  *"
+                          "    FROM invoices"
+                          "    ORDER BY id_fac DESC")
+            if query.exec():
+                while query.next():
+                    row = [query.value(i) for i in range(query.record().count())]
+                    invoices.append(row)
+            return invoices
+        except Exception as error:
+            print("There was an error trying to get the invoice records: ", error)

@@ -4,7 +4,6 @@ import Globals
 import re
 
 
-
 class Customers:
 
     @staticmethod

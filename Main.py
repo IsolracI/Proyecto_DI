@@ -100,7 +100,7 @@ class Main(QtWidgets.QMainWindow):
 
             #-# Invoice #-#
         # General
-        Globals.ui.txt_dniFactura.editingFinished.connect(Invoice.verifyCustomer)
+        Globals.ui.txt_dniFactura.editingFinished.connect(lambda: Invoice.searchCustomer(Globals.ui.txt_dniFactura))
         Events.resizeInvoiceTable()
 
         # Invoice button Functions
@@ -110,6 +110,8 @@ class Main(QtWidgets.QMainWindow):
         # Invoice table Functions
         Invoice.loadTableFac()
 
+
+        Globals.ui.tbl_invoiceTable.clicked.connect(Invoice.showInvoiceInfo)
 
 
 if __name__ == '__main__':

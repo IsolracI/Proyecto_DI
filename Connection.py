@@ -379,25 +379,7 @@ class Connection():
 
     #-# INVOICE #-#
     @staticmethod
-    def insertInvoice(dni, data):
-        try:
-            query = QtSql.QSqlQuery()
-            query.prepare("INSERT INTO Invoice"
-                          "VALUES"
-                          "(:dni, :data)")
-            query.bindValue(":dni", str(dni))
-            query.bindValue(":data", str(data))
-            if query.exec():
-                return True
-            else:
-                return False
-
-        except Exception as error:
-            print("There was an error inserting the invoice", error)
-
-
-    @staticmethod
-    def getInvoices():   ### allInvoices
+    def getInvoices():  ### allInvoices
         try:
             invoices = []
             query = QtSql.QSqlQuery()
@@ -411,3 +393,59 @@ class Connection():
             return invoices
         except Exception as error:
             print("There was an error trying to get the invoice records: ", error)
+
+    @staticmethod
+    def getInvoiceId(dni):
+        try:
+            query = QtSql.QSqlQuery()
+            invoiceInfo = query.prepare("SELECT  id_fac"
+                                        "    FROM invoices"
+                                        "    WHERE dni_nie = :dni;")
+            query.bindValue(":dni", dni)
+
+            if query.exec():
+                while query.next():
+                    invoiceInfo = query.value("id_fac")
+            return invoiceInfo
+
+        except Exception as error:
+            print("There was an error trying to get the invoice information: ", error)
+
+    @staticmethod
+    def getInvoiceInfo(id):
+        try:
+            invoiceInfo = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT  *"
+                          "    FROM invoices"
+                          "    WHERE id_fac = :id;")
+            query.bindValue(":id", id)
+
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        invoiceInfo.append(query.value(i))
+            return invoiceInfo
+
+        except Exception as error:
+            print("There was an error trying to get the invoice information: ", error)
+
+
+    @staticmethod
+    def addInvoice(dni, data):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO Invoices"
+                          "(dni_nie, data)"
+                          "VALUES"
+                          "(:dni, :data)")
+            query.bindValue(":dni", str(dni))
+            query.bindValue(":data", str(data))
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as error:
+            print("There was an error inserting the invoice", error)
+

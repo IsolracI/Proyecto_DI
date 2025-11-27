@@ -233,7 +233,7 @@ class Connection():
             if re.match(pattern, price):
 
                 Globals.ui.txt_productPrice.setStyleSheet("background-color: rgb(255, 255, 220); color black")
-                if price[-1] == "€":
+                if price.strip(" ")[-1] == "€":
                     price.strip(" ")
                     price = price + " €"
                 return price

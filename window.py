@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName("gridLayout")
         self.txt_numeroTelefono = QtWidgets.QLineEdit(parent=self.layoutWidget)
         self.txt_numeroTelefono.setMaximumSize(QtCore.QSize(175, 20))
-        self.txt_numeroTelefono.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.txt_numeroTelefono.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.txt_numeroTelefono.setObjectName("txt_numeroTelefono")
         self.gridLayout.addWidget(self.txt_numeroTelefono, 4, 4, 1, 1)
         self.lbl_fechaAlta = QtWidgets.QLabel(parent=self.layoutWidget)
@@ -896,7 +896,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionRestore_Backup)
 
         self.retranslateUi(MainWindow)
-        self.mainPanel.setCurrentIndex(1)
+        self.mainPanel.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.txt_fechaAlta, self.btn_fechaAltaCliente)
         MainWindow.setTabOrder(self.btn_fechaAltaCliente, self.cmb_provinciaCliente)

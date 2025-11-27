@@ -10,7 +10,7 @@ class Invoice:
     def searchCustomer(widget):
         try:
             if widget.text().upper().strip() == "":
-                Invoice._loadAnonymousClient()
+                Invoice._loadAnonymousCustomer()
                 return
 
             else:
@@ -43,7 +43,7 @@ class Invoice:
 
 
     @staticmethod
-    def _loadAnonymousClient():
+    def _loadAnonymousCustomer():
         Globals.ui.lbl_nameFac.setText("Anonimo")
         Globals.ui.lbl_invoiceType.setText("Anonimo")
         Globals.ui.lbl_addressFac.setText("Anonimo")
@@ -138,3 +138,15 @@ class Invoice:
 
         except Exception as error:
             print("There was an error while showing product info: ", error)
+
+
+    @staticmethod
+    def activeSales():
+        try:
+            index = 0
+            Globals.ui.tbl_ventas.setRowCount(index + 1)
+            item = Globals.ui.tbl_ventas.item(0, index).text().strip()
+            Globals.ui.tbl_ventas.itemChanged(0, index, Connection.selecProduct(item))
+
+        except Exception as error:
+            print("There was an error in activeSales: ", error)

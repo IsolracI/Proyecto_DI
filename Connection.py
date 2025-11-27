@@ -449,3 +449,18 @@ class Connection():
         except Exception as error:
             print("There was an error inserting the invoice", error)
 
+
+    @staticmethod
+    def selectProduct(item):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT  *"
+                          "    FROM products"
+                          "    WHERE Code = :code")
+            query.bindValue(":code", int(item))
+            if query.exec():
+                while query.next():
+                    row = [str(query.value(i)) for i in range(query.record().count())]
+            return row
+        except Exception as error:
+            print("There was an error while selecting the product: ", error)

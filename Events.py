@@ -13,6 +13,101 @@ import os
 
 class Events:
 
+    #-# ToolBar #-#
+
+    @staticmethod
+    def saveBackup():
+        try:
+            backupDate = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+            fileName = str(backupDate) + "_backup.zip"
+            filePath, file = Globals.dlgOpen.getSaveFileName(None, "Save Backup File", fileName, "zip")
+
+            if Globals.dlgOpen.accept and file:
+                filezip = zipfile.ZipFile(file, "w")
+                filezip.write("./data/bbdd.sqlite", os.path.basename("./data/bbdd.sqlite"), zipfile.ZIP_DEFLATED)
+                filezip.close()
+                shutil.move(file, filePath)
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                #                mbox.setWindowIcon(QtGui.QIcon.("url imagen")) no tengo una imagen
+                mbox.setWindowTitle("Save Backup File")
+                mbox.setText("Backup File Saved")
+                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.exec()
+
+        except Exception as error:
+            print("There was an error while saving the backup: ", error)
+
+    @staticmethod
+    def restoreBackup():
+        try:
+            fileName = Globals.dlgOpen.getOpenFileName(None, "Restore Backup File", "", "*.zip;;All Files (*)")
+            file = fileName[0]
+
+            if file:
+                with zipfile.ZipFile(file, "r") as bbdd:
+                    bbdd.extractall(path="./data")
+                bbdd.close()
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                #                mbox.setWindowIcon(QtGui.QIcon("url imagen"))
+                mbox.setWindowTitle("Restore Backup File")
+                mbox.setText("Backup File Restored")
+                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.exec()
+                Connection.dbConnection()
+                Events.loadProvinces()
+                Customers.loadCustomerTable()
+
+
+        except Exception as error:
+            print("There was an error while restoring the backup: ", error)
+
+    @staticmethod
+    def exportCsvCustomers():
+        try:
+            data = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+            fileName = str(data) + "_customers.csv"
+            filePath, filter = Globals.dlgOpen.getSaveFileName(None, "Export Backup File", fileName,
+                                                               "CSV Files (*.csv)")
+            var = False
+
+            if filePath:
+                records = Connection.getCustomers(var)
+                with open(filePath, "w", newline="", encoding="utf-8") as csvfile:
+                    writer = csv.writer(csvfile)
+                    writer.writerow(
+                        ["DNIE_NIE", "AddData", "Surname", "Name", "eMail", "Mobile", "Address", "Province", "City",
+                         "Invoice Type", "Active"])
+
+                    for record in records:
+                        writer.writerow(record)
+
+                #                shutil.move(filter, filePath)
+
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                #               mbox.setWindowIcon(QtGui.QIcon("URL imagen"))
+                mbox.setWindowTitle("Export Customers")
+                mbox.setText("Customer data successfully exported")
+                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.exec()
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                #                mbox.setWindowIcon(QtGui.QIcon("URL imagen"))
+                mbox.setWindowTitle("Export Customers")
+                mbox.setText("Error while exporting customer data")
+                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.exec()
+
+        except Exception as error:
+            print("There was an error while exporting the backup to csv file : ", error)
+
+
+
+    #-# AuxiliaryWindows #-#
+
     @staticmethod
     def exitWindow():   ###messageExit
         try:
@@ -54,6 +149,9 @@ class Events:
         except Exception as error:
             print("There was an error with closeAbout: ", error)
 
+
+
+    #-# Customers #-#
 
     @staticmethod
     def openCalendar():
@@ -130,93 +228,7 @@ class Events:
             print("There was an error in resizeCustomerTable: ", error)
 
 
-    @staticmethod
-    def saveBackup():
-        try:
-            backupDate = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-            fileName = str(backupDate) + "_backup.zip"
-            filePath, file = Globals.dlgOpen.getSaveFileName(None, "Save Backup File", fileName, "zip")
 
-            if Globals.dlgOpen.accept and file:
-                filezip = zipfile.ZipFile(file, "w")
-                filezip.write("./data/bbdd.sqlite", os.path.basename("./data/bbdd.sqlite"), zipfile.ZIP_DEFLATED)
-                filezip.close()
-                shutil.move(file, filePath)
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-#                mbox.setWindowIcon(QtGui.QIcon.("url imagen")) no tengo una imagen
-                mbox.setWindowTitle("Save Backup File")
-                mbox.setText("Backup File Saved")
-                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.exec()
-
-        except Exception as error:
-            print("There was an error while saving the backup: ", error)
-
-
-    @staticmethod
-    def restoreBackup():
-        try:
-            fileName = Globals.dlgOpen.getOpenFileName(None, "Restore Backup File", "", "*.zip;;All Files (*)")
-            file = fileName[0]
-
-            if file:
-                with zipfile.ZipFile(file, "r") as bbdd:
-                    bbdd.extractall(path="./data")
-                bbdd.close()
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-#                mbox.setWindowIcon(QtGui.QIcon("url imagen"))
-                mbox.setWindowTitle("Restore Backup File")
-                mbox.setText("Backup File Restored")
-                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.exec()
-                Connection.dbConnection()
-                Events.loadProvinces()
-                Customers.loadCustomerTable()
-
-
-        except Exception as error:
-            print("There was an error while restoring the backup: ", error)
-
-
-    @staticmethod
-    def exportCsvCustomers():
-        try:
-            data = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-            fileName = str(data) + "_customers.csv"
-            filePath, filter = Globals.dlgOpen.getSaveFileName(None, "Export Backup File", fileName, "CSV Files (*.csv)")
-            var = False
-
-            if filePath:
-                records = Connection.getCustomers(var)
-                with open(filePath, "w", newline= "", encoding="utf-8") as csvfile:
-                    writer = csv.writer(csvfile)
-                    writer.writerow(["DNIE_NIE", "AddData", "Surname", "Name", "eMail", "Mobile", "Address", "Province", "City", "Invoice Type", "Active"])
-
-                    for record in records:
-                        writer.writerow(record)
-
-#                shutil.move(filter, filePath)
-
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-#               mbox.setWindowIcon(QtGui.QIcon("URL imagen"))
-                mbox.setWindowTitle("Export Customers")
-                mbox.setText("Customer data successfully exported")
-                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.exec()
-            else:
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-#                mbox.setWindowIcon(QtGui.QIcon("URL imagen"))
-                mbox.setWindowTitle("Export Customers")
-                mbox.setText("Error while exporting customer data")
-                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.exec()
-
-        except Exception as error:
-            print("There was an error while exporting the backup to csv file : ", error)
 
     @staticmethod
     def loadStatusBar():
@@ -248,6 +260,23 @@ class Events:
         except Exception as error:
             print("There was an error in resizeCustomerTable: ", error)
 
+
+    @staticmethod
+    def resizeSalesTable():
+        try:
+            header = Globals.ui.tbl_ventas.horizontalHeader()
+            for i in range(header.count()):
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+                headerItems = Globals.ui.tbl_customerList.horizontalHeaderItem(i)
+                # Cabezera en Negrilla
+                font = headerItems.font()
+                font.setBold(True)
+                header.setFont(font)
+
+        except Exception as error:
+            print("There was an error in resizeSalesTable: ", error)
+
+
     @staticmethod
     def resizeInvoiceTable():
         try:
@@ -262,4 +291,4 @@ class Events:
                 header.setFont(font)
 
         except Exception as error:
-            print("There was an error in resizeCustomerTable: ", error)
+            print("There was an error in resizeInvoiceTable: ", error)

@@ -880,7 +880,7 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_invoicing">
+      <widget class="QWidget" name="tab_sales">
        <attribute name="title">
         <string>Invoicing</string>
        </attribute>
@@ -969,6 +969,9 @@
            <width>291</width>
            <height>621</height>
           </size>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
          </property>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
@@ -1122,7 +1125,7 @@
          </property>
         </widget>
        </widget>
-       <widget class="QTableWidget" name="tableWidget">
+       <widget class="QTableWidget" name="tbl_ventas">
         <property name="geometry">
          <rect>
           <x>340</x>
@@ -1131,13 +1134,47 @@
           <height>521</height>
          </rect>
         </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::AllEditTriggers</set>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Sale ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Product Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Unit Price</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Cuantity</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Total</string>
+         </property>
+        </column>
        </widget>
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
           <x>1250</x>
           <y>730</y>
-          <width>55</width>
+          <width>52</width>
           <height>21</height>
          </rect>
         </property>
@@ -1554,6 +1591,31 @@
         </property>
         <property name="text">
          <string> Mobile:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_imprimirVenta">
+        <property name="geometry">
+         <rect>
+          <x>790</x>
+          <y>140</y>
+          <width>32</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>

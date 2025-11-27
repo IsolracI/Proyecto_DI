@@ -102,6 +102,7 @@ class Main(QtWidgets.QMainWindow):
         # General
         Globals.ui.txt_dniFactura.editingFinished.connect(lambda: Invoice.searchCustomer(Globals.ui.txt_dniFactura))
         Events.resizeInvoiceTable()
+        Events.resizeSalesTable()
 
         # Invoice button Functions
         Globals.ui.btn_saveFactura.clicked.connect(Invoice.saveInvoice)

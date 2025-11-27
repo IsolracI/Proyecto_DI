@@ -902,7 +902,7 @@
         <widget class="QLabel" name="lbl_numFacturaTitle">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>12</x>
            <y>10</y>
            <width>65</width>
            <height>21</height>
@@ -995,7 +995,7 @@
         <widget class="QLabel" name="lbl_dateFacturaTitle">
          <property name="geometry">
           <rect>
-           <x>40</x>
+           <x>42</x>
            <y>90</y>
            <width>35</width>
            <height>21</height>

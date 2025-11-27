@@ -896,7 +896,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionRestore_Backup)
 
         self.retranslateUi(MainWindow)
-        self.mainPanel.setCurrentIndex(0)
+        self.mainPanel.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.txt_fechaAlta, self.btn_fechaAltaCliente)
         MainWindow.setTabOrder(self.btn_fechaAltaCliente, self.cmb_provinciaCliente)

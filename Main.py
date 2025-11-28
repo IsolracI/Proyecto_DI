@@ -16,6 +16,8 @@ class Main(QtWidgets.QMainWindow):
         super(Main, self).__init__()
         Globals.ui = Ui_MainWindow()
         Globals.ui.setupUi(self)
+        self.invoice = Invoice()
+
 
 
             #-# GENERAL #-#
@@ -100,9 +102,11 @@ class Main(QtWidgets.QMainWindow):
 
             #-# Invoice #-#
         # General
-        Globals.ui.txt_dniFactura.editingFinished.connect(lambda: Invoice.searchCustomer(Globals.ui.txt_dniFactura))
+        Invoice.loadAnonymousCustomer()
+        Globals.ui.txt_dniFactura.editingFinished.connect(lambda: Invoice.showCustomer(Globals.ui.txt_dniFactura))
         Events.resizeInvoiceTable()
         Events.resizeSalesTable()
+#       background-color: rgb(246, 255, 187); color de fondo de los labels y text en invoice
 
         # Invoice button Functions
         Globals.ui.btn_saveFactura.clicked.connect(Invoice.saveInvoice)
@@ -110,10 +114,10 @@ class Main(QtWidgets.QMainWindow):
 
         # Invoice table Functions
         Invoice.loadTableFac()
-
-
         Globals.ui.tbl_invoiceTable.clicked.connect(Invoice.showInvoiceInfo)
+        Invoice.activeSales()
 
+#        Globals.ui.tbl_ventas.itemChanged.connect(self.invoice.cellChangedSales)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

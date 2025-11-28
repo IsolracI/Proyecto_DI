@@ -1,8 +1,8 @@
-import re
-
 from PyQt6 import QtSql, QtWidgets
 import Globals
 import os
+import re
+
 
 class Connection():
 
@@ -36,7 +36,7 @@ class Connection():
 
 
 
-    #-# CUSTOMERS #-#
+    ##--## CUSTOMERS ##--##   ##########################################################################################
     @staticmethod
     def getProvinces():   ###listProv
         provincesList = []
@@ -224,7 +224,7 @@ class Connection():
 
 
 
-    #-# PRODUCTS #-#
+    ##--## PRODUCTS ##--##   ###########################################################################################
     @staticmethod
     def _checkPrice(price):
         pattern = r'^\d+(,\d{1,2})?[\s]€?$'

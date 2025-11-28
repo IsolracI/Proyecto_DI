@@ -7,15 +7,9 @@ import Globals
 class Invoice:
 
     @staticmethod
-    def searchCustomer(widget):
+    def showCustomer(widget):   #buscaCli
         try:
-            if widget.text().upper().strip() == "":
-                Invoice._loadAnonymousCustomer()
-                return
-
-            else:
-                widget = widget.text().upper().strip()
-
+            widget = widget.text().upper().strip()
             customerData = Connection.getCustomerInfo(widget)
             if customerData:
                 Globals.ui.lbl_nameFac.setText(customerData[2] + " " + customerData[3])
@@ -43,7 +37,8 @@ class Invoice:
 
 
     @staticmethod
-    def _loadAnonymousCustomer():
+    def loadAnonymousCustomer():
+        Globals.ui.txt_dniFactura.setText("00000000T")
         Globals.ui.lbl_nameFac.setText("Anonimo")
         Globals.ui.lbl_invoiceType.setText("Anonimo")
         Globals.ui.lbl_addressFac.setText("Anonimo")
@@ -141,12 +136,90 @@ class Invoice:
 
 
     @staticmethod
-    def activeSales():
+    def activeSales(row=None):
         try:
-            index = 0
-            Globals.ui.tbl_ventas.setRowCount(index + 1)
-            item = Globals.ui.tbl_ventas.item(0, index).text().strip()
-            Globals.ui.tbl_ventas.itemChanged(0, index, Connection.selecProduct(item))
+            # Si no se pasa fila, añadimos la primera fila
+            if row is None:
+                row = 0
+                Globals.ui.tbl_ventas.setRowCount(1)
+            else:
+                # Si es fila nueva, aumentamos el rowCount
+                if row >= Globals.ui.tbl_ventas.rowCount():
+                    Globals.ui.tbl_ventas.setRowCount(row + 1)
+
+            # Columna 0 (código)
+            Globals.ui.tbl_ventas.setItem(row, 0, QtWidgets.QTableWidgetItem(""))
+            Globals.ui.tbl_ventas.item(row, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+            # Columna 2 (price)
+            Globals.ui.tbl_ventas.setItem(row, 2, QtWidgets.QTableWidgetItem(""))
+
+            # Columna 3 (cantidad)
+            Globals.ui.tbl_ventas.setItem(row, 3, QtWidgets.QTableWidgetItem(""))
+            Globals.ui.tbl_ventas.item(row, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+            # Columna 4 (total)
+            Globals.ui.tbl_ventas.setItem(row, 4, QtWidgets.QTableWidgetItem(""))
 
         except Exception as error:
-            print("There was an error in activeSales: ", error)
+            print("error active sales", error)
+
+
+    @staticmethod
+    def cellChangedSales(item):
+        try:
+            row = item.row()
+            col = item.column()
+            if row == 0:
+                subtotal = 0
+            if col not in (0, 3):
+                return
+
+            value = item.text().strip()
+            if value == "":
+                return
+
+            Globals.ui.tbl_ventas.blockSignals(True)
+
+            # Columna 0 entonces buscar producto y rellenar nombre y precio
+            if col == 0:
+                subtotal = 0.00
+                data = Connection.selectProduct(value)
+                Globals.ui.tbl_ventas.setItem(row, 1, QtWidgets.QTableWidgetItem(str(data[0])))
+                Globals.ui.tbl_ventas.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data[1])))
+                Globals.ui.tbl_ventas.item(row, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+            # Columna 3 → calcular total
+            elif col == 3:
+                cantidad = float(value)
+                precio_item = Globals.ui.tbl_ventas.item(row, 2)
+                if precio_item:
+                    precio = float(precio_item.text())
+                    tot = round(precio * cantidad, 2)
+                    Globals.ui.tbl_ventas.setItem(row, 4, QtWidgets.QTableWidgetItem(str(tot)))
+                    Globals.ui.tbl_ventas.item(row, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight
+                                                                        | QtCore.Qt.AlignmentFlag.AlignVCenter)
+
+            Globals.ui.tbl_ventas.blockSignals(False)
+
+            # Comprobar si la fila actual está completa y añadir nueva fila
+            if all([
+                Globals.ui.tbl_ventas.item(row, 0) and Globals.ui.tbl_ventas.item(row, 0).text().strip(),
+                Globals.ui.tbl_ventas.item(row, 1) and Globals.ui.tbl_ventas.item(row, 1).text().strip(),
+                Globals.ui.tbl_ventas.item(row, 2) and Globals.ui.tbl_ventas.item(row, 2).text().strip(),
+                Globals.ui.tbl_ventas.item(row, 3) and Globals.ui.tbl_ventas.item(row, 3).text().strip(),
+                Globals.ui.tbl_ventas.item(row, 4) and Globals.ui.tbl_ventas.item(row, 4).text().strip()
+            ]):
+                next_row = Globals.ui.tbl_ventas.rowCount()
+                Invoice.activeSales(row=next_row)
+                subtotal = subtotal + tot
+                ##iva = round(subtotal * iva, 2)
+                ##total = round(subtotal + iva, 2)
+                globals.ui.lblSubtotal.setText(str(subtotal))
+                ##globals.ui.lblIVA.setText(str(iva))
+                ##globals.ui.lblTotal.setText(str(total))
+
+        except Exception as error:
+            print("Error en cellChangedSales:", error)
+            Globals.ui.tbl_ventas.blockSignals(False)
+

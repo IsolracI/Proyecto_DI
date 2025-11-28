@@ -87,3 +87,51 @@ QMessageBox {
 QCheckBox {
     color: black;
 }
+
+
+QTableWidget#tbl_invoiceTable::item:selected {
+    background-color: rgb(255, 255, 202);
+    color: black;
+}
+
+QLabel#lbl_numFactura {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+}
+
+QLabel#lbl_dateFactura {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+}
+
+QLabel#lbl_nameFac {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+}
+
+QLabel#lbl_addressFac {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+}
+
+QLabel#lbl_mobileFac {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+}
+
+QLabel#lbl_statusFac {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+}
+
+QLabel#lbl_invoiceType {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+}

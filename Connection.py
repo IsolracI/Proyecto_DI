@@ -464,3 +464,11 @@ class Connection():
             return row
         except Exception as error:
             print("There was an error while selecting the product: ", error)
+
+
+    @staticmethod
+    def saveSales(data):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO sales "
+                          "(idfac, )")

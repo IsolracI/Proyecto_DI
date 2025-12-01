@@ -223,3 +223,13 @@ class Invoice:
             print("Error en cellChangedSales:", error)
             Globals.ui.tbl_ventas.blockSignals(False)
 
+
+    @staticmethod
+    def saveSales():
+        try:
+            for data in Globals.lineSales:
+                correct = Connection.saveSales(data)
+
+
+        except Exception as error:
+            print("Error in Invoice saveSales:", error)

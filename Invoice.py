@@ -138,6 +138,8 @@ class Invoice:
     @staticmethod
     def activeSales(row=None):
         try:
+            Globals.ui.tbl_ventas.blockSignals(False)
+            Globals.ui.tbl_ventas.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.AllEditTriggers)
             # Si no se pasa fila, añadimos la primera fila
             if row is None:
                 row = 0
@@ -215,7 +217,7 @@ class Invoice:
                 subtotal = subtotal + tot
                 ##iva = round(subtotal * iva, 2)
                 ##total = round(subtotal + iva, 2)
-                globals.ui.lblSubtotal.setText(str(subtotal))
+                Globals.ui.lbl_subtotal.setText(str(subtotal))
                 ##globals.ui.lblIVA.setText(str(iva))
                 ##globals.ui.lblTotal.setText(str(total))
 
@@ -228,8 +230,20 @@ class Invoice:
     def saveSales():
         try:
             for data in Globals.lineSales:
-                correct = Connection.saveSales(data)
-
+                aa = "asd"
+#                correct = Connection.saveSales(data)
 
         except Exception as error:
             print("Error in Invoice saveSales:", error)
+
+
+    @staticmethod
+    def loadSalesTable(records):
+        try:
+            subtotal = 0.00
+            index = 0
+            for record in records:
+                aa = ""
+
+        except Exception as error:
+            print("Error in Invoice.loadSalesTable: ", error)

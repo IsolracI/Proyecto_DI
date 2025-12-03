@@ -1169,7 +1169,7 @@
          </property>
         </column>
        </widget>
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="lbl_subtotalTitle">
         <property name="geometry">
          <rect>
           <x>1250</x>
@@ -1194,7 +1194,7 @@
          <string>Subtotal:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="lbl_subtotal">
         <property name="geometry">
          <rect>
           <x>1300</x>
@@ -1222,7 +1222,7 @@
          <string/>
         </property>
        </widget>
-       <widget class="QLabel" name="label_7">
+       <widget class="QLabel" name="lbl_IVATitle">
         <property name="geometry">
          <rect>
           <x>1270</x>
@@ -1247,7 +1247,7 @@
          <string>IVA:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_8">
+       <widget class="QLabel" name="lbl_IVA">
         <property name="geometry">
          <rect>
           <x>1300</x>
@@ -1275,7 +1275,7 @@
          <string/>
         </property>
        </widget>
-       <widget class="QLabel" name="label_9">
+       <widget class="QLabel" name="lbl_totalTitle">
         <property name="geometry">
          <rect>
           <x>1260</x>
@@ -1300,7 +1300,7 @@
          <string>Total:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_10">
+       <widget class="QLabel" name="lbl_total">
         <property name="geometry">
          <rect>
           <x>1300</x>

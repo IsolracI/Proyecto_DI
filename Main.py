@@ -19,8 +19,9 @@ class Main(QtWidgets.QMainWindow):
         self.invoice = Invoice()
 
 
-
-            #-# GENERAL #-#
+               ###################
+        ####   ##-## GENERAL ##-##   ####
+               ###################
         # instances
         Globals.vencal = Calendar()
         Globals.ui.about = About()
@@ -44,8 +45,9 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.actionExit.triggered.connect(Events.exitWindow)
 
 
-
-            #-# CUSTOMERS #-#
+               #####################
+        ####   ##-## CUSTOMERS ##-##   ####
+               #####################
         # Customers DB connection
         historicalOnly = True
         Customers.loadCustomerTable(historicalOnly)
@@ -80,8 +82,9 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.chk_historico.stateChanged.connect(Customers.customersHistorical)
 
 
-
-            #-# Products #-#
+                ####################
+        ####    ##-## Products ##-##   ####
+                ####################
         # Products table functions
         productFamilies = ["   - select -", "Foods", "Furnitures", "Clothes", "Electronics"]
         Globals.ui.cmb_productFamily.addItems(productFamilies)
@@ -99,8 +102,9 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.txt_productName.editingFinished.connect(lambda: Products.capitalizeProductName(Globals.ui.txt_productName.text(), Globals.ui.txt_productName))
 
 
-
-            #-# Invoice #-#
+               ###################
+        ####   ##-## Invoice ##-##   ####
+               ###################
         # General
         Invoice.loadAnonymousCustomer()
         Globals.ui.txt_dniFactura.editingFinished.connect(lambda: Invoice.showCustomer(Globals.ui.txt_dniFactura))

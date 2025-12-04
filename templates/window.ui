@@ -1567,6 +1567,9 @@
         <property name="text">
          <string/>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
        <widget class="QLabel" name="label_15">
         <property name="geometry">
@@ -1613,6 +1616,9 @@
           <width>32</width>
           <height>32</height>
          </size>
+        </property>
+        <property name="toolTip">
+         <string>Imprimir Factura</string>
         </property>
         <property name="text">
          <string/>

@@ -35,8 +35,10 @@ class Connection():
                                               QtWidgets.QMessageBox.StandardButton.Ok)
 
 
+         #######################
+    #### ##--## CUSTOMERS ##--## ####   ##########################################################################################
+         #######################
 
-    ##--## CUSTOMERS ##--##   ##########################################################################################
     @staticmethod
     def getProvinces():   ###listProv
         provincesList = []
@@ -223,8 +225,10 @@ class Connection():
             print("An error occurred while trying to modify the customer's data : ", error)
 
 
+         ######################
+    #### ##--## PRODUCTS ##--## ####  ###########################################################################################
+         ######################
 
-    ##--## PRODUCTS ##--##   ###########################################################################################
     @staticmethod
     def _checkPrice(price):
         pattern = r'^\d+(,\d{1,2})?[\s]€?$'
@@ -376,8 +380,9 @@ class Connection():
             print("An error occurred while trying to modify the product in the database: ", error)
 
 
-
-    #-# INVOICE #-#
+         ###################
+    #### ##-## INVOICE ##-## ####   ##########################################################################################
+         ###################
     @staticmethod
     def getInvoices():  ### allInvoices
         try:

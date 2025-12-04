@@ -37,7 +37,7 @@ class Invoice:
 
 
     @staticmethod
-    def loadAnonymousCustomer():
+    def loadAnonymousCustomer():   #loadFactFirst
         Globals.ui.txt_dniFactura.setText("00000000T")
         Globals.ui.lbl_nameFac.setText("Anonimo")
         Globals.ui.lbl_invoiceType.setText("Anonimo")

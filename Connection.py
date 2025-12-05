@@ -8,6 +8,13 @@ class Connection():
 
     @staticmethod
     def dbConnection():
+        """
+
+        Devuelve un booleano indicando si la conexión tuvo exito o no
+        :return:
+        :rtype: bool
+
+        """
         dbURL = "./data/bbdd.sqlite"
 
         if not os.path.isfile(dbURL):
@@ -41,6 +48,13 @@ class Connection():
 
     @staticmethod
     def getProvinces():   ###listProv
+        """
+
+        Al cargar la aplicación, se busca en la bbdd la lista de provincias
+        :return: una lista de provincias
+        :rtype: bytearray
+
+        """
         provincesList = []
         query = QtSql.QSqlQuery()
         query.prepare("SELECT  provincia"
@@ -56,6 +70,15 @@ class Connection():
 
     @staticmethod
     def getCities(province):   ###listMuniProv
+        """
+
+        Cuando se carga la provincia, se buscan los municipios de esa provincia
+        :param province: string
+        :type province: string
+        :return: array
+        :rtype: bytearray
+
+        """
         try:
             citiesList = []
             query = QtSql.QSqlQuery()
@@ -75,8 +98,17 @@ class Connection():
 
 
     @staticmethod
-    def getCustomers(historicalOnly = True):   ###listCustomers
-        if historicalOnly:
+    def getCustomers(activeOnly = True):   ###listCustomers
+        """
+
+        Devuelve el listado de clientes para cargar la tabla
+        :param activeOnly: true: clientes activos, false: clientes desactivos
+        :type activeOnly: string
+        :return: listado de clientes
+        :rtype: bytearray
+
+        """
+        if activeOnly:
             queryOrder = ("SELECT  *"
                           "    FROM customers"
                           "    WHERE historical = 'True'"
@@ -101,6 +133,15 @@ class Connection():
 
     @staticmethod
     def getCustomerInfo(dni):   #dataOneCustomer
+        """
+
+        Devuelve los datos del cliente que corresponden al DNI
+        :param dni: DNI
+        :type dni: string
+        :return: datos de un cliente
+        :rtype: bytearray
+
+        """
         try:
             customerData = []
             query = QtSql.QSqlQuery()
@@ -142,6 +183,15 @@ class Connection():
 
     @staticmethod
     def deleteCustomer(dni):   ###deleteCli
+        """
+
+        Pasa a historico un cliente
+        :param dni: DNI cliente a desactivar
+        :type dni:
+        :return: True o False
+        :rtype:
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE customers SET historical = :value WHERE dni_nie = :dni;")
@@ -158,6 +208,15 @@ class Connection():
 
     @staticmethod
     def addCustomer(data):   ###addCli
+        """
+
+        Dar de alta a un cliente
+        :param data: datos de un cliente
+        :type data: bytearray
+        :return: datos de un cliente
+        :rtype: bytearray
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO customers "
@@ -193,6 +252,15 @@ class Connection():
 
     @staticmethod
     def modifyCustomerData(data):   ###modifyCli
+        """
+
+        Modifica los datos de un cliente
+        :param data: datos de un cliente
+        :type data: bytearray
+        :return: true o false
+        :rtype: bool
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE customers set "
@@ -263,6 +331,13 @@ class Connection():
 
     @staticmethod
     def getProducts():
+        """
+
+        Devuelve la lista de productos
+        :return: listado de productos
+        :rtype: bytearray
+
+        """
         queryOrder = ("SELECT  *"
                       "    FROM products")
 
@@ -301,6 +376,14 @@ class Connection():
 
     @staticmethod
     def addProduct(data):
+        """
+
+        Dar de alta un producto
+        :param data: datos del producto
+        :type data: bytearray
+        :return: True o False
+        :rtype: bool
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO products "
@@ -335,6 +418,15 @@ class Connection():
 
     @staticmethod
     def deleteProduct(productName):
+        """
+
+        Borra el producto de la base de datos
+        :param productName:
+        :type productName:
+        :return: True o False
+        :rtype: bool
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("DELETE  FROM products "
@@ -351,6 +443,14 @@ class Connection():
 
     @staticmethod
     def modifyProductData(data):
+        """
+
+        Modifica los datos de un producto
+        :param data: información nueva del producto
+        :type data:
+        :return:
+        :rtype:
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE products set "
@@ -385,6 +485,13 @@ class Connection():
          ###################
     @staticmethod
     def getInvoices():  ### allInvoices
+        """
+
+        Lista todas las facturas para cargar la tabla factura
+        :return: Listado de facturas
+        :rtype: bytearray
+
+        """
         try:
             invoices = []
             query = QtSql.QSqlQuery()
@@ -398,6 +505,7 @@ class Connection():
             return invoices
         except Exception as error:
             print("There was an error trying to get the invoice records: ", error)
+
 
     @staticmethod
     def getInvoiceId(dni):
@@ -415,6 +523,7 @@ class Connection():
 
         except Exception as error:
             print("There was an error trying to get the invoice information: ", error)
+
 
     @staticmethod
     def getInvoiceInfo(id):
@@ -438,6 +547,17 @@ class Connection():
 
     @staticmethod
     def addInvoice(dni, data):
+        """
+
+        Dar de alta la factura de un cliente
+        :param dni: dni cliente a facturar
+        :type dni:
+        :param data:
+        :type data:
+        :return:
+        :rtype:
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO Invoices"
@@ -457,7 +577,18 @@ class Connection():
 
     @staticmethod
     def selectProduct(item):
+        """
+
+        Devuelve la información de un producto en especifico
+        :param item:
+        :type item:
+        :return:
+        :rtype:
+
+        """
+
         try:
+            row = []
             query = QtSql.QSqlQuery()
             query.prepare("SELECT  *"
                           "    FROM products"

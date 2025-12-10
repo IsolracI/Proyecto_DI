@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
-  <component name="ReSTService">
-    <option name="DOC_DIR" value="E:\Gabriel\DI\DiacichMancilla\docs" />
-  </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_FOLDERS">
       <list>

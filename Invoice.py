@@ -9,6 +9,9 @@ class Invoice:
     @staticmethod
     def showCustomer(widget):   #buscaCli
         try:
+            if widget.text().upper().strip() == "00000000T":
+                Invoice.loadAnonymousCustomer()
+                return
             widget = widget.text().upper().strip()
             customerData = Connection.getCustomerInfo(widget)
             if customerData:

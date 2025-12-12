@@ -1,6 +1,7 @@
 from reportlab.pdfgen import canvas
 from Connection import *
 import datetime
+import Globals
 import os
 
 class Reports:
@@ -114,3 +115,34 @@ class Reports:
 
         except Exception as e:
             print('Error en toreport', e)"""
+
+    @staticmethod
+    def ticket():
+        try:
+            dni =Globals.ui.txt_dniFactura.text()
+            if dni == "00000000T":
+                titulo = "FACTURA SIMPLIFICADA"
+            else:
+                titulo = "FACTURA"
+
+            rootPath = ".\\reports"
+            data = datetime.datetime.now().strftime("%d_%m_%Y %H_%M_%S")
+            productReportName = data + "_reportProducts.pdf"
+            pdfPath = os.path.join(rootPath, productReportName)
+            c = canvas.Canvas(pdfPath)
+
+            customerData = Connection.getCustomerInfo(dni)
+
+            c.setFont('Helvetica-Bold', 10)
+            c.drawString(220, 700, "DNI: " + str(customerData[0]))
+            c.drawString(220, 685, "APELLIDOS: " + str(customerData[1]))
+            c.drawString(220, 670, "NOMBRE: " + str(customerData[2]))
+            c.drawString(220, 655, "DIRECCIÓN: " + str(customerData[6]))
+            c.drawString(220, 640, "LOCALIDAD: " + str(customerData[8]) + " PROVINCIA: " + str(customerData[7]))
+
+
+            Reports.footer(c, titulo)
+
+
+        except Exception as error:
+            print("There was an error with ticket: ", error)

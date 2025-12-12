@@ -2937,6 +2937,7 @@
      <string>Reports</string>
     </property>
     <addaction name="actionCustomer_Reports"/>
+    <addaction name="actionProduct_Reports"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
@@ -3008,6 +3009,11 @@
   <action name="actionCustomer_Reports">
    <property name="text">
     <string>Customer Reports</string>
+   </property>
+  </action>
+  <action name="actionProduct_Reports">
+   <property name="text">
+    <string>Product Reports</string>
    </property>
   </action>
  </widget>

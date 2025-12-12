@@ -4,5 +4,6 @@ lineSales = []
 dlgOpen = None
 vencal = None
 status = None
+report = None
 about = None
 ui = None

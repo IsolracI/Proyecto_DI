@@ -2,6 +2,8 @@ from PyQt6 import QtWidgets, QtCore
 from datetime import datetime
 from Connection import *
 from time import sleep
+from Reports import *
+import Connection
 import Globals
 
 class Invoice:
@@ -232,6 +234,9 @@ class Invoice:
     @staticmethod
     def saveSales():
         try:
+            fac = Globals.ui.lbl_numFactura.text()
+            if Connection.verifyInvoiceSale(fac):
+                Reports.ticket()
             for data in Globals.lineSales:
                 aa = "asd"
 #                correct = Connection.saveSales(data)

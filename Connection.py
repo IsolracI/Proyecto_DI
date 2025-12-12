@@ -610,3 +610,21 @@ class Connection():
             query.prepare("INSERT INTO sales "
                           "(idfac, )")
 """
+
+
+    @staticmethod
+    def verifyInvoiceSale(invoice):   #existeFacturaSales
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT  *"
+                          "    FROM sales"
+                          "    WHERE idfac = :invoice")
+            query.bindValue(":invoice", int(invoice))
+            if query.exec():
+                if query.next():
+                    return True
+                else:
+                    return False
+
+        except Exception as error:
+            print("There was an error while verifying the invoice: ", error)

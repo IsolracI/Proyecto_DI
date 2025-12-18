@@ -10,6 +10,15 @@ class Invoice:
 
     @staticmethod
     def showCustomer(widget):   #buscaCli
+        """
+
+        Busca un cliente de la base de datos para cargarlo en el panel de ventas. Si la caja de texto del DNI está vacia, muestra el cliente anónimo
+        :param widget:
+        :type widget:
+        :return:
+        :rtype:
+
+        """
         try:
             if widget.text().upper().strip() == "00000000T":
                 Invoice.loadAnonymousCustomer()
@@ -53,6 +62,11 @@ class Invoice:
 
     @staticmethod
     def cleanFac():
+        """
+
+        Limpia todo el panel de facturación
+
+        """
         try:
             Globals.ui.lbl_numFactura.setText("")
             Globals.ui.txt_dniFactura.setText("")
@@ -69,6 +83,11 @@ class Invoice:
 
     @staticmethod
     def saveInvoice():
+        """
+
+        Crea uan factura nueva al cliente cuyo DNI está en la caja de texto y existe y la inserta en la base de datos. Limpia si es necesario la tabla ventas
+
+        """
         try:
             dni = Globals.ui.txt_dniFactura.text()
             date = datetime.now().strftime("%d/%m/%Y")
@@ -100,6 +119,11 @@ class Invoice:
 
     @staticmethod
     def loadTableFac():
+        """
+
+        Cada vez que se carga el programa o se crea una factura, consulta la base de datos y trae todas las facturas
+
+        """
         try:
             invoices = Connection.getInvoices()
 
@@ -142,6 +166,14 @@ class Invoice:
 
     @staticmethod
     def activeSales(row=None):
+        """
+
+        Prepara la tabla ventas para añadir ventas, añadiendo una fila para editarla se introducen solo datos de
+        código producto y cantidad -.-.-.-.-.-.-.-.-.-.-
+        :param row:
+        :type row:
+
+        """
         try:
             Globals.ui.tbl_ventas.blockSignals(False)
             Globals.ui.tbl_ventas.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.AllEditTriggers)
@@ -174,6 +206,17 @@ class Invoice:
 
     @staticmethod
     def cellChangedSales(item):
+        """
+
+        Comprueba en primer lugar si estoy en la fila 0, si es así, pone el subtotal a 0. Comprueba si son la columna 0 o 3, las únicas que van a ser editables y van a ejecutar alguna operación.
+        Si la columna es 0, consulta si existe el producto, y si no devuelve nada, muestra un mensaje de error, si existe carga el nombre y precio del producto en las columnas 1 y 2.
+        Si la columna es 3, añado una cantidad
+        :param item:
+        :type item:
+        :return:
+        :rtype:
+
+        """
         try:
             row = item.row()
             col = item.column()

@@ -4,7 +4,7 @@ import os
 import re
 
 
-class Connection():
+class Connection:
 
     @staticmethod
     def dbConnection():
@@ -220,9 +220,9 @@ class Connection():
         try:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO customers "
-                           "(dni_nie, adddata, surname, name, mail, mobile, address, province, city, invoicetype, historical)"
-                           "VALUES "
-                           "(:dni_nie, :adddata, :surname, :name, :mail, :mobile, :address, :province, :city, :invoicetype, :historical)")
+                          "(dni_nie, adddata, surname, name, mail, mobile, address, province, city, invoicetype, historical)"
+                          "VALUES "
+                          "(:dni_nie, :adddata, :surname, :name, :mail, :mobile, :address, :province, :city, :invoicetype, :historical)")
 
             orderValues = [":dni_nie", ":adddata", ":surname", ":name", ":mail", ":mobile", ":address", ":province", ":city", ":invoicetype"]
             radialButtons = ["electronic", "paper"]
@@ -602,16 +602,6 @@ class Connection():
             print("There was an error while selecting the product: ", error)
 
 
-"""
-    @staticmethod
-    def saveSales(data):
-        try:
-            query = QtSql.QSqlQuery()
-            query.prepare("INSERT INTO sales "
-                          "(idfac, )")
-"""
-
-
     @staticmethod
     def verifyInvoiceSale(invoice):   #existeFacturaSales
         try:
@@ -628,3 +618,49 @@ class Connection():
 
         except Exception as error:
             print("There was an error while verifying the invoice: ", error)
+
+
+    @staticmethod
+    def addSale(data):
+
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO sales "
+                          "(invoice_id, product_id, cuantity, Product, unit_price, total) "
+                          "VALUES "
+                          "(:invoice_id, :product_id, :quantity, :Product, :unit_price, :total)")
+
+            valuesOrder = ["invoice_id", "product_id", "quantity", "Product", "unit_price", "total"]
+
+            for i in range(len(valuesOrder)):
+                query.bindValue(valuesOrder[i], str(data[i]))
+
+            if not query.exec():
+                return False
+
+            return True
+
+        except Exception as error:
+            print("(Connection.addSale) There was an error while adding the sale: ", error)
+
+
+    @staticmethod
+    def getSales(invoiceId):
+        try:
+            saleData = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT  *"
+                          "    FROM sales"
+                          "    WHERE invoice_id = :invoice_id")
+
+            query.bindValue(":invoice_id", int(invoiceId))
+
+            if query.exec():
+                while query.next():
+                    row = [query.value(i) for i in range(query.record().count())]
+                    saleData.append(row)
+
+            return saleData
+
+        except Exception as error:
+            print("(Connection.getSale) There was an error while getting the sale: ", error)

@@ -3,7 +3,6 @@ from datetime import datetime
 from Connection import *
 from time import sleep
 from Reports import *
-import Connection
 import Globals
 
 class Invoice:
@@ -47,7 +46,7 @@ class Invoice:
                     mbox.hide()
 
         except Exception as e:
-            print("error alta factura", e)
+            print("(Invoice.showCustomer) There was an error while trying to show the customer: ", e)
 
 
     @staticmethod
@@ -78,7 +77,7 @@ class Invoice:
             Globals.ui.lbl_mobileFac.setText("")
 
         except Exception as e:
-            print("There was an error while clearing the Invoice fields: ", e)
+            print("(Invoice.cleanFac) There was an error while clearing the Invoice fields: ", e)
 
 
     @staticmethod
@@ -91,7 +90,6 @@ class Invoice:
         try:
             dni = Globals.ui.txt_dniFactura.text()
             date = datetime.now().strftime("%d/%m/%Y")
-            print(date)
             if dni != "" and date != "":
                 Globals.ui.lbl_dateFactura.setText(date)
                 if Connection.addInvoice(dni, date):
@@ -114,7 +112,7 @@ class Invoice:
                         mbox.hide()
 
         except Exception as e:
-            print("There was an error while saving the Invoice: ", e)
+            print("(Invoice.saveInvoice) There was an error while saving the Invoice: ", e)
 
 
     @staticmethod
@@ -142,7 +140,7 @@ class Invoice:
                 index += 1
 
         except Exception as e:
-            print("There was an error while loading the Invoice table: ", e)
+            print("(Invoice.loadTableFac) There was an error while loading the Invoice table: ", e)
 
 
     @staticmethod
@@ -160,48 +158,58 @@ class Invoice:
                 if hasattr(allDataBoxes[i], "setCurrentText"):
                     allDataBoxes[i].setCurrentText(str(invoiceData[i]))
 
+            Invoice.loadSalesTable(selectedInvoiceId)
+
         except Exception as error:
-            print("There was an error while showing product info: ", error)
+            print("(Invoice.showInvoiceInfo) There was an error while showing product info: ", error)
 
 
     @staticmethod
-    def activeSales(row=None):
+    def activeSales(createNewRow=False):
         """
 
         Prepara la tabla ventas para añadir ventas, añadiendo una fila para editarla se introducen solo datos de
         código producto y cantidad -.-.-.-.-.-.-.-.-.-.-
-        :param row:
-        :type row:
+        :param createNewRow:
+        :type createNewRow:
 
         """
         try:
-            Globals.ui.tbl_ventas.blockSignals(False)
-            Globals.ui.tbl_ventas.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.AllEditTriggers)
+            currentCount = Globals.ui.tbl_ventas.rowCount()
             # Si no se pasa fila, añadimos la primera fila
-            if row is None:
-                row = 0
-                Globals.ui.tbl_ventas.setRowCount(1)
+            if createNewRow:
+                Globals.ui.tbl_ventas.setRowCount(currentCount + 1)
+                targetRow = currentCount
             else:
-                # Si es fila nueva, aumentamos el rowCount
-                if row >= Globals.ui.tbl_ventas.rowCount():
-                    Globals.ui.tbl_ventas.setRowCount(row + 1)
+                if currentCount == 0:
+                    Globals.ui.tbl_ventas.setRowCount(1)
+                    targetRow = 0
+                else:
+                    targetRow = currentCount - 1
 
-            # Columna 0 (código)
-            Globals.ui.tbl_ventas.setItem(row, 0, QtWidgets.QTableWidgetItem(""))
-            Globals.ui.tbl_ventas.item(row, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
-            # Columna 2 (price)
-            Globals.ui.tbl_ventas.setItem(row, 2, QtWidgets.QTableWidgetItem(""))
+            # Columna 1 (código)
+            Globals.ui.tbl_ventas.setItem(targetRow, 0, QtWidgets.QTableWidgetItem(""))
+            Globals.ui.tbl_ventas.item(targetRow, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
-            # Columna 3 (cantidad)
-            Globals.ui.tbl_ventas.setItem(row, 3, QtWidgets.QTableWidgetItem(""))
-            Globals.ui.tbl_ventas.item(row, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            # Columna 2 (no me acuerdo :p)
+            Globals.ui.tbl_ventas.setItem(targetRow, 1, QtWidgets.QTableWidgetItem(""))
 
-            # Columna 4 (total)
-            Globals.ui.tbl_ventas.setItem(row, 4, QtWidgets.QTableWidgetItem(""))
+            # Columna 3 (price)
+            Globals.ui.tbl_ventas.setItem(targetRow, 2, QtWidgets.QTableWidgetItem(""))
+
+            # Columna 4 (cantidad)
+            Globals.ui.tbl_ventas.setItem(targetRow, 3, QtWidgets.QTableWidgetItem(""))
+            Globals.ui.tbl_ventas.item(targetRow, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+            # Columna 5 (total)
+            Globals.ui.tbl_ventas.setItem(targetRow, 4, QtWidgets.QTableWidgetItem(""))
+            Globals.ui.tbl_ventas.item(targetRow, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
+
+            Globals.ui.tbl_ventas.blockSignals(False)
 
         except Exception as error:
-            print("error active sales", error)
+            print("(Invoice.activeSales) there was an error trying to activate the sales table: ", error)
 
 
     @staticmethod
@@ -218,83 +226,198 @@ class Invoice:
 
         """
         try:
-            row = item.row()
-            col = item.column()
-            if row == 0:
-                subtotal = 0
-            if col not in (0, 3):
+            salesTable = Globals.ui.tbl_ventas
+            currentRow = item.row()
+            currentCol = item.column()
+
+            if currentCol not in (0, 3):
                 return
 
-            value = item.text().strip()
-            if value == "":
+            textValue = item.text().strip()
+            if not textValue:
                 return
 
-            Globals.ui.tbl_ventas.blockSignals(True)
+            salesTable.blockSignals(True)
+            try:
+                if currentRow == 0:
+                    try:
+                        productRowData = Connection.getProductInfo(textValue)
+                        if not productRowData:
+                            return
 
-            # Columna 0 entonces buscar producto y rellenar nombre y precio
-            if col == 0:
-                subtotal = 0.00
-                data = Connection.selectProduct(value)
-                Globals.ui.tbl_ventas.setItem(row, 1, QtWidgets.QTableWidgetItem(str(data[0])))
-                Globals.ui.tbl_ventas.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data[1])))
-                Globals.ui.tbl_ventas.item(row, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        productMap = Invoice.mapProductData(productRowData)
 
-            # Columna 3 → calcular total
-            elif col == 3:
-                cantidad = float(value)
-                precio_item = Globals.ui.tbl_ventas.item(row, 2)
-                if precio_item:
-                    precio = float(precio_item.text())
-                    tot = round(precio * cantidad, 2)
-                    Globals.ui.tbl_ventas.setItem(row, 4, QtWidgets.QTableWidgetItem(str(tot)))
-                    Globals.ui.tbl_ventas.item(row, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight
-                                                                        | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                        salesTable.setItem(currentRow, 1, QtWidgets.QTableWidgetItem(str(productMap.get("name"))))
+                        salesTable.setItem(currentRow, 2, QtWidgets.QTableWidgetItem(str(productMap.get("price"))))
+                        salesTable.item(currentRow, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
-            Globals.ui.tbl_ventas.blockSignals(False)
+                    except Exception as error:
+                        print("(Invoice.cellChangedSales) There was an error while getting product info: ", error)
 
-            # Comprobar si la fila actual está completa y añadir nueva fila
-            if all([
-                Globals.ui.tbl_ventas.item(row, 0) and Globals.ui.tbl_ventas.item(row, 0).text().strip(),
-                Globals.ui.tbl_ventas.item(row, 1) and Globals.ui.tbl_ventas.item(row, 1).text().strip(),
-                Globals.ui.tbl_ventas.item(row, 2) and Globals.ui.tbl_ventas.item(row, 2).text().strip(),
-                Globals.ui.tbl_ventas.item(row, 3) and Globals.ui.tbl_ventas.item(row, 3).text().strip(),
-                Globals.ui.tbl_ventas.item(row, 4) and Globals.ui.tbl_ventas.item(row, 4).text().strip()
-            ]):
-                next_row = Globals.ui.tbl_ventas.rowCount()
-                Invoice.activeSales(row=next_row)
-                subtotal = subtotal + tot
-                ##iva = round(subtotal * iva, 2)
-                ##total = round(subtotal + iva, 2)
-                Globals.ui.lbl_subtotal.setText(str(subtotal))
-                ##globals.ui.lblIVA.setText(str(iva))
-                ##globals.ui.lblTotal.setText(str(total))
+                elif currentCol == 3:
+                    try:
+                        priceItem = salesTable.item(currentRow, 2)
+                        if priceItem:
+                            quantity = float(textValue)
+                            price = float(priceItem.text())
+                            lineTotal = round(quantity * price, 2)
+
+                            salesTable.setItem(currentRow, 4, QtWidgets.QTableWidgetItem(str(lineTotal)))
+                            salesTable.item(currentRow, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
+
+                    except Exception as error:
+                        print("(Invoice.cellChangedSales) There was an error trying to calculate total price: ", error)
+
+            finally:
+                salesTable.blockSignals(False)
+
+            rowComplete = all([
+                salesTable.item(currentRow, 0) and salesTable.item(currentRow, 0).text().strip(),
+                salesTable.item(currentRow, 1) and salesTable.item(currentRow, 1).text().strip(),
+                salesTable.item(currentRow, 2) and salesTable.item(currentRow, 2).text().strip(),
+                salesTable.item(currentRow, 3) and salesTable.item(currentRow, 3).text().strip(),
+                salesTable.item(currentRow, 4) and salesTable.item(currentRow, 4).text().strip()
+            ])
+
+            if rowComplete:
+                try:
+                    Invoice.calculateTotals()
+                    Invoice.activeSales(True)
+                except Exception as error:
+                    print("(Invoice.cellChangedSales) There was an error while trying to add a new row or calculate total price: ", error)
 
         except Exception as error:
-            print("Error en cellChangedSales:", error)
-            Globals.ui.tbl_ventas.blockSignals(False)
+            print("(Invoice.cellChangedSales) There was an error: ", error)
+
+
+    @staticmethod
+    def calculateTotals():
+        try:
+            table = Globals.ui.tbl_ventas
+            subtotal = 0.0
+            iva = 0.21
+
+            for r in range(table.rowCount()):
+                totalItem = table.item(r, 4)
+                if totalItem and totalItem.text().strip():
+                    try:
+                        subtotal += float(totalItem.text())
+                    except:
+                        pass
+
+            totalIva = float(iva) * float(subtotal)
+            totalToPay = float(subtotal) + float(totalIva)
+
+            Globals.ui.lbl_subtotal.setText(str(subtotal))
+            Globals.ui.lbl_IVA.setText(str(totalIva))
+            Globals.ui.lbl_total.setText(str(totalToPay))
+
+        except Exception as error:
+            print("(Invoice.calculateTotals) There was an error while trying to calculate total price: ", error)
+
+
+    @staticmethod
+    def mapProductData(data):
+        try:
+            return {
+                "id": data[0],
+                "name": data[1],
+                "quantity": data[2],
+                "type": data[3],
+                "price": data[4],
+                "currency": data[5],
+            }
+        except Exception as error:
+            print("(Invoice.productRawDataToMap) There was an error while trying to insert the data into a map: ", error)
 
 
     @staticmethod
     def saveSales():
         try:
-            fac = Globals.ui.lbl_numFactura.text()
-            if Connection.verifyInvoiceSale(fac):
-                Reports.ticket()
-            for data in Globals.lineSales:
-                aa = "asd"
-#                correct = Connection.saveSales(data)
+            salesTable = Globals.ui.tbl_ventas
+            invoiceId = Globals.ui.lbl_numFactura.text().strip()
+
+            for r in range(salesTable.rowCount()):
+                productId = salesTable.item(r, 0).text().strip()
+                productName = salesTable.item(r, 1).text().strip()
+                unitPrice = salesTable.item(r, 2).text().strip()
+                quantity = salesTable.item(r, 3).text().strip()
+                totalPrice = salesTable.item(r, 4).text().strip()
+
+                if not invoiceId or not productId or not productName or not unitPrice or not quantity or not totalPrice:
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle("Error")
+                    mbox.setText("Please fill all the fields")
+                    mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.exec()
+                    return
+
+                allDataBoxes = [invoiceId, productId, quantity, productName, unitPrice, totalPrice]
+
+                if not Connection.addSale(allDataBoxes):
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle("Error")
+                    mbox.setText("Error saving the sales")
+                    mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.exec()
+                    return
+
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle("Success")
+                mbox.setText("Successfully saved the sales")
+                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.exec()
 
         except Exception as error:
-            print("Error in Invoice saveSales:", error)
+            print("(Invoice.saveSales) There was an error while trying to save the sales: ", error)
 
 
     @staticmethod
-    def loadSalesTable(records):
+    def loadSalesTable(invoiceId):
         try:
-            subtotal = 0.00
-            index = 0
-            for record in records:
-                aa = ""
+            salesTable = Globals.ui.tbl_ventas
+            salesTable.blockSignals(True)
+
+            salesTable.clearContents()
+            salesTable.setRowCount(0)
+
+            allSales = Connection.getSales(invoiceId)
+
+            if not allSales:
+                Invoice.activeSales(False)
+                Invoice.calculateTotals()
+                salesTable.blockSignals(False)
+                return
+
+            salesTable.setRowCount(len(allSales))
+            for index, sale in enumerate(allSales):
+#                Product ID
+                salesTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(sale[2])))
+#                Product name
+                salesTable.setItem(index, 1, QtWidgets.QTableWidgetItem(str(sale[3])))
+#                Unit price
+                salesTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(sale[4])))
+#                Cuantity
+                salesTable.setItem(index, 3, QtWidgets.QTableWidgetItem(str(sale[5])))
+#                Total price
+                salesTable.setItem(index, 4, QtWidgets.QTableWidgetItem(str(sale[6])))
+
+                itemAlignCenter = QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter
+                itemAlignLeft = QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter
+
+                if salesTable.item(index, 0):
+                    salesTable.item(index, 0).setTextAlignment(itemAlignCenter)
+                if salesTable.item(index, 1):
+                    salesTable.item(index, 1).setTextAlignment(itemAlignLeft)
+                if salesTable.item(index, 2):
+                    salesTable.item(index, 2).setTextAlignment(itemAlignCenter)
+                if salesTable.item(index, 3):
+                    salesTable.item(index, 3).setTextAlignment(itemAlignCenter)
+                if salesTable.item(index, 4):
+                    salesTable.item(index, 4).setTextAlignment(itemAlignCenter)
+
+            Invoice.calculateTotals()
+            salesTable.blockSignals(False)
 
         except Exception as error:
-            print("Error in Invoice.loadSalesTable: ", error)
+            print("(Invoice.loadSalesTable) There was an error while trying to load the sales table: ", error)

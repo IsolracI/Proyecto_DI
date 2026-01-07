@@ -1596,7 +1596,7 @@
          <string> Mobile:</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="btn_imprimirVenta">
+       <widget class="QPushButton" name="btn_guardarVenta">
         <property name="geometry">
          <rect>
           <x>790</x>

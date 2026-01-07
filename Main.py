@@ -16,12 +16,12 @@ class Main(QtWidgets.QMainWindow):
         super(Main, self).__init__()
         Globals.ui = Ui_MainWindow()
         Globals.ui.setupUi(self)
-        self.invoice = Invoice()
 
 
                ###################
         ####   ##-## GENERAL ##-##   ####
                ###################
+
         # instances
         Globals.vencal = Calendar()
         Globals.ui.about = About()
@@ -48,6 +48,7 @@ class Main(QtWidgets.QMainWindow):
                #####################
         ####   ##-## CUSTOMERS ##-##   ####
                #####################
+
         # Customers DB connection
         historicalOnly = True
         Customers.loadCustomerTable(historicalOnly)
@@ -85,6 +86,7 @@ class Main(QtWidgets.QMainWindow):
                 ####################
         ####    ##-## Products ##-##   ####
                 ####################
+
         # Products table functions
         productFamilies = ["   - select -", "Foods", "Furnitures", "Clothes", "Electronics"]
         Globals.ui.cmb_productFamily.addItems(productFamilies)
@@ -105,6 +107,7 @@ class Main(QtWidgets.QMainWindow):
                ###################
         ####   ##-## Invoice ##-##   ####
                ###################
+
         # General
         Invoice.loadAnonymousCustomer()
         Globals.ui.txt_dniFactura.editingFinished.connect(lambda: Invoice.showCustomer(Globals.ui.txt_dniFactura))
@@ -115,13 +118,15 @@ class Main(QtWidgets.QMainWindow):
         # Invoice button Functions
         Globals.ui.btn_saveFactura.clicked.connect(Invoice.saveInvoice)
         Globals.ui.btn_facturaFields.clicked.connect(Invoice.cleanFac)
+        Globals.ui.btn_guardarVenta.clicked.connect(Invoice.saveSales)
 
-        # Invoice table Functions
+        # Invoice invoices table Functions
         Invoice.loadTableFac()
         Globals.ui.tbl_invoiceTable.clicked.connect(Invoice.showInvoiceInfo)
         Invoice.activeSales()
 
-#        Globals.ui.tbl_ventas.itemChanged.connect(self.invoice.cellChangedSales)
+        # Invoice sales table Functions
+        Globals.ui.tbl_ventas.itemChanged.connect(Invoice.cellChangedSales)
 
         # guardar venta en bd
 #       self.scCleanFac = QtGui.QShortcut(QtGui.QKeySequence("F11"), self) para guardar la venta en la tabla ventas usando una tecla en lugar de un boton

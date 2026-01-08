@@ -299,15 +299,15 @@ class Connection:
 
     @staticmethod
     def _checkPrice(price):
-        pattern = r'^\d+(,\d{1,2})?[\s]€?$'
+        pattern = r'^\d+(,\d{1,2})?\s*€?\s*$'
 
         try:
-            if re.match(pattern, price):
+            price = price.strip()
 
+            if re.match(pattern, price):
+                if price.endswith("€"):
+                    price = price.replace("€", "").strip() + " €"
                 Globals.ui.txt_productPrice.setStyleSheet("background-color: rgb(255, 255, 220); color black")
-                if price.strip(" ")[-1] == "€":
-                    price.strip(" ")
-                    price = price + " €"
                 return price
 
             else:
@@ -326,7 +326,7 @@ class Connection:
                 return False
 
         except Exception as error:
-            print("There was an error while checking price: ", error)
+            print("(Connection._checkPrice) There was an error while checking price: ", error)
 
 
     @staticmethod

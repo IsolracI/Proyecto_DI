@@ -231,7 +231,7 @@ class Invoice:
             currentCol = item.column()
 
             if currentCol not in (0, 3):
-                return
+                pass
 
             textValue = item.text().strip()
             if not textValue:
@@ -259,7 +259,8 @@ class Invoice:
                         priceItem = salesTable.item(currentRow, 2)
                         if priceItem:
                             quantity = float(textValue)
-                            price = float(priceItem.text())
+                            priceText = priceItem.text().replace("€", "").replace(",", ".").strip()
+                            price = float(priceText)
                             lineTotal = round(quantity * price, 2)
 
                             salesTable.setItem(currentRow, 4, QtWidgets.QTableWidgetItem(str(lineTotal)))
@@ -324,8 +325,7 @@ class Invoice:
                 "name": data[1],
                 "quantity": data[2],
                 "type": data[3],
-                "price": data[4],
-                "currency": data[5],
+                "price": data[4]
             }
         except Exception as error:
             print("(Invoice.productRawDataToMap) There was an error while trying to insert the data into a map: ", error)

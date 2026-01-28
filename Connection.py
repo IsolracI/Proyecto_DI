@@ -299,16 +299,15 @@ class Connection:
 
     @staticmethod
     def _checkPrice(price):
-        pattern = r'^\d+(,\d{1,2})?\s*€?\s*$'
+        pattern = r'^\d+([,.]\d{1,2})?$'
 
         try:
             price = price.strip()
 
             if re.match(pattern, price):
-                if price.endswith("€"):
-                    price = price.replace("€", "").strip() + " €"
+                formattedPrice = price.replace(',', '.')
                 Globals.ui.txt_productPrice.setStyleSheet("background-color: rgb(255, 255, 220); color black")
-                return price
+                return formattedPrice
 
             else:
                 Globals.ui.txt_productPrice.setStyleSheet("background-color: #FFC0CB; color black")
@@ -319,9 +318,7 @@ class Connection:
                 mbox.setWindowTitle("Error")
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
                 mbox.setText("Please, use formats like:\n"
-                             "0,00\t 99,99\t 12,50\n"
-                             "or\n"
-                             "0,00 €\t 99,99 €\t 12,50 €\n")
+                             "0,00\t 99,99\t 12,90\t 10,5")
                 mbox.exec()
                 return False
 
@@ -628,14 +625,15 @@ class Connection:
             query.prepare("INSERT INTO sales "
                           "(invoice_id, product_id, cuantity, Product, unit_price, total) "
                           "VALUES "
-                          "(:invoice_id, :product_id, :quantity, :Product, :unit_price, :total)")
+                          "(:invoice_id, :product_id, :cuantity, :Product, :unit_price, :total)")
 
-            valuesOrder = ["invoice_id", "product_id", "quantity", "Product", "unit_price", "total"]
+            valuesOrder = [":invoice_id", ":product_id", ":cuantity", ":Product", ":unit_price", ":total"]
 
             for i in range(len(valuesOrder)):
                 query.bindValue(valuesOrder[i], str(data[i]))
 
             if not query.exec():
+                print("(Connection.addSale) There was an SQL error.")
                 return False
 
             return True

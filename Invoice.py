@@ -231,7 +231,7 @@ class Invoice:
             currentCol = item.column()
 
             if currentCol not in (0, 3):
-                pass
+                return
 
             textValue = item.text().strip()
             if not textValue:
@@ -239,7 +239,7 @@ class Invoice:
 
             salesTable.blockSignals(True)
             try:
-                if currentRow == 0:
+                if currentCol == 0:
                     try:
                         productRowData = Connection.getProductInfo(textValue)
                         if not productRowData:
@@ -259,7 +259,7 @@ class Invoice:
                         priceItem = salesTable.item(currentRow, 2)
                         if priceItem:
                             quantity = float(textValue)
-                            priceText = priceItem.text().replace("€", "").replace(",", ".").strip()
+                            priceText = priceItem.text().replace(",", ".").strip()
                             price = float(priceText)
                             lineTotal = round(quantity * price, 2)
 
@@ -309,9 +309,9 @@ class Invoice:
             totalIva = float(iva) * float(subtotal)
             totalToPay = float(subtotal) + float(totalIva)
 
-            Globals.ui.lbl_subtotal.setText(str(subtotal))
-            Globals.ui.lbl_IVA.setText(str(totalIva))
-            Globals.ui.lbl_total.setText(str(totalToPay))
+            Globals.ui.lbl_subtotal.setText(f"{subtotal:.2f}")
+            Globals.ui.lbl_IVA.setText(f"{totalIva:.2f}")
+            Globals.ui.lbl_total.setText(f"{totalToPay:.2f}")
 
         except Exception as error:
             print("(Invoice.calculateTotals) There was an error while trying to calculate total price: ", error)

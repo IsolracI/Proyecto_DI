@@ -1,4 +1,4 @@
-from PyQt6 import QtWidgets, QtCore
+from PyQt6 import QtWidgets, QtCore, QtGui
 from datetime import datetime
 from Connection import *
 from time import sleep
@@ -165,6 +165,18 @@ class Invoice:
 
 
     @staticmethod
+    def _makeItem(text, editable):
+        item = QtWidgets.QTableWidgetItem(str(text))
+        flags = item.flags()
+
+        if not editable:
+            item.setFlags(flags & ~QtCore.Qt.ItemFlag.ItemIsEditable)
+            item.setBackground(QtGui.QColor(245, 245, 245))
+
+        return item
+
+
+    @staticmethod
     def activeSales(createNewRow=False):
         """
 
@@ -187,23 +199,22 @@ class Invoice:
                 else:
                     targetRow = currentCount - 1
 
-
-            # Columna 1 (código)
-            Globals.ui.tbl_ventas.setItem(targetRow, 0, QtWidgets.QTableWidgetItem(""))
+            # Columna 1 (código del producto)
+            Globals.ui.tbl_ventas.setItem(targetRow, 0, Invoice._makeItem("", True))
             Globals.ui.tbl_ventas.item(targetRow, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
-            # Columna 2 (no me acuerdo :p)
-            Globals.ui.tbl_ventas.setItem(targetRow, 1, QtWidgets.QTableWidgetItem(""))
+            # Columna 2 (nombre del producto)
+            Globals.ui.tbl_ventas.setItem(targetRow, 1, Invoice._makeItem("", False))
 
-            # Columna 3 (price)
-            Globals.ui.tbl_ventas.setItem(targetRow, 2, QtWidgets.QTableWidgetItem(""))
+            # Columna 3 (precio por unidad del producto)
+            Globals.ui.tbl_ventas.setItem(targetRow, 2, Invoice._makeItem("", False))
 
             # Columna 4 (cantidad)
-            Globals.ui.tbl_ventas.setItem(targetRow, 3, QtWidgets.QTableWidgetItem(""))
+            Globals.ui.tbl_ventas.setItem(targetRow, 3, Invoice._makeItem("", True))
             Globals.ui.tbl_ventas.item(targetRow, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
             # Columna 5 (total)
-            Globals.ui.tbl_ventas.setItem(targetRow, 4, QtWidgets.QTableWidgetItem(""))
+            Globals.ui.tbl_ventas.setItem(targetRow, 4, Invoice._makeItem("", False))
             Globals.ui.tbl_ventas.item(targetRow, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
 
             Globals.ui.tbl_ventas.blockSignals(False)
@@ -247,8 +258,8 @@ class Invoice:
 
                         productMap = Invoice.mapProductData(productRowData)
 
-                        salesTable.setItem(currentRow, 1, QtWidgets.QTableWidgetItem(str(productMap.get("name"))))
-                        salesTable.setItem(currentRow, 2, QtWidgets.QTableWidgetItem(str(productMap.get("price"))))
+                        salesTable.setItem(currentRow, 1, Invoice._makeItem(productMap.get("name"), False))
+                        salesTable.setItem(currentRow, 2, Invoice._makeItem(productMap.get("price"), False))
                         salesTable.item(currentRow, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
                     except Exception as error:
@@ -263,7 +274,7 @@ class Invoice:
                             price = float(priceText)
                             lineTotal = round(quantity * price, 2)
 
-                            salesTable.setItem(currentRow, 4, QtWidgets.QTableWidgetItem(str(lineTotal)))
+                            salesTable.setItem(currentRow, 4, Invoice._makeItem(f"{lineTotal:.2f}", False))
                             salesTable.item(currentRow, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
 
                     except Exception as error:
@@ -309,9 +320,9 @@ class Invoice:
             totalIva = float(iva) * float(subtotal)
             totalToPay = float(subtotal) + float(totalIva)
 
-            Globals.ui.lbl_subtotal.setText(f"{subtotal:.2f}")
-            Globals.ui.lbl_IVA.setText(f"{totalIva:.2f}")
-            Globals.ui.lbl_total.setText(f"{totalToPay:.2f}")
+            Globals.ui.lbl_subtotal.setText(f"{subtotal:.2f} €")
+            Globals.ui.lbl_IVA.setText(f"{totalIva:.2f} €")
+            Globals.ui.lbl_total.setText(f"{totalToPay:.2f} €")
 
         except Exception as error:
             print("(Invoice.calculateTotals) There was an error while trying to calculate total price: ", error)
@@ -392,15 +403,15 @@ class Invoice:
             salesTable.setRowCount(len(allSales))
             for index, sale in enumerate(allSales):
 #                Product ID
-                salesTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(sale[2])))
+                salesTable.setItem(index, 0, Invoice._makeItem(sale[2], False))
 #                Product name
-                salesTable.setItem(index, 1, QtWidgets.QTableWidgetItem(str(sale[3])))
+                salesTable.setItem(index, 1, Invoice._makeItem(sale[3], False))
 #                Unit price
-                salesTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(sale[4])))
+                salesTable.setItem(index, 2, Invoice._makeItem(sale[4], False))
 #                Cuantity
-                salesTable.setItem(index, 3, QtWidgets.QTableWidgetItem(str(sale[5])))
+                salesTable.setItem(index, 3, Invoice._makeItem(sale[5], False))
 #                Total price
-                salesTable.setItem(index, 4, QtWidgets.QTableWidgetItem(str(sale[6])))
+                salesTable.setItem(index, 4, Invoice._makeItem(sale[6], False))
 
                 itemAlignCenter = QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter
                 itemAlignLeft = QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter

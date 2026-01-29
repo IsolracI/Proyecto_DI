@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d7662a6-e650-4107-8b59-e8e8f88efefb" name="Changes" comment="vainas del Invoice :v">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Invoice.py" beforeDir="false" afterPath="$PROJECT_DIR$/Invoice.py" afterDir="false" />
-    </list>
+    <list default="true" id="7d7662a6-e650-4107-8b59-e8e8f88efefb" name="Changes" comment="inhabilitar edición en algunas columnas de la tabla ventas" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -557,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769627191303</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="inhabilitar edición en algunas columnas de la tabla ventas">
+      <option name="closed" value="true" />
+      <created>1769679668158</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1769679668158</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,7 +599,8 @@
     <MESSAGE value="wa" />
     <MESSAGE value="WAH-LUIGI!!!!" />
     <MESSAGE value="vainas del Invoice :v" />
-    <option name="LAST_COMMIT_MESSAGE" value="vainas del Invoice :v" />
+    <MESSAGE value="inhabilitar edición en algunas columnas de la tabla ventas" />
+    <option name="LAST_COMMIT_MESSAGE" value="inhabilitar edición en algunas columnas de la tabla ventas" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DiacichMancilla$Customers.coverage" NAME="Customers Coverage Results" MODIFIED="1763059330540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

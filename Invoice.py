@@ -11,11 +11,12 @@ class Invoice:
     def showCustomer(widget):   #buscaCli
         """
 
-        Busca un cliente de la base de datos para cargarlo en el panel de ventas. Si la caja de texto del DNI está vacia, muestra el cliente anónimo
-        :param widget:
-        :type widget:
-        :return:
-        :rtype:
+        Busca un cliente de la base de datos para cargarlo en el panel de ventas.
+        Si la caja de texto del DNI está vacia, muestra el cliente anónimo.
+
+        :param widget: que contiene el DNI del cliente a buscar.
+        :type widget: QLineEdit
+        :return: None
 
         """
         try:
@@ -51,6 +52,13 @@ class Invoice:
 
     @staticmethod
     def loadAnonymousCustomer():   #loadFactFirst
+        """
+
+        Carga en el panel de ventas la información del cliente anónimo.
+
+        :return: None
+
+        """
         Globals.ui.txt_dniFactura.setText("00000000T")
         Globals.ui.lbl_nameFac.setText("Anonimo")
         Globals.ui.lbl_invoiceType.setText("Anonimo")
@@ -63,7 +71,9 @@ class Invoice:
     def cleanFac():
         """
 
-        Limpia todo el panel de facturación
+        Limpia todos los campos del panel de facturación.
+
+        :return: None
 
         """
         try:
@@ -84,7 +94,9 @@ class Invoice:
     def saveInvoice():
         """
 
-        Crea uan factura nueva al cliente cuyo DNI está en la caja de texto y existe y la inserta en la base de datos. Limpia si es necesario la tabla ventas
+        Crea una factura nueva en la base de datos para el cliente actual.
+
+        :return: None
 
         """
         try:
@@ -119,7 +131,9 @@ class Invoice:
     def loadTableFac():
         """
 
-        Cada vez que se carga el programa o se crea una factura, consulta la base de datos y trae todas las facturas
+        Cada vez que se carga el programa o se crea una factura, consulta la base de datos y trae todas las facturas.
+
+        :return: None
 
         """
         try:
@@ -145,6 +159,13 @@ class Invoice:
 
     @staticmethod
     def showInvoiceInfo():
+        """
+
+        Carga en el panel de facturas la información del cliente seleccionado.
+
+        :return: None
+
+        """
         try:
             selectedRow = Globals.ui.tbl_invoiceTable.currentRow()
             selectedInvoiceId = Globals.ui.tbl_invoiceTable.item(selectedRow, 0).text()
@@ -166,6 +187,15 @@ class Invoice:
 
     @staticmethod
     def _makeItem(text, editable):
+        """
+
+
+
+        :param text:
+        :param editable:
+        :return:
+
+        """
         item = QtWidgets.QTableWidgetItem(str(text))
         flags = item.flags()
 
@@ -304,6 +334,9 @@ class Invoice:
 
     @staticmethod
     def calculateTotals():
+        """
+
+        """
         try:
             table = Globals.ui.tbl_ventas
             subtotal = 0.0

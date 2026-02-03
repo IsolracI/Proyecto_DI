@@ -14,7 +14,7 @@ class Invoice:
         Busca un cliente de la base de datos para cargarlo en el panel de ventas.
         Si la caja de texto del DNI está vacia, muestra el cliente anónimo.
 
-        :param widget: que contiene el DNI del cliente a buscar.
+        :param widget: campo de texto que contiene el DNI del cliente a buscar.
         :type widget: QLineEdit
         :return: None
 
@@ -189,11 +189,15 @@ class Invoice:
     def _makeItem(text, editable):
         """
 
+        Crea un QTableWidgetItem con control de edición y permite
+        definir si la celda será editable o solo de lectura.
 
-
-        :param text:
-        :param editable:
-        :return:
+        :param text: Texto que se mostrará en la celda.
+        :type text: str
+        :param editable: Indica si la celda es editable.
+        :type editable: bool
+        :return: Item configurado para la tabla.
+        :rtype: QTableWidgetItem
 
         """
         item = QtWidgets.QTableWidgetItem(str(text))
@@ -210,10 +214,11 @@ class Invoice:
     def activeSales(createNewRow=False):
         """
 
-        Prepara la tabla ventas para añadir ventas, añadiendo una fila para editarla se introducen solo datos de
-        código producto y cantidad -.-.-.-.-.-.-.-.-.-.-
-        :param createNewRow:
-        :type createNewRow:
+        Prepara la tabla ventas para añadir una nueva venta.
+
+        :param createNewRow: Indica si se debe forzar la creación de una nueva fila.
+        :type createNewRow: bool
+        :return: None
 
         """
         try:
@@ -257,13 +262,13 @@ class Invoice:
     def cellChangedSales(item):
         """
 
-        Comprueba en primer lugar si estoy en la fila 0, si es así, pone el subtotal a 0. Comprueba si son la columna 0 o 3, las únicas que van a ser editables y van a ejecutar alguna operación.
-        Si la columna es 0, consulta si existe el producto, y si no devuelve nada, muestra un mensaje de error, si existe carga el nombre y precio del producto en las columnas 1 y 2.
-        Si la columna es 3, añado una cantidad
-        :param item:
-        :type item:
-        :return:
-        :rtype:
+        Maneja los cambios en las celdas de la tabla de ventas.
+        Si la fila queda completa, se recalculan los totales y
+        se añade automáticamente una nueva fila.
+
+        :param item: Celda modificada.
+        :type item: QTableWidgetItem
+        :return: None
 
         """
         try:
@@ -336,6 +341,11 @@ class Invoice:
     def calculateTotals():
         """
 
+        Calcula los totales de la factura y muestra los resultados en las etiquetas
+        correspondientes con formato de dos decimales y símbolo de euro.
+
+        :return: None
+
         """
         try:
             table = Globals.ui.tbl_ventas
@@ -363,6 +373,17 @@ class Invoice:
 
     @staticmethod
     def mapProductData(data):
+        """
+
+        Mapea los valores recibidos desde la base de datos a claves
+        más legibles para su uso en la aplicación.
+
+        :param data: Lista con datos del producto desde la BD.
+        :type data: Lista.
+        :return: Diccionario con los datos del producto.
+        :rtype: Diccionario.
+
+        """
         try:
             return {
                 "id": data[0],
@@ -377,6 +398,13 @@ class Invoice:
 
     @staticmethod
     def saveSales():
+        """
+
+        Guarda todas las ventas de la tabla en la base de datos.
+
+        :return: None
+
+        """
         try:
             salesTable = Globals.ui.tbl_ventas
             invoiceId = Globals.ui.lbl_numFactura.text().strip()
@@ -418,6 +446,18 @@ class Invoice:
 
     @staticmethod
     def loadSalesTable(invoiceId):
+        """
+
+        Carga las ventas asociadas a una factura en la tabla de ventas.
+
+        Limpia la tabla actual y rellena con los datos recuperados
+        desde la base de datos.
+
+        :param invoiceId: ID de la factura a cargar.
+        :type invoiceId: str | int
+        :return: None
+
+        """
         try:
             salesTable = Globals.ui.tbl_ventas
             salesTable.blockSignals(True)

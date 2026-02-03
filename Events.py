@@ -17,6 +17,13 @@ class Events:
 
     @staticmethod
     def saveBackup():
+        """
+
+        Crea una copia de seguridad de la base de datos.
+
+        :return: None
+
+        """
         try:
             backupDate = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
             fileName = str(backupDate) + "_backup.zip"
@@ -38,8 +45,16 @@ class Events:
         except Exception as error:
             print("There was an error while saving the backup: ", error)
 
+
     @staticmethod
     def restoreBackup():
+        """
+
+        Restaura una copia de seguridad de la base de datos.
+
+        :return: None
+
+        """
         try:
             fileName = Globals.dlgOpen.getOpenFileName(None, "Restore Backup File", "", "*.zip;;All Files (*)")
             file = fileName[0]
@@ -59,12 +74,19 @@ class Events:
                 Events.loadProvinces()
                 Customers.loadCustomerTable()
 
-
         except Exception as error:
             print("There was an error while restoring the backup: ", error)
 
+
     @staticmethod
     def exportCsvCustomers():
+        """
+
+        Exporta los clientes a un archivo CSV.
+
+        :return: None
+
+        """
         try:
             data = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
             fileName = str(data) + "_customers.csv"
@@ -110,6 +132,16 @@ class Events:
 
     @staticmethod
     def exitWindow():   ###messageExit
+        """
+
+        Muestra un cuadro de confirmación para cerrar la aplicación.
+
+        Si el usuario confirma la acción, finaliza la ejecución del programa.
+        Si cancela, la ventana se mantiene abierta.
+
+        :return: None
+
+        """
         try:
             mbox = QtWidgets.QMessageBox()
             mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
@@ -134,6 +166,13 @@ class Events:
 
     @staticmethod
     def showAbout():
+        """
+
+        Muestra la ventana de información de la aplicación.
+
+        :return: None
+
+        """
         try:
             Globals.ui.about.show()
 
@@ -143,6 +182,13 @@ class Events:
 
     @staticmethod
     def closeAbout():
+        """
+
+        Cierra la ventana de información de la aplicación.
+
+        :return: None
+
+        """
         try:
             Globals.ui.about.hide()
 
@@ -155,6 +201,13 @@ class Events:
 
     @staticmethod
     def openCalendar():
+        """
+
+        Muestra la ventana del calendario.
+
+        :return: None
+
+        """
         try:
             Globals.vencal.show()
 
@@ -164,6 +217,15 @@ class Events:
 
     @staticmethod
     def loadData(qDate):
+        """
+
+        Carga la fecha seleccionada en el calendario.
+
+        :param qDate: Fecha seleccionada en el calendario
+        :type qDate: QDate
+        :return: None
+
+        """
         try:
             data = ('{:02d}/{:02d}/{:4d}'.format(qDate.day(), qDate.month(), qDate.year()))
 
@@ -179,6 +241,13 @@ class Events:
 
     @staticmethod
     def loadProvinces():   ###loadProv
+        """
+
+        Carga la lista de provincias en el comboBox.
+
+        :return: None
+
+        """
         try:
             Globals.ui.cmb_provinciaCliente.clear()
             Globals.ui.cmb_provinciaCliente.addItems(["      — Select a Province —"])
@@ -194,6 +263,13 @@ class Events:
 
     @staticmethod
     def loadCities():   ###loadMuniCli
+        """
+
+        Carga la lista de ciudades según la provincia seleccionada.
+
+        :return: None
+
+        """
         try:
             Globals.ui.cmb_ciudadCliente.clear()
             province = Globals.ui.cmb_provinciaCliente.currentText()
@@ -212,6 +288,13 @@ class Events:
 
     @staticmethod
     def resizeCustomerTable():   ###resizeTabCustomer
+        """
+
+        Ajusta automáticamente el tamaño de las columnas de la tabla de clientes.
+
+        :return: None
+
+        """
         try:
             header = Globals.ui.tbl_customerList.horizontalHeader()
 
@@ -228,10 +311,15 @@ class Events:
             print("There was an error in resizeCustomerTable: ", error)
 
 
-
-
     @staticmethod
     def loadStatusBar():
+        """
+
+        Carga la barra de estado de la aplicación.
+
+        :return: None
+
+        """
         try:
             data = datetime.now().strftime("%d/%m/%Y")
             labelStatus = QtWidgets.QLabel()
@@ -246,6 +334,13 @@ class Events:
 
     @staticmethod
     def resizeProductTable():
+        """
+
+        Ajusta automáticamente el tamaño de las columnas de la tabla de productos.
+
+        :return: None
+
+        """
         try:
             header = Globals.ui.tbl_productList.horizontalHeader()
 
@@ -263,6 +358,13 @@ class Events:
 
     @staticmethod
     def resizeSalesTable():
+        """
+
+        Ajusta automáticamente el tamaño de las columnas de la tabla de ventas.
+
+        :return: None
+
+        """
         try:
             header = Globals.ui.tbl_ventas.horizontalHeader()
             for i in range(header.count()):
@@ -279,6 +381,13 @@ class Events:
 
     @staticmethod
     def resizeInvoiceTable():
+        """
+
+        Ajusta automáticamente el tamaño de las columnas de la tabla de facturas.
+
+        :return: None
+
+        """
         try:
             header = Globals.ui.tbl_invoiceTable.horizontalHeader()
 

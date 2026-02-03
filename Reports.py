@@ -8,6 +8,13 @@ class Reports:
 
     @staticmethod
     def customersReports():   #reportCustomers
+        """
+
+        Genera un informe en PDF con la lista de clientes.
+
+        :return: None
+
+        """
         try:
             rootPath = ".\\reports"
             data = datetime.datetime.now().strftime("%d_%m_%Y %H_%M_%S")
@@ -68,14 +75,23 @@ class Reports:
                 if file.endswith(customerReportName):
                     os.startfile(pdfPath)
 
-
-
         except Exception as error:
             print("There was an error with customersReports: ", error)
 
 
     @staticmethod
     def footer(c, title):
+        """
+
+        Dibuja el pie de página del documento PDF.
+
+        :param c: Lienzo del PDF sobre el que se dibuja el contenido
+        :type c: reportlab.pdfgen.canvas.Canvas
+        :param title: Título del informe o documento
+        :type title: str
+        :return: None
+
+        """
         try:
             day = datetime.date.today()
             day = day.strftime("%d/%m/%Y %H:%M:%S")
@@ -118,6 +134,13 @@ class Reports:
 
     @staticmethod
     def ticket():
+        """
+
+        Genera un ticket o factura en formato PDF para una venta.
+
+        :return: None
+
+        """
         try:
             dni =Globals.ui.txt_dniFactura.text()
             if dni == "00000000T":
@@ -140,9 +163,7 @@ class Reports:
             c.drawString(220, 655, "DIRECCIÓN: " + str(customerData[6]))
             c.drawString(220, 640, "LOCALIDAD: " + str(customerData[8]) + " PROVINCIA: " + str(customerData[7]))
 
-
             Reports.footer(c, titulo)
-
 
         except Exception as error:
             print("There was an error with ticket: ", error)

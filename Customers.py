@@ -3,11 +3,17 @@ from Connection import *
 import Globals
 import re
 
-
 class Customers:
 
     @staticmethod
     def checkDni():
+        """
+
+        Valida el DNI o NIE introducido por el usuario.
+
+        :return: None
+
+        """
         try:
             Globals.ui.txt_DNICliente.editingFinished.disconnect()
             dni = Globals.ui.txt_DNICliente.text()
@@ -46,6 +52,15 @@ class Customers:
 
     @staticmethod
     def checkMail(email):
+        """
+
+        Valida el formato del correo electrónico.
+
+        :param email: Dirección de correo electrónico introducido por el usuario
+        :type email: str
+        :return: None
+
+        """
         pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
 
         try:
@@ -63,6 +78,17 @@ class Customers:
 
     @staticmethod
     def capitalizeCustomerName(text, widget):   ###capitalizar
+        """
+
+        Capitaliza el texto del nombre o apellido del cliente.
+
+        :param text: Texto original introducido por el usuario.
+        :type text: str
+        :param widget: Campo de la interfaz donde se mostrará el texto formateado.
+        :type widget: QLineEdit
+        :return: None
+
+        """
         try:
             text = text.title()
             widget.setText(text)
@@ -73,6 +99,15 @@ class Customers:
 
     @staticmethod
     def checkMobile(number):   ###checkMobil
+        """
+
+        Valida el número de teléfono móvil del cliente.
+
+        :param number: Número de teléfono introducido.
+        :type number: str
+        :return: None
+
+        """
         pattern = r'^[67]\d{8}$'
 
         if re.match(pattern, number):
@@ -86,6 +121,15 @@ class Customers:
 
     @staticmethod
     def loadCustomerTable(historicalOnly = True):   #loadTableCli
+        """
+
+        Carga la tabla de clientes en la interfaz.
+
+        :param historicalOnly: True para mostrar solo clientes activos, False para mostrar todos
+        :type historicalOnly: bool
+        :return: None
+
+        """
         try:
             customers = Connection.getCustomers(historicalOnly)
 
@@ -117,6 +161,13 @@ class Customers:
 
     @staticmethod
     def showCustomerInfo():   ###selectCustomer
+        """
+
+        Muestra la información completa del cliente seleccionado en la tabla.
+
+        :return: None
+
+        """
         try:
             selectedRow = Globals.ui.tbl_customerList.selectedItems()
             selectedCustomerMobile = selectedRow[2].text()
@@ -151,6 +202,13 @@ class Customers:
 
     @staticmethod
     def deleteSelectedCustomer():   ###delCliente
+        """
+
+        Desactiva al cliente seleccionado.
+
+        :return: None
+
+        """
         try:
             mbox = QtWidgets.QMessageBox()
             mbox.setWindowTitle("Warning")
@@ -179,6 +237,13 @@ class Customers:
 
     @staticmethod
     def saveNewCustomer():   ###saveCli
+        """
+
+        Guarda un nuevo cliente en la base de datos.
+
+        :return: None
+
+        """
         try:
             allDataBoxes = [Globals.ui.txt_DNICliente, Globals.ui.txt_fechaAlta, Globals.ui.txt_apellidosCliente, Globals.ui.txt_nombresCliente, Globals.ui.txt_emailCliente,
                             Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente, Globals.ui.cmb_provinciaCliente, Globals.ui.cmb_ciudadCliente]
@@ -211,6 +276,13 @@ class Customers:
 
     @staticmethod
     def modifyCustomer():   ###modifyCli
+        """
+
+        Modifica los datos de un cliente existente.
+
+        :return: None
+
+        """
         try:
             mbox = QtWidgets.QMessageBox()
             mbox.setWindowTitle("Modify")
@@ -270,6 +342,13 @@ class Customers:
 
     @staticmethod
     def searchCustomer():   ###buscaCli
+        """
+
+        Busca un cliente por su DNI/NIE.
+
+        :return: None
+
+        """
         try:
             dni = Globals.ui.txt_DNICliente.text()
             customerData = Connection.getCustomerInfo(dni)
@@ -304,6 +383,13 @@ class Customers:
 
     @staticmethod
     def clearCustomerFields():
+        """
+
+        Limpia todos los campos del formulario de clientes.
+
+        :return: None
+
+        """
         try:
             allDataBoxes = [Globals.ui.txt_DNICliente, Globals.ui.txt_fechaAlta, Globals.ui.txt_apellidosCliente, Globals.ui.txt_nombresCliente, Globals.ui.txt_emailCliente,
                             Globals.ui.txt_numeroTelefono, Globals.ui.txt_dirCliente]
@@ -322,6 +408,13 @@ class Customers:
 
     @staticmethod
     def customersHistorical():   ###HistoricoCli
+        """
+
+        Activa o desactiva la visualización de clientes en estado desactivado.
+
+        :return: None
+
+        """
         try:
             checkedHistorical = Globals.ui.chk_historico.isChecked()
             Customers.loadCustomerTable(checkedHistorical)

@@ -10,8 +10,10 @@ class Connection:
     def dbConnection():
         """
 
-        Devuelve un booleano indicando si la conexión tuvo exito o no
-        :return:
+        Establece la conexión con la base de datos SQLite y devuelve un booleano
+        indicando si la conexión tuvo exito o no
+
+        :return: True si la conexión es válida, False en caso contrario
         :rtype: bool
 
         """
@@ -50,9 +52,11 @@ class Connection:
     def getProvinces():   ###listProv
         """
 
-        Al cargar la aplicación, se busca en la bbdd la lista de provincias
-        :return: una lista de provincias
-        :rtype: bytearray
+        Al cargar la aplicación, se busca en la bbdd la lista de provincias y
+        se cargan en el comboBox de selección de provincias.
+
+        :return: Una lista de provincias
+        :rtype: list[str]
 
         """
         provincesList = []
@@ -72,11 +76,12 @@ class Connection:
     def getCities(province):   ###listMuniProv
         """
 
-        Cuando se carga la provincia, se buscan los municipios de esa provincia
-        :param province: string
-        :type province: string
-        :return: array
-        :rtype: bytearray
+        Cuando se selecciona la provincia, se cargan los municipios asociados a esa provincia.
+
+        :param province: Nombre de la provincia
+        :type province: str
+        :return: Lista de municipios de la provincia
+        :rtype: list[str]
 
         """
         try:
@@ -101,11 +106,13 @@ class Connection:
     def getCustomers(activeOnly = True):   ###listCustomers
         """
 
-        Devuelve el listado de clientes para cargar la tabla
-        :param activeOnly: true: clientes activos, false: clientes desactivos
-        :type activeOnly: string
+        Obtiene el listado de clientes. Permite filtrar para obtener solamente los que
+        están activos.
+
+        :param activeOnly: True para solo clientes activos, False para cargar a todos.
+        :type activeOnly: bool
         :return: listado de clientes
-        :rtype: bytearray
+        :rtype: list[str]
 
         """
         if activeOnly:
@@ -135,11 +142,12 @@ class Connection:
     def getCustomerInfo(dni):   #dataOneCustomer
         """
 
-        Devuelve los datos del cliente que corresponden al DNI
-        :param dni: DNI
-        :type dni: string
-        :return: datos de un cliente
-        :rtype: bytearray
+        Devuelve los datos del cliente que corresponden al DNI seleccionado.
+
+        :param dni: DNI o NIE del cliente.
+        :type dni: str.
+        :return: Datos de un cliente.
+        :rtype: list.
 
         """
         try:
@@ -163,6 +171,16 @@ class Connection:
 
     @staticmethod
     def getCustomersDni(mobile):
+        """
+
+        Obtiene el DNI de un cliente a partir de su número de móvil.
+
+        :param mobile: Número de teléfono del cliente.
+        :type mobile: str
+        :return: DNI del cliente.
+        :rtype: str
+
+        """
         try:
 
             query = QtSql.QSqlQuery()
@@ -185,11 +203,12 @@ class Connection:
     def deleteCustomer(dni):   ###deleteCli
         """
 
-        Pasa a historico un cliente
-        :param dni: DNI cliente a desactivar
-        :type dni:
-        :return: True o False
-        :rtype:
+        Pasa un cliente a histórico.
+
+        :param dni: DNI del cliente a desactivar
+        :type dni: str
+        :return: True si la operación fue exitosa, False en caso contrario.
+        :rtype: bool
 
         """
         try:
@@ -210,11 +229,12 @@ class Connection:
     def addCustomer(data):   ###addCli
         """
 
-        Dar de alta a un cliente
-        :param data: datos de un cliente
-        :type data: bytearray
-        :return: datos de un cliente
-        :rtype: bytearray
+        Inserta un nuevo cliente en la base de datos.
+
+        :param data: Lista de valores con los datos del cliente
+        :type data: list
+        :return: True si se insertó correctamente, False en caso contrario.
+        :rtype: bool
 
         """
         try:
@@ -254,10 +274,11 @@ class Connection:
     def modifyCustomerData(data):   ###modifyCli
         """
 
-        Modifica los datos de un cliente
-        :param data: datos de un cliente
-        :type data: bytearray
-        :return: true o false
+        Modifica los datos de un cliente existente en la base de datos.
+
+        :param data: Lista de valores con los nuevos datos del cliente
+        :type data: list
+        :return: True si la modificación fue exitosa, False en caso contrario
         :rtype: bool
 
         """
@@ -299,6 +320,20 @@ class Connection:
 
     @staticmethod
     def _checkPrice(price):
+        """
+
+        Valida y formatea el precio de un producto.
+
+        Permite números enteros o decimales con uno o dos decimales,
+        usando coma o punto como separador. Devuelve el valor con
+        punto como separador decimal.
+
+        :param price: Precio introducido por el usuario
+        :type price: str
+        :return: Precio formateado o False si no es válido
+        :rtype: str | bool
+
+        """
         pattern = r'^\d+([,.]\d{1,2})?$'
 
         try:
@@ -330,9 +365,10 @@ class Connection:
     def getProducts():
         """
 
-        Devuelve la lista de productos
-        :return: listado de productos
-        :rtype: bytearray
+        Devuelve la lista completa de productos.
+
+        :return: Listado de productos
+        :rtype: list[list]
 
         """
         queryOrder = ("SELECT  *"
@@ -352,6 +388,16 @@ class Connection:
 
     @staticmethod
     def getProductInfo(code):
+        """
+
+        Obtiene toda la información de un producto a partir de su código.
+
+        :param code: Código del producto
+        :type code: str
+        :return: Lista con los datos del producto
+        :rtype: list
+
+        """
         try:
             productData = []
             query = QtSql.QSqlQuery()
@@ -375,11 +421,13 @@ class Connection:
     def addProduct(data):
         """
 
-        Dar de alta un producto
-        :param data: datos del producto
-        :type data: bytearray
-        :return: True o False
+        Inserta un nuevo producto en la base de datos.
+
+        :param data: Lista con los datos del producto
+        :type data: list
+        :return: True si el producto se insertó correctamente, False en caso contrario
         :rtype: bool
+
         """
         try:
             query = QtSql.QSqlQuery()
@@ -417,10 +465,11 @@ class Connection:
     def deleteProduct(productName):
         """
 
-        Borra el producto de la base de datos
-        :param productName:
-        :type productName:
-        :return: True o False
+        Borra el producto de la base de datos.
+
+        :param productName: Nombre del producto a eliminar
+        :type productName: str
+        :return: True si la eliminación fue exitosa, False en caso contrario
         :rtype: bool
 
         """
@@ -442,11 +491,13 @@ class Connection:
     def modifyProductData(data):
         """
 
-        Modifica los datos de un producto
-        :param data: información nueva del producto
-        :type data:
-        :return:
-        :rtype:
+        Modifica los datos de un producto existente.
+
+        :param data: Lista con los nuevos datos del producto.
+        :type data: list
+        :return: True si la modificación fue exitosa, False en caso contrario
+        :rtype: bool
+
         """
         try:
             query = QtSql.QSqlQuery()
@@ -484,9 +535,10 @@ class Connection:
     def getInvoices():  ### allInvoices
         """
 
-        Lista todas las facturas para cargar la tabla factura
+        Obtiene todas las facturas de la base de datos.
+
         :return: Listado de facturas
-        :rtype: bytearray
+        :rtype: list[list]
 
         """
         try:
@@ -506,6 +558,16 @@ class Connection:
 
     @staticmethod
     def getInvoiceId(dni):
+        """
+
+        Obtiene el identificador de la última factura asociada a un cliente.
+
+        :param dni: DNI del cliente.
+        :type dni: str
+        :return: Identificador de la factura.
+        :rtype: int | None
+
+        """
         try:
             query = QtSql.QSqlQuery()
             invoiceInfo = query.prepare("SELECT  id_fac"
@@ -524,6 +586,16 @@ class Connection:
 
     @staticmethod
     def getInvoiceInfo(id):
+        """
+
+        Obtiene la información completa de una factura.
+
+        :param id: Identificador de la factura.
+        :type id: int
+        :return: Lista con los datos de la factura.
+        :rtype: list
+
+        """
         try:
             invoiceInfo = []
             query = QtSql.QSqlQuery()
@@ -546,13 +618,14 @@ class Connection:
     def addInvoice(dni, data):
         """
 
-        Dar de alta la factura de un cliente
-        :param dni: dni cliente a facturar
-        :type dni:
-        :param data:
-        :type data:
-        :return:
-        :rtype:
+        Inserta una nueva factura en la base de datos.
+
+        :param dni: DNI del cliente a facturar.
+        :type dni: str
+        :param data: Datos asociados a la factura.
+        :type data: str
+        :return: True si la factura se insertó correctamente, False en caso contrario
+        :rtype: bool
 
         """
         try:
@@ -576,11 +649,12 @@ class Connection:
     def selectProduct(item):
         """
 
-        Devuelve la información de un producto en especifico
-        :param item:
-        :type item:
-        :return:
-        :rtype:
+        Obtiene la información de un producto en específico.
+
+        :param item: Código del producto
+        :type item: str | int
+        :return: Lista con los datos del producto.
+        :rtype: list
 
         """
 
@@ -601,6 +675,16 @@ class Connection:
 
     @staticmethod
     def verifyInvoiceSale(invoice):   #existeFacturaSales
+        """
+
+         Verifica si una factura tiene ventas asociadas.
+
+        :param invoice: Identificador de la factura.
+        :type invoice: int
+        :return: True si la factura tiene ventas asociadas, False en caso contrario.
+        :rtype: bool
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("SELECT  *"
@@ -619,7 +703,16 @@ class Connection:
 
     @staticmethod
     def addSale(data):
+        """
 
+        Inserta una venta asociada a una factura.
+
+        :param data: Datos de la venta.
+        :type data: list
+        :return: True si se insertó correctamente, False en caso contrario.
+        :rtype: bool
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO sales "
@@ -644,6 +737,16 @@ class Connection:
 
     @staticmethod
     def getSales(invoiceId):
+        """
+
+        Obtiene todas las ventas asociadas a una factura.
+
+        :param invoiceId: Identificador de la factura.
+        :type invoiceId: int
+        :return: Lista de ventas asociadas a la factura.
+        :rtype: list[list]
+
+        """
         try:
             saleData = []
             query = QtSql.QSqlQuery()

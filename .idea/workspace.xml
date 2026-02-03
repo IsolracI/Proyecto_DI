@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d7662a6-e650-4107-8b59-e8e8f88efefb" name="Changes" comment="inhabilitar edición en algunas columnas de la tabla ventas">
+    <list default="true" id="7d7662a6-e650-4107-8b59-e8e8f88efefb" name="Changes" comment="docu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuxiliaryWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/AuxiliaryWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Connection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Customers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events.py" beforeDir="false" afterPath="$PROJECT_DIR$/Events.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Invoice.py" beforeDir="false" afterPath="$PROJECT_DIR$/Invoice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Products.py" beforeDir="false" afterPath="$PROJECT_DIR$/Products.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reports.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,6 +223,8 @@
       <workItem from="1768733403425" duration="1909000" />
       <workItem from="1769531547452" duration="293000" />
       <workItem from="1769625393964" duration="4380000" />
+      <workItem from="1770063777345" duration="62000" />
+      <workItem from="1770117447230" duration="10597000" />
     </task>
     <task id="LOCAL-00001" summary="proyecto sin venv">
       <option name="closed" value="true" />
@@ -562,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769679668158</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="docu">
+      <option name="closed" value="true" />
+      <created>1770063808100</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1770063808100</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +616,8 @@
     <MESSAGE value="WAH-LUIGI!!!!" />
     <MESSAGE value="vainas del Invoice :v" />
     <MESSAGE value="inhabilitar edición en algunas columnas de la tabla ventas" />
-    <option name="LAST_COMMIT_MESSAGE" value="inhabilitar edición en algunas columnas de la tabla ventas" />
+    <MESSAGE value="docu" />
+    <option name="LAST_COMMIT_MESSAGE" value="docu" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DiacichMancilla$Customers.coverage" NAME="Customers Coverage Results" MODIFIED="1763059330540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

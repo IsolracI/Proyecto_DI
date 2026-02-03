@@ -6,6 +6,13 @@ class Products:
 
     @staticmethod
     def loadProductsTable():
+        """
+
+        Carga la lista de productos en la tabla de la interfaz.
+
+        :return: None
+
+        """
         try:
             products = Connection.getProducts()
 
@@ -33,6 +40,17 @@ class Products:
 
     @staticmethod
     def capitalizeProductName(text, widget):   ###capitalizar
+        """
+
+        Capitaliza el nombre del producto.
+
+        :param text: Texto a capitalizar.
+        :type text: str
+        :param widget: Campo de texto donde se mostrará el texto formateado.
+        :type widget: QLineEdit
+        :return: None
+
+        """
         try:
             text = text.title()
             widget.setText(text)
@@ -43,6 +61,13 @@ class Products:
 
     @staticmethod
     def clearProductFields():
+        """
+
+        Limpia los campos del formulario de productos.
+
+        :return: None
+
+        """
         try:
             allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.txt_productPrice]
 
@@ -58,6 +83,13 @@ class Products:
 
     @staticmethod
     def showProductInfo():
+        """
+
+        Muestra la información del producto seleccionado.
+
+        :return: None
+
+        """
         try:
             selectedRow = Globals.ui.tbl_productList.currentRow()
             selectedProductId = Globals.ui.tbl_productList.item(selectedRow, 0).text()
@@ -79,6 +111,13 @@ class Products:
 
     @staticmethod
     def saveNewProduct():
+        """
+
+        Guarda un nuevo producto en la base de datos.
+
+        :return: None
+
+        """
         try:
             allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice]
 
@@ -100,8 +139,16 @@ class Products:
         except Exception as error:
             print("There was an error while adding the product: ", error)
 
+
     @staticmethod
     def deleteSelectedProduct():
+        """
+
+        Elimina el producto seleccionado de la base de datos.
+
+        :return: None
+
+        """
         try:
             mbox = QtWidgets.QMessageBox()
             mbox.setWindowTitle("Warning")
@@ -131,6 +178,13 @@ class Products:
 
     @staticmethod
     def modifyProduct():   ###modifyCli
+        """
+
+        Modifica los datos de un producto existente.
+
+        :return: None
+
+        """
         try:
             mbox = QtWidgets.QMessageBox()
             mbox.setWindowTitle("Modify")

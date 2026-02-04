@@ -146,8 +146,53 @@
                         
                         <article class="content is-medium sphinx-body">
                             
-  <section id="reports-module">
-<h1>Reports module<a class="headerlink" href="#reports-module" title="Link to this heading">¶</a></h1>
+  <section id="module-Reports">
+<span id="reports-module"></span><h1>Reports module<a class="headerlink" href="#module-Reports" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Reports.Reports">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">Reports.</span></span><span class="sig-name descname"><span class="pre">Reports</span></span><a class="reference internal" href="../_modules/Reports.html#Reports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Reports.Reports" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Reports.Reports.customersReports">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">customersReports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Reports.html#Reports.customersReports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Reports.Reports.customersReports" title="Link to this definition">¶</a></dt>
+<dd><p>Genera un informe en PDF con la lista de clientes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Reports.Reports.footer">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">footer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Reports.html#Reports.footer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Reports.Reports.footer" title="Link to this definition">¶</a></dt>
+<dd><p>Dibuja el pie de página del documento PDF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c</strong> (<em>reportlab.pdfgen.canvas.Canvas</em>) – Lienzo del PDF sobre el que se dibuja el contenido</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – Título del informe o documento</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Reports.Reports.ticket">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ticket</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Reports.html#Reports.ticket"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Reports.Reports.ticket" title="Link to this definition">¶</a></dt>
+<dd><p>Genera un ticket o factura en formato PDF para una venta.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -158,6 +203,21 @@
                     </div>
                     <div class="column is-2 mt-2  is-family-sans-serif">
                         
+  <div class="content localtoc">
+    <p class="has-text-weight-bold">On this page</p>
+    <ul>
+<li><a class="reference internal" href="#">Reports module</a><ul>
+<li><a class="reference internal" href="#Reports.Reports"><code class="docutils literal notranslate"><span class="pre">Reports</span></code></a><ul>
+<li><a class="reference internal" href="#Reports.Reports.customersReports"><code class="docutils literal notranslate"><span class="pre">Reports.customersReports()</span></code></a></li>
+<li><a class="reference internal" href="#Reports.Reports.footer"><code class="docutils literal notranslate"><span class="pre">Reports.footer()</span></code></a></li>
+<li><a class="reference internal" href="#Reports.Reports.ticket"><code class="docutils literal notranslate"><span class="pre">Reports.ticket()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
                         
                     </div>
                 </div>
@@ -185,7 +245,7 @@
                 
                 </div>
 
-                <p class="mt-4">Copyright &copy; 2025, GabrielDiacich</p>
+                <p class="mt-4">Copyright &copy; 2025, Gabriel Diacich</p>
             </div>
         </div>
     </footer>

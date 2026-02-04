@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <meta itemprop="sphinx_documatt_theme" content="0.0.5"><title>Reports &mdash; Desrrollo Interfaces v0.0.1 documentation</title>
+
+    
+        
+        
+            <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+        
+            <link rel="stylesheet" type="text/css" href="../_static/css/main.css?v=fd6b4214" />
+        
+    
+
+    <script type="text/javascript" src="../_static/js/main.js"></script>
+
+        <script type="text/javascript" id="documentation_options"
+                data-url_root="../"
+                src="../_static/documentation_options.js"></script>
+
+        
+            <script src="../_static/documentation_options.js?v=2fea6348"></script>
+            <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+            <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    
+
+    
+        
+        <link rel="shortcut icon" href="../_static/img/favicon.ico"/>
+    
+            <link rel="index" title="Index" href="../genindex.html"/>
+            <link rel="search" title="Search" href="../search.html"/>
+
+    
+
+    
+</head>
+<body>
+
+
+    <header>
+        
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="../index.html">
+                            <img
+                                
+                                    src="../_static/img/logo.svg"
+                                
+                                alt="Logo"
+                                
+                                    style="width: 10rem;"
+                                
+                                />
+                            
+                        </a>
+                        <!--<a role="button" class="navbar-burger burger" aria-label="menu"
+                           aria-expanded="false"
+                           data-target="navbarMenu">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </a>-->
+                    </div>
+
+                    
+                        <div id="navbarMenu" class="navbar-menu">
+                            <div class="navbar-end">
+                                <!--
+                                <a class="navbar-item" href="https://documatt.com">Documatt</a>
+                                <a class="navbar-item"
+                                   href="https://snippets.documatt.com">Snippets</a>
+                                <a class="navbar-item is-active" href="https://blog.documatt.com">Blog</a>
+                                -->
+                            </div>
+                        </div>
+                    
+                </div>
+            </nav>
+        
+
+        
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <div class="container">
+                    <ul>
+                        <li><a href="../index.html">Desrrollo Interfaces</a></li>
+                        
+    <li><a href="index.html" aria-current="page">Module code</a>
+    </li>
+
+
+    <li class="is-active">Reports</li>
+
+                    </ul>
+                </div>
+            </nav>
+        
+    </header>
+
+
+
+    <section class="section site-hero" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="columns">
+                <div class="column content is-8 is-offset-2">
+                        
+                            <h1 class="title is-2">
+                                <a href="../index.html">Desrrollo Interfaces</a>
+                            </h1>
+                            <div class="motto subtitle is-4">
+                                
+                            </div>
+                        
+                    
+                </div>
+                <div class="column">
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<hr>
+
+
+    
+        <section class="section is-paddingless" id="document">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-2 mt-2 is-family-sans-serif">
+                        
+<div class="content globaltoc">
+    <p class="has-text-weight-bold">Table of Contents</p>
+    
+</div>
+                        
+                    </div>
+                    <div class="column is-8">
+                        
+                        <article class="content is-medium sphinx-body">
+                            
+  <h1>Source code for Reports</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">reportlab.pdfgen</span><span class="w"> </span><span class="kn">import</span> <span class="n">canvas</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Connection</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Globals</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<div class="viewcode-block" id="Reports">
+<a class="viewcode-back" href="../src/Reports.html#Reports.Reports">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Reports</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Reports.customersReports">
+<a class="viewcode-back" href="../src/Reports.html#Reports.Reports.customersReports">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">customersReports</span><span class="p">():</span>   <span class="c1">#reportCustomers</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Genera un informe en PDF con la lista de clientes.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rootPath</span> <span class="o">=</span> <span class="s2">&quot;.</span><span class="se">\\</span><span class="s2">reports&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">_%m_%Y %H_%M_%S&quot;</span><span class="p">)</span>
+            <span class="n">customerReportName</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="s2">&quot;_reportCustomers.pdf&quot;</span>
+            <span class="n">pdfPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rootPath</span><span class="p">,</span> <span class="n">customerReportName</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">pdfPath</span><span class="p">)</span>
+            <span class="n">records</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="n">getCustomers</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DNI_NIE&quot;</span><span class="p">,</span> <span class="s2">&quot;SURNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;MOBILE&quot;</span><span class="p">,</span> <span class="s2">&quot;CITY&quot;</span><span class="p">,</span> <span class="s2">&quot;INVOICE TYPE&quot;</span><span class="p">,</span> <span class="s2">&quot;STATUS&quot;</span><span class="p">]</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s2">&quot;Helvetica-Bold&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">125</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">210</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">270</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">340</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">4</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">385</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">645</span><span class="p">,</span> <span class="mi">525</span><span class="p">,</span> <span class="mi">645</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="mi">55</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="mi">630</span>
+
+            <span class="n">Reports</span><span class="o">.</span><span class="n">footer</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s2">&quot;Customers Report&quot;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mi">90</span><span class="p">:</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s2">&quot;Helvetica-Oblique&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">450</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="s2">&quot;Página siguiente...&quot;</span><span class="p">)</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">showPage</span><span class="p">()</span> <span class="c1"># crea una nueva página</span>
+                    <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DNI_NIE&quot;</span><span class="p">,</span> <span class="s2">&quot;SURNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;MOBILE&quot;</span><span class="p">,</span> <span class="s2">&quot;CITY&quot;</span><span class="p">,</span> <span class="s2">&quot;INVOICE TYPE&quot;</span><span class="p">,</span> <span class="s2">&quot;STATUS&quot;</span><span class="p">]</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s2">&quot;Helvetica-Bold&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">125</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">210</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">280</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">330</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">4</span><span class="p">]))</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">390</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">645</span><span class="p">,</span> <span class="mi">525</span><span class="p">,</span> <span class="mi">645</span><span class="p">)</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="mi">55</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="mi">630</span>
+
+                <span class="n">c</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="s2">&quot;***&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;***&quot;</span><span class="p">)</span>
+                <span class="n">c</span><span class="o">.</span><span class="n">drawCentredString</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">19</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dni</span><span class="p">)</span>
+                <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">62</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">155</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+                <span class="n">c</span><span class="o">.</span><span class="n">drawCentredString</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">234</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+                <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">277</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+                <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">350</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+                <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;True&quot;</span><span class="p">:</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">434</span><span class="p">,</span>  <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;Active&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">431</span><span class="p">,</span>  <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;Inactive&quot;</span><span class="p">)</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">25</span>
+
+            <span class="n">c</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rootPath</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">customerReportName</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="n">pdfPath</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error with customersReports: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Reports.footer">
+<a class="viewcode-back" href="../src/Reports.html#Reports.Reports.footer">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">footer</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Dibuja el pie de página del documento PDF.</span>
+
+<span class="sd">        :param c: Lienzo del PDF sobre el que se dibuja el contenido</span>
+<span class="sd">        :type c: reportlab.pdfgen.canvas.Canvas</span>
+<span class="sd">        :param title: Título del informe o documento</span>
+<span class="sd">        :type title: str</span>
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">day</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+            <span class="n">day</span> <span class="o">=</span> <span class="n">day</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y %H:%M:%S&quot;</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;Página: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">getPageNumber</span><span class="p">())))</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error with footer: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;@staticmethod</span>
+<span class="sd">    def header(title):</span>
+<span class="sd">        try:</span>
+<span class="sd">            path_logo = &quot;.\\assets\\logo.png&quot;</span>
+<span class="sd">            logo = Image.open(path_logo)</span>
+<span class="sd">            if isinstance(logo, Image.Image):</span>
+<span class="sd">                self.c.line(35, 60, 525, 60)</span>
+<span class="sd">                self.c.setFont(&#39;Helvetica-Bold&#39;, 0)</span>
+<span class="sd">                self.c.drawString(55, 785, &quot;EMPRESA TEIS&quot;)</span>
+<span class="sd">                self.c.drawCentredString(300, 675, titulo)</span>
+<span class="sd">                self.c.line(35, 665, 525, 665)</span>
+<span class="sd">                # Logo</span>
+<span class="sd">                self.c.drawImage(path_logo, 490, 765, width=40, height=40)</span>
+<span class="sd">                # Company details</span>
+<span class="sd">                self.c.setFont(&#39;Helvetica&#39;, 9)</span>
+<span class="sd">                self.c.drawString(55, 760, &quot;CIF: B12345678&quot;)</span>
+<span class="sd">                self.c.drawString(55, 745, &quot;Dirección: Calle Galicia, 123&quot;)</span>
+<span class="sd">                self.c.drawString(55, 730, &quot;Vigo 36215 - España&quot;)</span>
+<span class="sd">                self.c.drawString(55, 715, &quot;Teléfono: +34 986 123 456&quot;)</span>
+<span class="sd">                self.c.drawString(55, 700, &quot;Email: teis@mail.com&quot;)</span>
+
+<span class="sd">                self.c.rect(30, 690, 200, 80)</span>
+<span class="sd">            else:</span>
+<span class="sd">                print(&#39;No se pudo cargar el logo&#39;)</span>
+
+<span class="sd">        except Exception as e:</span>
+<span class="sd">            print(&#39;Error en toreport&#39;, e)&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Reports.ticket">
+<a class="viewcode-back" href="../src/Reports.html#Reports.Reports.ticket">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ticket</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Genera un ticket o factura en formato PDF para una venta.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span><span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_dniFactura</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">dni</span> <span class="o">==</span> <span class="s2">&quot;00000000T&quot;</span><span class="p">:</span>
+                <span class="n">titulo</span> <span class="o">=</span> <span class="s2">&quot;FACTURA SIMPLIFICADA&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">titulo</span> <span class="o">=</span> <span class="s2">&quot;FACTURA&quot;</span>
+
+            <span class="n">rootPath</span> <span class="o">=</span> <span class="s2">&quot;.</span><span class="se">\\</span><span class="s2">reports&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">_%m_%Y %H_%M_%S&quot;</span><span class="p">)</span>
+            <span class="n">productReportName</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="s2">&quot;_reportProducts.pdf&quot;</span>
+            <span class="n">pdfPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rootPath</span><span class="p">,</span> <span class="n">productReportName</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">pdfPath</span><span class="p">)</span>
+
+            <span class="n">customerData</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="n">getCustomerInfo</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+
+            <span class="n">c</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="s2">&quot;DNI: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">685</span><span class="p">,</span> <span class="s2">&quot;APELLIDOS: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">670</span><span class="p">,</span> <span class="s2">&quot;NOMBRE: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">655</span><span class="p">,</span> <span class="s2">&quot;DIRECCIÓN: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="s2">&quot;LOCALIDAD: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; PROVINCIA: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">7</span><span class="p">]))</span>
+
+            <span class="n">Reports</span><span class="o">.</span><span class="n">footer</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">titulo</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error with ticket: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+
+                            
+                            
+                        </article>
+                    </div>
+                    <div class="column is-2 mt-2  is-family-sans-serif">
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered has-text-primary">
+                <a href="../index.html">
+                    <img
+                        
+                            src="../_static/img/logo.svg"
+                        
+                        alt="Logo"
+                        
+                            style="width: 10rem;"
+                        
+                    />
+                 </a>
+                 <div class="footer-text">
+                
+                    <p></p>
+                
+                </div>
+
+                <p class="mt-4">Copyright &copy; 2025, Gabriel Diacich</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

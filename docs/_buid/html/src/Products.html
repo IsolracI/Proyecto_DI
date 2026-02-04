@@ -146,8 +146,97 @@
                         
                         <article class="content is-medium sphinx-body">
                             
-  <section id="products-module">
-<h1>Products module<a class="headerlink" href="#products-module" title="Link to this heading">¶</a></h1>
+  <section id="module-Products">
+<span id="products-module"></span><h1>Products module<a class="headerlink" href="#module-Products" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Products.Products">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">Products.</span></span><span class="sig-name descname"><span class="pre">Products</span></span><a class="reference internal" href="../_modules/Products.html#Products"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Products.Products" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Products.Products.capitalizeProductName">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">capitalizeProductName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Products.html#Products.capitalizeProductName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Products.Products.capitalizeProductName" title="Link to this definition">¶</a></dt>
+<dd><p>Capitaliza el nombre del producto.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>str</em>) – Texto a capitalizar.</p></li>
+<li><p><strong>widget</strong> (<em>QLineEdit</em>) – Campo de texto donde se mostrará el texto formateado.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Products.Products.clearProductFields">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">clearProductFields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Products.html#Products.clearProductFields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Products.Products.clearProductFields" title="Link to this definition">¶</a></dt>
+<dd><p>Limpia los campos del formulario de productos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Products.Products.deleteSelectedProduct">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">deleteSelectedProduct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Products.html#Products.deleteSelectedProduct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Products.Products.deleteSelectedProduct" title="Link to this definition">¶</a></dt>
+<dd><p>Elimina el producto seleccionado de la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Products.Products.loadProductsTable">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">loadProductsTable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Products.html#Products.loadProductsTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Products.Products.loadProductsTable" title="Link to this definition">¶</a></dt>
+<dd><p>Carga la lista de productos en la tabla de la interfaz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Products.Products.modifyProduct">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">modifyProduct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Products.html#Products.modifyProduct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Products.Products.modifyProduct" title="Link to this definition">¶</a></dt>
+<dd><p>Modifica los datos de un producto existente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Products.Products.saveNewProduct">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">saveNewProduct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Products.html#Products.saveNewProduct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Products.Products.saveNewProduct" title="Link to this definition">¶</a></dt>
+<dd><p>Guarda un nuevo producto en la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Products.Products.showProductInfo">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">showProductInfo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Products.html#Products.showProductInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Products.Products.showProductInfo" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra la información del producto seleccionado.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -158,6 +247,25 @@
                     </div>
                     <div class="column is-2 mt-2  is-family-sans-serif">
                         
+  <div class="content localtoc">
+    <p class="has-text-weight-bold">On this page</p>
+    <ul>
+<li><a class="reference internal" href="#">Products module</a><ul>
+<li><a class="reference internal" href="#Products.Products"><code class="docutils literal notranslate"><span class="pre">Products</span></code></a><ul>
+<li><a class="reference internal" href="#Products.Products.capitalizeProductName"><code class="docutils literal notranslate"><span class="pre">Products.capitalizeProductName()</span></code></a></li>
+<li><a class="reference internal" href="#Products.Products.clearProductFields"><code class="docutils literal notranslate"><span class="pre">Products.clearProductFields()</span></code></a></li>
+<li><a class="reference internal" href="#Products.Products.deleteSelectedProduct"><code class="docutils literal notranslate"><span class="pre">Products.deleteSelectedProduct()</span></code></a></li>
+<li><a class="reference internal" href="#Products.Products.loadProductsTable"><code class="docutils literal notranslate"><span class="pre">Products.loadProductsTable()</span></code></a></li>
+<li><a class="reference internal" href="#Products.Products.modifyProduct"><code class="docutils literal notranslate"><span class="pre">Products.modifyProduct()</span></code></a></li>
+<li><a class="reference internal" href="#Products.Products.saveNewProduct"><code class="docutils literal notranslate"><span class="pre">Products.saveNewProduct()</span></code></a></li>
+<li><a class="reference internal" href="#Products.Products.showProductInfo"><code class="docutils literal notranslate"><span class="pre">Products.showProductInfo()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
                         
                     </div>
                 </div>
@@ -185,7 +293,7 @@
                 
                 </div>
 
-                <p class="mt-4">Copyright &copy; 2025, GabrielDiacich</p>
+                <p class="mt-4">Copyright &copy; 2025, Gabriel Diacich</p>
             </div>
         </div>
     </footer>

@@ -146,8 +146,384 @@
                         
                         <article class="content is-medium sphinx-body">
                             
-  <section id="connection-module">
-<h1>Connection module<a class="headerlink" href="#connection-module" title="Link to this heading">¶</a></h1>
+  <section id="module-Connection">
+<span id="connection-module"></span><h1>Connection module<a class="headerlink" href="#module-Connection" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Connection.Connection">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">Connection.</span></span><span class="sig-name descname"><span class="pre">Connection</span></span><a class="reference internal" href="../_modules/Connection.html#Connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.addCustomer">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">addCustomer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.addCustomer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.addCustomer" title="Link to this definition">¶</a></dt>
+<dd><p>Inserta un nuevo cliente en la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – Lista de valores con los datos del cliente</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si se insertó correctamente, False en caso contrario.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.addInvoice">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">addInvoice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.addInvoice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.addInvoice" title="Link to this definition">¶</a></dt>
+<dd><p>Inserta una nueva factura en la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dni</strong> (<em>str</em>) – DNI del cliente a facturar.</p></li>
+<li><p><strong>data</strong> (<em>str</em>) – Datos asociados a la factura.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si la factura se insertó correctamente, False en caso contrario</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.addProduct">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">addProduct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.addProduct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.addProduct" title="Link to this definition">¶</a></dt>
+<dd><p>Inserta un nuevo producto en la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – Lista con los datos del producto</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si el producto se insertó correctamente, False en caso contrario</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.addSale">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">addSale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.addSale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.addSale" title="Link to this definition">¶</a></dt>
+<dd><p>Inserta una venta asociada a una factura.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – Datos de la venta.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si se insertó correctamente, False en caso contrario.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.dbConnection">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dbConnection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.dbConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.dbConnection" title="Link to this definition">¶</a></dt>
+<dd><p>Establece la conexión con la base de datos SQLite y devuelve un booleano
+indicando si la conexión tuvo exito o no</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True si la conexión es válida, False en caso contrario</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.deleteCustomer">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">deleteCustomer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dni</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.deleteCustomer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.deleteCustomer" title="Link to this definition">¶</a></dt>
+<dd><p>Pasa un cliente a histórico.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dni</strong> (<em>str</em>) – DNI del cliente a desactivar</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si la operación fue exitosa, False en caso contrario.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.deleteProduct">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">deleteProduct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">productName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.deleteProduct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.deleteProduct" title="Link to this definition">¶</a></dt>
+<dd><p>Borra el producto de la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>productName</strong> (<em>str</em>) – Nombre del producto a eliminar</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si la eliminación fue exitosa, False en caso contrario</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getCities">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getCities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">province</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getCities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getCities" title="Link to this definition">¶</a></dt>
+<dd><p>Cuando se selecciona la provincia, se cargan los municipios asociados a esa provincia.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>province</strong> (<em>str</em>) – Nombre de la provincia</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista de municipios de la provincia</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getCustomerInfo">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getCustomerInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dni</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getCustomerInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getCustomerInfo" title="Link to this definition">¶</a></dt>
+<dd><p>Devuelve los datos del cliente que corresponden al DNI seleccionado.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dni</strong> (<em>str.</em>) – DNI o NIE del cliente.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Datos de un cliente.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getCustomers">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getCustomers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">activeOnly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getCustomers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getCustomers" title="Link to this definition">¶</a></dt>
+<dd><p>Obtiene el listado de clientes. Permite filtrar para obtener solamente los que
+están activos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>activeOnly</strong> (<em>bool</em>) – True para solo clientes activos, False para cargar a todos.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>listado de clientes</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getCustomersDni">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getCustomersDni</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getCustomersDni"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getCustomersDni" title="Link to this definition">¶</a></dt>
+<dd><p>Obtiene el DNI de un cliente a partir de su número de móvil.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mobile</strong> (<em>str</em>) – Número de teléfono del cliente.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DNI del cliente.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getInvoiceId">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getInvoiceId</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dni</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getInvoiceId"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getInvoiceId" title="Link to this definition">¶</a></dt>
+<dd><p>Obtiene el identificador de la última factura asociada a un cliente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dni</strong> (<em>str</em>) – DNI del cliente.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Identificador de la factura.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getInvoiceInfo">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getInvoiceInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getInvoiceInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getInvoiceInfo" title="Link to this definition">¶</a></dt>
+<dd><p>Obtiene la información completa de una factura.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>int</em>) – Identificador de la factura.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista con los datos de la factura.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getInvoices">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getInvoices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getInvoices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getInvoices" title="Link to this definition">¶</a></dt>
+<dd><p>Obtiene todas las facturas de la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Listado de facturas</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[list]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getProductInfo">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getProductInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getProductInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getProductInfo" title="Link to this definition">¶</a></dt>
+<dd><p>Obtiene toda la información de un producto a partir de su código.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>code</strong> (<em>str</em>) – Código del producto</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista con los datos del producto</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getProducts">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getProducts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getProducts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getProducts" title="Link to this definition">¶</a></dt>
+<dd><p>Devuelve la lista completa de productos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Listado de productos</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[list]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getProvinces">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getProvinces</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getProvinces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getProvinces" title="Link to this definition">¶</a></dt>
+<dd><p>Al cargar la aplicación, se busca en la bbdd la lista de provincias y
+se cargan en el comboBox de selección de provincias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Una lista de provincias</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.getSales">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getSales</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invoiceId</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.getSales"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.getSales" title="Link to this definition">¶</a></dt>
+<dd><p>Obtiene todas las ventas asociadas a una factura.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>invoiceId</strong> (<em>int</em>) – Identificador de la factura.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista de ventas asociadas a la factura.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[list]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.modifyCustomerData">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">modifyCustomerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.modifyCustomerData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.modifyCustomerData" title="Link to this definition">¶</a></dt>
+<dd><p>Modifica los datos de un cliente existente en la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – Lista de valores con los nuevos datos del cliente</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si la modificación fue exitosa, False en caso contrario</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.modifyProductData">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">modifyProductData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.modifyProductData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.modifyProductData" title="Link to this definition">¶</a></dt>
+<dd><p>Modifica los datos de un producto existente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – Lista con los nuevos datos del producto.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si la modificación fue exitosa, False en caso contrario</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.selectProduct">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">selectProduct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.selectProduct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.selectProduct" title="Link to this definition">¶</a></dt>
+<dd><p>Obtiene la información de un producto en específico.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<em>str</em><em> | </em><em>int</em>) – Código del producto</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista con los datos del producto.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Connection.Connection.verifyInvoiceSale">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">verifyInvoiceSale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invoice</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Connection.html#Connection.verifyInvoiceSale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Connection.Connection.verifyInvoiceSale" title="Link to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Verifica si una factura tiene ventas asociadas.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>invoice</strong> (<em>int</em>) – Identificador de la factura.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si la factura tiene ventas asociadas, False en caso contrario.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -158,6 +534,40 @@
                     </div>
                     <div class="column is-2 mt-2  is-family-sans-serif">
                         
+  <div class="content localtoc">
+    <p class="has-text-weight-bold">On this page</p>
+    <ul>
+<li><a class="reference internal" href="#">Connection module</a><ul>
+<li><a class="reference internal" href="#Connection.Connection"><code class="docutils literal notranslate"><span class="pre">Connection</span></code></a><ul>
+<li><a class="reference internal" href="#Connection.Connection.addCustomer"><code class="docutils literal notranslate"><span class="pre">Connection.addCustomer()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.addInvoice"><code class="docutils literal notranslate"><span class="pre">Connection.addInvoice()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.addProduct"><code class="docutils literal notranslate"><span class="pre">Connection.addProduct()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.addSale"><code class="docutils literal notranslate"><span class="pre">Connection.addSale()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.dbConnection"><code class="docutils literal notranslate"><span class="pre">Connection.dbConnection()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.deleteCustomer"><code class="docutils literal notranslate"><span class="pre">Connection.deleteCustomer()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.deleteProduct"><code class="docutils literal notranslate"><span class="pre">Connection.deleteProduct()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getCities"><code class="docutils literal notranslate"><span class="pre">Connection.getCities()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getCustomerInfo"><code class="docutils literal notranslate"><span class="pre">Connection.getCustomerInfo()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getCustomers"><code class="docutils literal notranslate"><span class="pre">Connection.getCustomers()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getCustomersDni"><code class="docutils literal notranslate"><span class="pre">Connection.getCustomersDni()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getInvoiceId"><code class="docutils literal notranslate"><span class="pre">Connection.getInvoiceId()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getInvoiceInfo"><code class="docutils literal notranslate"><span class="pre">Connection.getInvoiceInfo()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getInvoices"><code class="docutils literal notranslate"><span class="pre">Connection.getInvoices()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getProductInfo"><code class="docutils literal notranslate"><span class="pre">Connection.getProductInfo()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getProducts"><code class="docutils literal notranslate"><span class="pre">Connection.getProducts()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getProvinces"><code class="docutils literal notranslate"><span class="pre">Connection.getProvinces()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.getSales"><code class="docutils literal notranslate"><span class="pre">Connection.getSales()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.modifyCustomerData"><code class="docutils literal notranslate"><span class="pre">Connection.modifyCustomerData()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.modifyProductData"><code class="docutils literal notranslate"><span class="pre">Connection.modifyProductData()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.selectProduct"><code class="docutils literal notranslate"><span class="pre">Connection.selectProduct()</span></code></a></li>
+<li><a class="reference internal" href="#Connection.Connection.verifyInvoiceSale"><code class="docutils literal notranslate"><span class="pre">Connection.verifyInvoiceSale()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
                         
                     </div>
                 </div>
@@ -185,7 +595,7 @@
                 
                 </div>
 
-                <p class="mt-4">Copyright &copy; 2025, GabrielDiacich</p>
+                <p class="mt-4">Copyright &copy; 2025, Gabriel Diacich</p>
             </div>
         </div>
     </footer>

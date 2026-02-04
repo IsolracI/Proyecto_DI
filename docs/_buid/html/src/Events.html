@@ -146,8 +146,184 @@
                         
                         <article class="content is-medium sphinx-body">
                             
-  <section id="events-module">
-<h1>Events module<a class="headerlink" href="#events-module" title="Link to this heading">¶</a></h1>
+  <section id="module-Events">
+<span id="events-module"></span><h1>Events module<a class="headerlink" href="#module-Events" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Events.Events">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">Events.</span></span><span class="sig-name descname"><span class="pre">Events</span></span><a class="reference internal" href="../_modules/Events.html#Events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.closeAbout">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">closeAbout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.closeAbout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.closeAbout" title="Link to this definition">¶</a></dt>
+<dd><p>Cierra la ventana de información de la aplicación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.exitWindow">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">exitWindow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.exitWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.exitWindow" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra un cuadro de confirmación para cerrar la aplicación.</p>
+<p>Si el usuario confirma la acción, finaliza la ejecución del programa.
+Si cancela, la ventana se mantiene abierta.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.exportCsvCustomers">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">exportCsvCustomers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.exportCsvCustomers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.exportCsvCustomers" title="Link to this definition">¶</a></dt>
+<dd><p>Exporta los clientes a un archivo CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.loadCities">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">loadCities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.loadCities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.loadCities" title="Link to this definition">¶</a></dt>
+<dd><p>Carga la lista de ciudades según la provincia seleccionada.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.loadData">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">loadData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qDate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.loadData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.loadData" title="Link to this definition">¶</a></dt>
+<dd><p>Carga la fecha seleccionada en el calendario.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>qDate</strong> (<em>QDate</em>) – Fecha seleccionada en el calendario</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.loadProvinces">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">loadProvinces</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.loadProvinces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.loadProvinces" title="Link to this definition">¶</a></dt>
+<dd><p>Carga la lista de provincias en el comboBox.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.loadStatusBar">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">loadStatusBar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.loadStatusBar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.loadStatusBar" title="Link to this definition">¶</a></dt>
+<dd><p>Carga la barra de estado de la aplicación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.openCalendar">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">openCalendar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.openCalendar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.openCalendar" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra la ventana del calendario.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.resizeCustomerTable">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">resizeCustomerTable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.resizeCustomerTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.resizeCustomerTable" title="Link to this definition">¶</a></dt>
+<dd><p>Ajusta automáticamente el tamaño de las columnas de la tabla de clientes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.resizeInvoiceTable">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">resizeInvoiceTable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.resizeInvoiceTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.resizeInvoiceTable" title="Link to this definition">¶</a></dt>
+<dd><p>Ajusta automáticamente el tamaño de las columnas de la tabla de facturas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.resizeProductTable">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">resizeProductTable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.resizeProductTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.resizeProductTable" title="Link to this definition">¶</a></dt>
+<dd><p>Ajusta automáticamente el tamaño de las columnas de la tabla de productos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.resizeSalesTable">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">resizeSalesTable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.resizeSalesTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.resizeSalesTable" title="Link to this definition">¶</a></dt>
+<dd><p>Ajusta automáticamente el tamaño de las columnas de la tabla de ventas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.restoreBackup">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">restoreBackup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.restoreBackup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.restoreBackup" title="Link to this definition">¶</a></dt>
+<dd><p>Restaura una copia de seguridad de la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.saveBackup">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">saveBackup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.saveBackup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.saveBackup" title="Link to this definition">¶</a></dt>
+<dd><p>Crea una copia de seguridad de la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Events.Events.showAbout">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">showAbout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Events.html#Events.showAbout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Events.Events.showAbout" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra la ventana de información de la aplicación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -158,6 +334,33 @@
                     </div>
                     <div class="column is-2 mt-2  is-family-sans-serif">
                         
+  <div class="content localtoc">
+    <p class="has-text-weight-bold">On this page</p>
+    <ul>
+<li><a class="reference internal" href="#">Events module</a><ul>
+<li><a class="reference internal" href="#Events.Events"><code class="docutils literal notranslate"><span class="pre">Events</span></code></a><ul>
+<li><a class="reference internal" href="#Events.Events.closeAbout"><code class="docutils literal notranslate"><span class="pre">Events.closeAbout()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.exitWindow"><code class="docutils literal notranslate"><span class="pre">Events.exitWindow()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.exportCsvCustomers"><code class="docutils literal notranslate"><span class="pre">Events.exportCsvCustomers()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.loadCities"><code class="docutils literal notranslate"><span class="pre">Events.loadCities()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.loadData"><code class="docutils literal notranslate"><span class="pre">Events.loadData()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.loadProvinces"><code class="docutils literal notranslate"><span class="pre">Events.loadProvinces()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.loadStatusBar"><code class="docutils literal notranslate"><span class="pre">Events.loadStatusBar()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.openCalendar"><code class="docutils literal notranslate"><span class="pre">Events.openCalendar()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.resizeCustomerTable"><code class="docutils literal notranslate"><span class="pre">Events.resizeCustomerTable()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.resizeInvoiceTable"><code class="docutils literal notranslate"><span class="pre">Events.resizeInvoiceTable()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.resizeProductTable"><code class="docutils literal notranslate"><span class="pre">Events.resizeProductTable()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.resizeSalesTable"><code class="docutils literal notranslate"><span class="pre">Events.resizeSalesTable()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.restoreBackup"><code class="docutils literal notranslate"><span class="pre">Events.restoreBackup()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.saveBackup"><code class="docutils literal notranslate"><span class="pre">Events.saveBackup()</span></code></a></li>
+<li><a class="reference internal" href="#Events.Events.showAbout"><code class="docutils literal notranslate"><span class="pre">Events.showAbout()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
                         
                     </div>
                 </div>
@@ -185,7 +388,7 @@
                 
                 </div>
 
-                <p class="mt-4">Copyright &copy; 2025, GabrielDiacich</p>
+                <p class="mt-4">Copyright &copy; 2025, Gabriel Diacich</p>
             </div>
         </div>
     </footer>

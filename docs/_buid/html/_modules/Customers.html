@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <meta itemprop="sphinx_documatt_theme" content="0.0.5"><title>Customers &mdash; Desrrollo Interfaces v0.0.1 documentation</title>
+
+    
+        
+        
+            <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+        
+            <link rel="stylesheet" type="text/css" href="../_static/css/main.css?v=fd6b4214" />
+        
+    
+
+    <script type="text/javascript" src="../_static/js/main.js"></script>
+
+        <script type="text/javascript" id="documentation_options"
+                data-url_root="../"
+                src="../_static/documentation_options.js"></script>
+
+        
+            <script src="../_static/documentation_options.js?v=2fea6348"></script>
+            <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+            <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    
+
+    
+        
+        <link rel="shortcut icon" href="../_static/img/favicon.ico"/>
+    
+            <link rel="index" title="Index" href="../genindex.html"/>
+            <link rel="search" title="Search" href="../search.html"/>
+
+    
+
+    
+</head>
+<body>
+
+
+    <header>
+        
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="../index.html">
+                            <img
+                                
+                                    src="../_static/img/logo.svg"
+                                
+                                alt="Logo"
+                                
+                                    style="width: 10rem;"
+                                
+                                />
+                            
+                        </a>
+                        <!--<a role="button" class="navbar-burger burger" aria-label="menu"
+                           aria-expanded="false"
+                           data-target="navbarMenu">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </a>-->
+                    </div>
+
+                    
+                        <div id="navbarMenu" class="navbar-menu">
+                            <div class="navbar-end">
+                                <!--
+                                <a class="navbar-item" href="https://documatt.com">Documatt</a>
+                                <a class="navbar-item"
+                                   href="https://snippets.documatt.com">Snippets</a>
+                                <a class="navbar-item is-active" href="https://blog.documatt.com">Blog</a>
+                                -->
+                            </div>
+                        </div>
+                    
+                </div>
+            </nav>
+        
+
+        
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <div class="container">
+                    <ul>
+                        <li><a href="../index.html">Desrrollo Interfaces</a></li>
+                        
+    <li><a href="index.html" aria-current="page">Module code</a>
+    </li>
+
+
+    <li class="is-active">Customers</li>
+
+                    </ul>
+                </div>
+            </nav>
+        
+    </header>
+
+
+
+    <section class="section site-hero" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="columns">
+                <div class="column content is-8 is-offset-2">
+                        
+                            <h1 class="title is-2">
+                                <a href="../index.html">Desrrollo Interfaces</a>
+                            </h1>
+                            <div class="motto subtitle is-4">
+                                
+                            </div>
+                        
+                    
+                </div>
+                <div class="column">
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<hr>
+
+
+    
+        <section class="section is-paddingless" id="document">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-2 mt-2 is-family-sans-serif">
+                        
+<div class="content globaltoc">
+    <p class="has-text-weight-bold">Table of Contents</p>
+    
+</div>
+                        
+                    </div>
+                    <div class="column is-8">
+                        
+                        <article class="content is-medium sphinx-body">
+                            
+  <h1>Source code for Customers</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PyQt6</span><span class="w"> </span><span class="kn">import</span> <span class="n">QtCore</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Connection</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Globals</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<div class="viewcode-block" id="Customers">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Customers</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Customers.checkDni">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.checkDni">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">checkDni</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Valida el DNI o NIE introducido por el usuario.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+            <span class="n">dniCharacters</span> <span class="o">=</span> <span class="s2">&quot;TRWAGMYFPDXBNJZSQVHLCKE&quot;</span>
+            <span class="n">nieCharacters</span> <span class="o">=</span> <span class="s2">&quot;XYZ&quot;</span>
+            <span class="n">reempNieCharacters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">}</span>
+            <span class="n">validDigits</span> <span class="o">=</span> <span class="s2">&quot;1234567890&quot;</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+                <span class="n">digitControl</span> <span class="o">=</span> <span class="n">dni</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="n">dni</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">dni</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">nieCharacters</span><span class="p">:</span>
+                    <span class="n">dni</span> <span class="o">=</span> <span class="n">dni</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">dni</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reempNieCharacters</span><span class="p">[</span><span class="n">dni</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">dni</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">validDigits</span><span class="p">])</span> <span class="ow">and</span> <span class="n">dniCharacters</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span> <span class="o">%</span> <span class="mi">23</span><span class="p">]</span> <span class="o">==</span> <span class="n">digitControl</span><span class="p">:</span>
+                    <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color: rgb(255, 255, 220);&quot;</span><span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color: #FFC0CB;&quot;</span><span class="p">)</span>
+                    <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color: #FFC0CB;&quot;</span><span class="p">)</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Invalid DNI&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while checking dni: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">Customers</span><span class="o">.</span><span class="n">checkDni</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.checkMail">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.checkMail">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">checkMail</span><span class="p">(</span><span class="n">email</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Valida el formato del correo electrónico.</span>
+
+<span class="sd">        :param email: Dirección de correo electrónico introducido por el usuario</span>
+<span class="sd">        :type email: str</span>
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^[\w\.-]+@[\w\.-]+\.\w+$&#39;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_emailCliente</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color: rgb(255, 255, 220); color black&quot;</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_emailCliente</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color: #FFC0CB; color black&quot;</span><span class="p">)</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_emailCliente</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_emailCliente</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Invalid email&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while checking email: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.capitalizeCustomerName">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.capitalizeCustomerName">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">capitalizeCustomerName</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">widget</span><span class="p">):</span>   <span class="c1">###capitalizar</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Capitaliza el texto del nombre o apellido del cliente.</span>
+
+<span class="sd">        :param text: Texto original introducido por el usuario.</span>
+<span class="sd">        :type text: str</span>
+<span class="sd">        :param widget: Campo de la interfaz donde se mostrará el texto formateado.</span>
+<span class="sd">        :type widget: QLineEdit</span>
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+            <span class="n">widget</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while capitalizing: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.checkMobile">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.checkMobile">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">checkMobile</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>   <span class="c1">###checkMobil</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Valida el número de teléfono móvil del cliente.</span>
+
+<span class="sd">        :param number: Número de teléfono introducido.</span>
+<span class="sd">        :type number: str</span>
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^[67]\d</span><span class="si">{8}</span><span class="s1">$&#39;</span>
+
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_numeroTelefono</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color: rgb(255, 255, 220); color black&quot;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_numeroTelefono</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color: #FFC0CB; color black&quot;</span><span class="p">)</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_numeroTelefono</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_numeroTelefono</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Invalid number&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.loadCustomerTable">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.loadCustomerTable">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">loadCustomerTable</span><span class="p">(</span><span class="n">historicalOnly</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>   <span class="c1">#loadTableCli</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Carga la tabla de clientes en la interfaz.</span>
+
+<span class="sd">        :param historicalOnly: True para mostrar solo clientes activos, False para mostrar todos</span>
+<span class="sd">        :type historicalOnly: bool</span>
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">customers</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="n">getCustomers</span><span class="p">(</span><span class="n">historicalOnly</span><span class="p">)</span>
+
+            <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">uiTable</span> <span class="o">=</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tbl_customerList</span>
+
+            <span class="k">for</span> <span class="n">customer</span> <span class="ow">in</span> <span class="n">customers</span><span class="p">:</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">setRowCount</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customer</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customer</span><span class="p">[</span><span class="mi">3</span><span class="p">])))</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customer</span><span class="p">[</span><span class="mi">5</span><span class="p">])))</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customer</span><span class="p">[</span><span class="mi">7</span><span class="p">])))</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customer</span><span class="p">[</span><span class="mi">8</span><span class="p">])))</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customer</span><span class="p">[</span><span class="mi">9</span><span class="p">])))</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customer</span><span class="p">[</span><span class="mi">10</span><span class="p">])))</span>
+
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignHCenter</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignHCenter</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignHCenter</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignHCenter</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignHCenter</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignHCenter</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">uiTable</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignHCenter</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while loading customer table: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.showCustomerInfo">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.showCustomerInfo">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">showCustomerInfo</span><span class="p">():</span>   <span class="c1">###selectCustomer</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Muestra la información completa del cliente seleccionado en la tabla.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">selectedRow</span> <span class="o">=</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tbl_customerList</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
+            <span class="n">selectedCustomerMobile</span> <span class="o">=</span> <span class="n">selectedRow</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="n">customerDni</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="n">getCustomersDni</span><span class="p">(</span><span class="n">selectedCustomerMobile</span><span class="p">)</span>
+
+            <span class="n">customerData</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="n">getCustomerInfo</span><span class="p">(</span><span class="n">customerDni</span><span class="p">)</span>
+
+            <span class="n">allDataBoxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_fechaAlta</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_apellidosCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_nombresCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_emailCliente</span><span class="p">,</span>
+                            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_numeroTelefono</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_dirCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_provinciaCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_ciudadCliente</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">allDataBoxes</span><span class="p">)):</span>
+
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">allDataBoxes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;setText&quot;</span><span class="p">):</span>
+                    <span class="n">allDataBoxes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">allDataBoxes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;setCurrenText&quot;</span><span class="p">):</span>
+                    <span class="n">allDataBoxes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">setCurrentText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_provinciaCliente</span><span class="o">.</span><span class="n">setCurrentText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">7</span><span class="p">]))</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_ciudadCliente</span><span class="o">.</span><span class="n">setCurrentText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">8</span><span class="p">]))</span>
+
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;paper&quot;</span><span class="p">:</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rb_paperBiling</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rb_eInvoice</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">Globals</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">customerData</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while showing customer info: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.deleteSelectedCustomer">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.deleteSelectedCustomer">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">deleteSelectedCustomer</span><span class="p">():</span>   <span class="c1">###delCliente</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Desactiva al cliente seleccionado.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Warning&quot;</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Warning</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Delete Customer?&quot;</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">Connection</span><span class="o">.</span><span class="n">deleteCustomer</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="n">successMbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">successMbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Information&quot;</span><span class="p">)</span>
+                <span class="n">successMbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
+                <span class="n">successMbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;The customer has been deleted.&quot;</span><span class="p">)</span>
+                <span class="n">successMbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+                <span class="n">Customers</span><span class="o">.</span><span class="n">loadCustomerTable</span><span class="p">()</span>
+
+            <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;An error has occurred while deleting the customer.&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while deleting the customer: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.saveNewCustomer">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.saveNewCustomer">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">saveNewCustomer</span><span class="p">():</span>   <span class="c1">###saveCli</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Guarda un nuevo cliente en la base de datos.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">allDataBoxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_fechaAlta</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_apellidosCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_nombresCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_emailCliente</span><span class="p">,</span>
+                            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_numeroTelefono</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_dirCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_provinciaCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_ciudadCliente</span><span class="p">]</span>
+
+            <span class="n">invoiceType</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rb_eInvoice</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+                <span class="n">invoiceType</span> <span class="o">=</span> <span class="s2">&quot;electronic&quot;</span>
+            <span class="k">elif</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rb_paperBiling</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+                <span class="n">invoiceType</span> <span class="o">=</span> <span class="s2">&quot;paper&quot;</span>
+            <span class="n">allDataBoxes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">invoiceType</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">Connection</span><span class="o">.</span><span class="n">addCustomer</span><span class="p">(</span><span class="n">allDataBoxes</span><span class="p">):</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Information&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;The customer has been added.&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+                <span class="n">Customers</span><span class="o">.</span><span class="n">loadCustomerTable</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;An error has occurred while adding the customer.&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while adding the customer: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.modifyCustomer">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.modifyCustomer">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modifyCustomer</span><span class="p">():</span>   <span class="c1">###modifyCli</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Modifica los datos de un cliente existente.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Modify&quot;</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Do you want to modify the customer&#39;s data?&quot;</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+            <span class="n">mbox</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">No</span><span class="p">:</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+                <span class="k">return</span>
+
+            <span class="n">allDataBoxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_fechaAlta</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_apellidosCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_nombresCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_emailCliente</span><span class="p">,</span>
+                            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_numeroTelefono</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_dirCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_provinciaCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_ciudadCliente</span><span class="p">]</span>
+            <span class="n">invoiceType</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+            <span class="k">if</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rb_eInvoice</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+                <span class="n">invoiceType</span> <span class="o">=</span> <span class="s2">&quot;electronic&quot;</span>
+            <span class="k">elif</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rb_paperBiling</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+                <span class="n">invoiceType</span> <span class="o">=</span> <span class="s2">&quot;paper&quot;</span>
+
+            <span class="n">allDataBoxes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">invoiceType</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">Globals</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;False&quot;</span><span class="p">:</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Information&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Customer inactive. Do you want to activate it?&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span>
+                    <span class="n">Globals</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;True&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">Globals</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;False&quot;</span>
+
+            <span class="n">allDataBoxes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Globals</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">Connection</span><span class="o">.</span><span class="n">modifyCustomerData</span><span class="p">(</span><span class="n">allDataBoxes</span><span class="p">):</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Information&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;The customer has been modified.&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+                <span class="n">Customers</span><span class="o">.</span><span class="n">loadCustomerTable</span><span class="p">()</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;An error has occurred while trying to modify the customer&#39;s data.&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while modifying the customer&#39;s data: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.searchCustomer">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.searchCustomer">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">searchCustomer</span><span class="p">():</span>   <span class="c1">###buscaCli</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Busca un cliente por su DNI/NIE.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="n">customerData</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="n">getCustomerInfo</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">customerData</span><span class="p">:</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;The customer could not be found.&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+
+            <span class="n">allDataBoxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_fechaAlta</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_apellidosCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_nombresCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_emailCliente</span><span class="p">,</span>
+                            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_numeroTelefono</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_dirCliente</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">allDataBoxes</span><span class="p">)):</span>
+
+                <span class="n">allDataBoxes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_provinciaCliente</span><span class="o">.</span><span class="n">setCurrentText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">7</span><span class="p">]))</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_ciudadCliente</span><span class="o">.</span><span class="n">setCurrentText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">8</span><span class="p">]))</span>
+
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">customerData</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;paper&quot;</span><span class="p">:</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rb_paperBiling</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rb_eInvoice</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">Globals</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">customerData</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while searching for the customer: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.clearCustomerFields">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.clearCustomerFields">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clearCustomerFields</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Limpia todos los campos del formulario de clientes.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">allDataBoxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_fechaAlta</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_apellidosCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_nombresCliente</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_emailCliente</span><span class="p">,</span>
+                            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_numeroTelefono</span><span class="p">,</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_dirCliente</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">allDataBoxes</span><span class="p">)):</span>
+                <span class="n">allDataBoxes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rb_eInvoice</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txt_DNICliente</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmb_provinciaCliente</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error while clearing the fields: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Customers.customersHistorical">
+<a class="viewcode-back" href="../src/Customers.html#Customers.Customers.customersHistorical">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">customersHistorical</span><span class="p">():</span>   <span class="c1">###HistoricoCli</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Activa o desactiva la visualización de clientes en estado desactivado.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">checkedHistorical</span> <span class="o">=</span> <span class="n">Globals</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">chk_historico</span><span class="o">.</span><span class="n">isChecked</span><span class="p">()</span>
+            <span class="n">Customers</span><span class="o">.</span><span class="n">loadCustomerTable</span><span class="p">(</span><span class="n">checkedHistorical</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error in customerhistorical: &quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+
+                            
+                            
+                        </article>
+                    </div>
+                    <div class="column is-2 mt-2  is-family-sans-serif">
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered has-text-primary">
+                <a href="../index.html">
+                    <img
+                        
+                            src="../_static/img/logo.svg"
+                        
+                        alt="Logo"
+                        
+                            style="width: 10rem;"
+                        
+                    />
+                 </a>
+                 <div class="footer-text">
+                
+                    <p></p>
+                
+                </div>
+
+                <p class="mt-4">Copyright &copy; 2025, Gabriel Diacich</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

@@ -146,8 +146,161 @@
                         
                         <article class="content is-medium sphinx-body">
                             
-  <section id="customers-module">
-<h1>Customers module<a class="headerlink" href="#customers-module" title="Link to this heading">¶</a></h1>
+  <section id="module-Customers">
+<span id="customers-module"></span><h1>Customers module<a class="headerlink" href="#module-Customers" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Customers.Customers">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">Customers.</span></span><span class="sig-name descname"><span class="pre">Customers</span></span><a class="reference internal" href="../_modules/Customers.html#Customers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.capitalizeCustomerName">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">capitalizeCustomerName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.capitalizeCustomerName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.capitalizeCustomerName" title="Link to this definition">¶</a></dt>
+<dd><p>Capitaliza el texto del nombre o apellido del cliente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>str</em>) – Texto original introducido por el usuario.</p></li>
+<li><p><strong>widget</strong> (<em>QLineEdit</em>) – Campo de la interfaz donde se mostrará el texto formateado.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.checkDni">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">checkDni</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.checkDni"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.checkDni" title="Link to this definition">¶</a></dt>
+<dd><p>Valida el DNI o NIE introducido por el usuario.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.checkMail">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">checkMail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.checkMail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.checkMail" title="Link to this definition">¶</a></dt>
+<dd><p>Valida el formato del correo electrónico.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>email</strong> (<em>str</em>) – Dirección de correo electrónico introducido por el usuario</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.checkMobile">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">checkMobile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.checkMobile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.checkMobile" title="Link to this definition">¶</a></dt>
+<dd><p>Valida el número de teléfono móvil del cliente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>number</strong> (<em>str</em>) – Número de teléfono introducido.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.clearCustomerFields">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">clearCustomerFields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.clearCustomerFields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.clearCustomerFields" title="Link to this definition">¶</a></dt>
+<dd><p>Limpia todos los campos del formulario de clientes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.customersHistorical">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">customersHistorical</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.customersHistorical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.customersHistorical" title="Link to this definition">¶</a></dt>
+<dd><p>Activa o desactiva la visualización de clientes en estado desactivado.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.deleteSelectedCustomer">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">deleteSelectedCustomer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.deleteSelectedCustomer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.deleteSelectedCustomer" title="Link to this definition">¶</a></dt>
+<dd><p>Desactiva al cliente seleccionado.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.loadCustomerTable">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">loadCustomerTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">historicalOnly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.loadCustomerTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.loadCustomerTable" title="Link to this definition">¶</a></dt>
+<dd><p>Carga la tabla de clientes en la interfaz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>historicalOnly</strong> (<em>bool</em>) – True para mostrar solo clientes activos, False para mostrar todos</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.modifyCustomer">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">modifyCustomer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.modifyCustomer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.modifyCustomer" title="Link to this definition">¶</a></dt>
+<dd><p>Modifica los datos de un cliente existente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.saveNewCustomer">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">saveNewCustomer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.saveNewCustomer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.saveNewCustomer" title="Link to this definition">¶</a></dt>
+<dd><p>Guarda un nuevo cliente en la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.searchCustomer">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">searchCustomer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.searchCustomer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.searchCustomer" title="Link to this definition">¶</a></dt>
+<dd><p>Busca un cliente por su DNI/NIE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Customers.Customers.showCustomerInfo">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">showCustomerInfo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Customers.html#Customers.showCustomerInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Customers.Customers.showCustomerInfo" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra la información completa del cliente seleccionado en la tabla.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -158,6 +311,30 @@
                     </div>
                     <div class="column is-2 mt-2  is-family-sans-serif">
                         
+  <div class="content localtoc">
+    <p class="has-text-weight-bold">On this page</p>
+    <ul>
+<li><a class="reference internal" href="#">Customers module</a><ul>
+<li><a class="reference internal" href="#Customers.Customers"><code class="docutils literal notranslate"><span class="pre">Customers</span></code></a><ul>
+<li><a class="reference internal" href="#Customers.Customers.capitalizeCustomerName"><code class="docutils literal notranslate"><span class="pre">Customers.capitalizeCustomerName()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.checkDni"><code class="docutils literal notranslate"><span class="pre">Customers.checkDni()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.checkMail"><code class="docutils literal notranslate"><span class="pre">Customers.checkMail()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.checkMobile"><code class="docutils literal notranslate"><span class="pre">Customers.checkMobile()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.clearCustomerFields"><code class="docutils literal notranslate"><span class="pre">Customers.clearCustomerFields()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.customersHistorical"><code class="docutils literal notranslate"><span class="pre">Customers.customersHistorical()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.deleteSelectedCustomer"><code class="docutils literal notranslate"><span class="pre">Customers.deleteSelectedCustomer()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.loadCustomerTable"><code class="docutils literal notranslate"><span class="pre">Customers.loadCustomerTable()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.modifyCustomer"><code class="docutils literal notranslate"><span class="pre">Customers.modifyCustomer()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.saveNewCustomer"><code class="docutils literal notranslate"><span class="pre">Customers.saveNewCustomer()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.searchCustomer"><code class="docutils literal notranslate"><span class="pre">Customers.searchCustomer()</span></code></a></li>
+<li><a class="reference internal" href="#Customers.Customers.showCustomerInfo"><code class="docutils literal notranslate"><span class="pre">Customers.showCustomerInfo()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
                         
                     </div>
                 </div>
@@ -185,7 +362,7 @@
                 
                 </div>
 
-                <p class="mt-4">Copyright &copy; 2025, GabrielDiacich</p>
+                <p class="mt-4">Copyright &copy; 2025, Gabriel Diacich</p>
             </div>
         </div>
     </footer>

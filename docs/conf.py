@@ -6,9 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'DesrrolloInterfaces'
-copyright = '2025, GabrielDiacich'
-author = 'GabrielDiacich'
+project = 'Desrrollo Interfaces'
+copyright = '2025, Gabriel Diacich'
+author = 'Gabriel Diacich'
 release = 'v0.0.1'
 
 # -- General configuration ---------------------------------------------------
@@ -24,5 +24,5 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'sphinx_documatt_theme'
 html_static_path = ['_static']

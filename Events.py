@@ -1,8 +1,9 @@
 from PyQt6 import QtWidgets, QtGui
-from datetime import datetime
 from mailbox import mbox
 from Connection import *
 from Customers import *
+from Invoice import *
+import datetime
 import Globals
 import zipfile
 import shutil
@@ -10,6 +11,7 @@ import time
 import sys
 import csv
 import os
+
 
 class Events:
 
@@ -321,7 +323,7 @@ class Events:
 
         """
         try:
-            data = datetime.now().strftime("%d/%m/%Y")
+            data = datetime.datetime.now().strftime("%d/%m/%Y")
             labelStatus = QtWidgets.QLabel()
             labelStatus.setText("Date: " + data + " - Version 0.0.1")
             labelStatus.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -390,6 +392,7 @@ class Events:
         """
         try:
             header = Globals.ui.tbl_invoiceTable.horizontalHeader()
+            lastColumn = Globals.ui.tbl_invoiceTable.columnCount() -1
 
             for i in range(header.count()):
                 header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
@@ -399,5 +402,12 @@ class Events:
                 font.setBold(True)
                 header.setFont(font)
 
+            header.setSectionResizeMode(lastColumn, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+
         except Exception as error:
             print("There was an error in resizeInvoiceTable: ", error)
+
+    @staticmethod
+    def onInvoiceClick(row, column):
+        if column == 3:
+            Invoice.deleteSelectedInvoice(row)

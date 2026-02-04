@@ -36,7 +36,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_customers">
        <attribute name="title">
@@ -1408,6 +1408,11 @@
          <column>
           <property name="text">
            <string>Date</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string/>
           </property>
          </column>
         </widget>

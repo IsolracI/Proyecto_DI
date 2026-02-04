@@ -1,7 +1,7 @@
-from datetime import datetime
 from dlgCalendar import *
 from dlgAbout import *
 from Events import *
+import datetime
 import Globals
 
 class Calendar(QtWidgets.QDialog):
@@ -20,9 +20,9 @@ class Calendar(QtWidgets.QDialog):
         super(Calendar, self).__init__()
         Globals.vencal = Ui_dlgCalendar()
         Globals.vencal.setupUi(self)
-        day = datetime.now().day
-        month = datetime.now().month
-        year = datetime.now().year
+        day = datetime.datetime.now().day
+        month = datetime.datetime.now().month
+        year = datetime.datetime.now().year
 
         Globals.vencal.Calendar.setSelectedDate((QtCore.QDate(year, month, day)))
         Globals.vencal.Calendar.clicked.connect(Events.loadData)

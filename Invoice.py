@@ -14,7 +14,7 @@ class Invoice:
         Busca un cliente de la base de datos para cargarlo en el panel de ventas.
         Si la caja de texto del DNI está vacia, muestra el cliente anónimo.
 
-        :param widget: campo de texto que contiene el DNI del cliente a buscar.
+        :param widget: Campo de texto que contiene el DNI del cliente a buscar.
         :type widget: QLineEdit
         :return: None
 
@@ -23,6 +23,7 @@ class Invoice:
             if widget.text().upper().strip() == "00000000T":
                 Invoice.loadAnonymousCustomer()
                 return
+
             widget = widget.text().upper().strip()
             customerData = Connection.getCustomerInfo(widget)
             if customerData:
@@ -141,16 +142,23 @@ class Invoice:
 
             index = 0
             uiTable = Globals.ui.tbl_invoiceTable
+            icon = QtGui.QIcon("templates/assets/garbage_bin_icon.jpg")
+
 
             for invoice in invoices:
                 uiTable.setRowCount(index + 1)
                 uiTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(invoice[0])))
                 uiTable.setItem(index, 1, QtWidgets.QTableWidgetItem(str(invoice[1])))
                 uiTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(invoice[2])))
+                item = QtWidgets.QTableWidgetItem()
+                item.setIcon(icon)
+                item.setFlags(QtCore.Qt.ItemFlag.ItemIsEnabled)
+                uiTable.setItem(index, 3, item)
 
                 uiTable.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 uiTable.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 uiTable.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                uiTable.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 index += 1
 
         except Exception as e:
@@ -184,6 +192,41 @@ class Invoice:
         except Exception as error:
             print("(Invoice.showInvoiceInfo) There was an error while showing product info: ", error)
 
+
+    @staticmethod
+    def deleteSelectedInvoice(row):
+        try:
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle("Warning")
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            mbox.setText("Delete Invoice?")
+            mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+            mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
+
+            if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
+                selectedInvoiceId = Globals.ui.tbl_invoiceTable.item(row, 0).text()
+
+                if Connection.deleteInvoice(selectedInvoiceId):
+                    successMbox = QtWidgets.QMessageBox()
+                    successMbox.setWindowTitle("Information")
+                    successMbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    successMbox.setText("The Invoice has been deleted.")
+                    successMbox.exec()
+                    Invoice.loadTableFac()
+                    return
+
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle("Error")
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                mbox.setText("An error has occurred while trying to delete the invoice.")
+                mbox.exec()
+                return
+
+            else:
+                return
+
+        except Exception as error:
+            print("(Invoice.deleteSelectedInvoice) There was an error while trying to delete the invoice: ", error)
 
     @staticmethod
     def _makeItem(text, editable):
@@ -252,6 +295,8 @@ class Invoice:
             Globals.ui.tbl_ventas.setItem(targetRow, 4, Invoice._makeItem("", False))
             Globals.ui.tbl_ventas.item(targetRow, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
 
+            # Columna 6 (borrar fila)
+
             Globals.ui.tbl_ventas.blockSignals(False)
 
         except Exception as error:
@@ -275,8 +320,9 @@ class Invoice:
             salesTable = Globals.ui.tbl_ventas
             currentRow = item.row()
             currentCol = item.column()
+            sales = []
 
-            if currentCol not in (0, 3):
+            if currentCol not in (0, 3, 5):
                 return
 
             textValue = item.text().strip()
@@ -336,6 +382,10 @@ class Invoice:
         except Exception as error:
             print("(Invoice.cellChangedSales) There was an error: ", error)
 
+
+    @staticmethod
+    def eraseSalesow():
+        return "aaaaaa"
 
     @staticmethod
     def calculateTotals():
@@ -408,6 +458,7 @@ class Invoice:
         try:
             salesTable = Globals.ui.tbl_ventas
             invoiceId = Globals.ui.lbl_numFactura.text().strip()
+            savedAny = False
 
             for r in range(salesTable.rowCount()):
                 productId = salesTable.item(r, 0).text().strip()
@@ -416,13 +467,8 @@ class Invoice:
                 quantity = salesTable.item(r, 3).text().strip()
                 totalPrice = salesTable.item(r, 4).text().strip()
 
-                if not invoiceId or not productId or not productName or not unitPrice or not quantity or not totalPrice:
-                    mbox = QtWidgets.QMessageBox()
-                    mbox.setWindowTitle("Error")
-                    mbox.setText("Please fill all the fields")
-                    mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-                    mbox.exec()
-                    return
+                if not all([invoiceId, productId, productName, unitPrice, quantity, totalPrice]):
+                    continue
 
                 allDataBoxes = [invoiceId, productId, quantity, productName, unitPrice, totalPrice]
 
@@ -434,11 +480,17 @@ class Invoice:
                     mbox.exec()
                     return
 
+                savedAny = True
+
+            if savedAny:
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle("Success")
                 mbox.setText("Successfully saved the sales")
                 mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.exec()
+
+            else:
+                QtWidgets.QMessageBox.warning(None, "Error", "Please fill all the fields")
 
         except Exception as error:
             print("(Invoice.saveSales) There was an error while trying to save the sales: ", error)

@@ -644,6 +644,21 @@ class Connection:
         except Exception as error:
             print("There was an error inserting the invoice", error)
 
+    @staticmethod
+    def deleteInvoice(invoiceId):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("DELETE  FROM invoices "
+                          "    WHERE id_fac = :invoiceId;")
+            query.bindValue(":invoiceId", invoiceId)
+
+            if not query.exec():
+                return False
+            return True
+        except Exception as error:
+            print("(Connection.deleteInvoice) An error occurred while trying to delete the invoice from the database: ", error)
+        return True
+
 
     @staticmethod
     def selectProduct(item):

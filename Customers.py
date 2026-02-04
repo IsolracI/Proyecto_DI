@@ -216,20 +216,28 @@ class Customers:
             mbox.setText("Delete Customer?")
             mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
             mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
-            dni = Globals.ui.txt_DNICliente.text()
 
-            if Connection.deleteCustomer(dni):
-                successMbox = QtWidgets.QMessageBox()
-                successMbox.setWindowTitle("Information")
-                successMbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                successMbox.setText("The customer has been deleted.")
-                successMbox.exec()
-                Customers.loadCustomerTable()
+            if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
+                dni = Globals.ui.txt_DNICliente.text()
 
-            mbox = QtWidgets.QMessageBox()
-            mbox.setWindowTitle("Error")
-            mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
-            mbox.setText("An error has occurred while deleting the customer.")
+                if Connection.deleteCustomer(dni):
+                    successMbox = QtWidgets.QMessageBox()
+                    successMbox.setWindowTitle("Information")
+                    successMbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    successMbox.setText("The customer has been deleted.")
+                    successMbox.exec()
+                    Customers.loadCustomerTable()
+                    return
+
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle("Error")
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                mbox.setText("An error has occurred while deleting the customer.")
+                mbox.exec()
+                return
+
+            else:
+                return
 
         except Exception as error:
             print("There was an error while deleting the customer: ", error)

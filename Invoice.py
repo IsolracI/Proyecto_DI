@@ -150,9 +150,19 @@ class Invoice:
                 uiTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(invoice[0])))
                 uiTable.setItem(index, 1, QtWidgets.QTableWidgetItem(str(invoice[1])))
                 uiTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(invoice[2])))
+
                 item = QtWidgets.QTableWidgetItem()
                 item.setIcon(icon)
-                item.setFlags(QtCore.Qt.ItemFlag.ItemIsEnabled)
+                invoiceId = invoice[0]
+                hasSales = Connection.verifyInvoiceSale(invoiceId)
+
+                if hasSales:
+                    item.setToolTip("This invoice cannot be deleted")
+                    item.setFlags(QtCore.Qt.ItemFlag.NoItemFlags)
+                else:
+                    item.setToolTip("Delete invoice")
+                    item.setFlags(QtCore.Qt.ItemFlag.ItemIsEnabled)
+
                 uiTable.setItem(index, 3, item)
 
                 uiTable.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
@@ -196,6 +206,12 @@ class Invoice:
     @staticmethod
     def deleteSelectedInvoice(row):
         try:
+            selectedInvoiceId = Globals.ui.tbl_invoiceTable.item(row, 0).text()
+
+            if Connection.verifyInvoiceSale(selectedInvoiceId):
+                QtWidgets.QMessageBox.warning(None, "Warning", "This invoice has registered sales, it cannot be deleted.")
+                return
+
             mbox = QtWidgets.QMessageBox()
             mbox.setWindowTitle("Warning")
             mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -204,8 +220,6 @@ class Invoice:
             mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
 
             if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
-                selectedInvoiceId = Globals.ui.tbl_invoiceTable.item(row, 0).text()
-
                 if Connection.deleteInvoice(selectedInvoiceId):
                     successMbox = QtWidgets.QMessageBox()
                     successMbox.setWindowTitle("Information")
@@ -254,6 +268,62 @@ class Invoice:
 
 
     @staticmethod
+    def _createDeleteButton(row):
+        """
+
+        Crea un botón para borrar una fila de la tabla de ventas.
+
+        :param row: Índice de la fila a borrar.
+        :type row: int
+        :return: Botón configurado.
+        :rtype: QToolButton
+
+        """
+        btn = QtWidgets.QToolButton()
+        btn.setIcon(QtGui.QIcon("templates/assets/garbage_bin_icon.jpg"))
+        btn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        btn.setToolTip("Delete row")
+
+        btn.clicked.connect(lambda: Invoice.deleteSaleRow(row))
+        return btn
+
+
+    @staticmethod
+    def refreshDeleteButtons():
+        """
+
+        Reasigna correctamente los botones de borrar según las filas actuales.
+
+        :return: None
+
+        """
+        table = Globals.ui.tbl_ventas
+
+        for row in range(table.rowCount()):
+            btn = Invoice._createDeleteButton(row)
+            table.setCellWidget(row, 5, btn)
+
+
+    @staticmethod
+    def deleteSaleRow(row):
+        """
+
+        Elimina una fila de la tabla de ventas y recalcula los totales.
+
+        :return: None
+
+        """
+        table = Globals.ui.tbl_ventas
+
+        table.blockSignals(True)
+        table.deleteRow(row)
+        table.blockSignals(False)
+
+        Invoice.refreshDeleteButtons()
+        Invoice.calculateTotals()
+
+
+    @staticmethod
     def activeSales(createNewRow=False):
         """
 
@@ -265,6 +335,8 @@ class Invoice:
 
         """
         try:
+            table = Globals.ui.tbl_ventas
+            table.setColumnHidden(5, False)
             currentCount = Globals.ui.tbl_ventas.rowCount()
             # Si no se pasa fila, añadimos la primera fila
             if createNewRow:
@@ -296,6 +368,9 @@ class Invoice:
             Globals.ui.tbl_ventas.item(targetRow, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
 
             # Columna 6 (borrar fila)
+            table.setColumnHidden(5, False)
+            btnDelete = Invoice._createDeleteButton(targetRow)
+            Globals.ui.tbl_ventas.setCellWidget(targetRow, 5, btnDelete)
 
             Globals.ui.tbl_ventas.blockSignals(False)
 
@@ -382,10 +457,6 @@ class Invoice:
         except Exception as error:
             print("(Invoice.cellChangedSales) There was an error: ", error)
 
-
-    @staticmethod
-    def eraseSalesow():
-        return "aaaaaa"
 
     @staticmethod
     def calculateTotals():
@@ -483,6 +554,8 @@ class Invoice:
                 savedAny = True
 
             if savedAny:
+                Globals.ui.tbl_ventas.setColumnHidden(5, True)
+
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle("Success")
                 mbox.setText("Successfully saved the sales")
@@ -513,6 +586,7 @@ class Invoice:
         try:
             salesTable = Globals.ui.tbl_ventas
             salesTable.blockSignals(True)
+            salesTable.setColumnHidden(5, True)
 
             salesTable.clearContents()
             salesTable.setRowCount(0)

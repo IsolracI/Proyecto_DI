@@ -1592,6 +1592,11 @@
           <string>Total</string>
          </property>
         </column>
+        <column>
+         <property name="text">
+          <string/>
+         </property>
+        </column>
        </widget>
        <widget class="QLabel" name="lbl_subtotalTitle">
         <property name="geometry">
@@ -1643,7 +1648,7 @@
          <string notr="true">background-color: rgb(246, 255, 187);</string>
         </property>
         <property name="text">
-         <string/>
+         <string>0.00 €</string>
         </property>
        </widget>
        <widget class="QLabel" name="lbl_IVATitle">
@@ -1696,7 +1701,7 @@
          <string notr="true">background-color: rgb(246, 255, 187);</string>
         </property>
         <property name="text">
-         <string/>
+         <string>0.00 €</string>
         </property>
        </widget>
        <widget class="QLabel" name="lbl_totalTitle">
@@ -1749,7 +1754,7 @@
          <string notr="true">background-color: rgb(246, 255, 187);</string>
         </property>
         <property name="text">
-         <string/>
+         <string>0.00 €</string>
         </property>
        </widget>
        <widget class="QLabel" name="ttl_name">

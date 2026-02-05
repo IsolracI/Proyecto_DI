@@ -348,7 +348,7 @@ class Events:
 
             for i in range(header.count()):
                 header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
-                headerItems = Globals.ui.tbl_customerList.horizontalHeaderItem(i)
+                headerItems = Globals.ui.tbl_productList.horizontalHeaderItem(i)
                 # Cabezera en Negrilla
                 font = headerItems.font()
                 font.setBold(True)
@@ -368,10 +368,16 @@ class Events:
 
         """
         try:
-            header = Globals.ui.tbl_ventas.horizontalHeader()
+            table = Globals.ui.tbl_ventas
+            header = table.horizontalHeader()
             for i in range(header.count()):
-                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
-                headerItems = Globals.ui.tbl_customerList.horizontalHeaderItem(i)
+                if i == 5:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Fixed)
+                    table.setColumnWidth(i, 40)
+                else:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+
+                headerItems = Globals.ui.tbl_ventas.horizontalHeaderItem(i)
                 # Cabezera en Negrilla
                 font = headerItems.font()
                 font.setBold(True)
@@ -396,7 +402,7 @@ class Events:
 
             for i in range(header.count()):
                 header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
-                headerItems = Globals.ui.tbl_customerList.horizontalHeaderItem(i)
+                headerItems = Globals.ui.tbl_invoiceTable.horizontalHeaderItem(i)
                 # Cabezera en Negrilla
                 font = headerItems.font()
                 font.setBold(True)
@@ -406,6 +412,7 @@ class Events:
 
         except Exception as error:
             print("There was an error in resizeInvoiceTable: ", error)
+
 
     @staticmethod
     def onInvoiceClick(row, column):

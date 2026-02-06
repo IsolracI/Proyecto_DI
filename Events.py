@@ -1,5 +1,8 @@
 from PyQt6 import QtWidgets, QtGui
 from mailbox import mbox
+
+from docutils.nodes import row
+
 from Connection import *
 from Customers import *
 from Invoice import *
@@ -416,5 +419,15 @@ class Events:
 
     @staticmethod
     def onInvoiceClick(row, column):
+        uiTable = Globals.ui.tbl_invoiceTable
+
         if column == 3:
+            item = uiTable.item(row, column)
+
+            if not item or not (item.flags() & QtCore.Qt.ItemFlag.ItemIsEnabled):
+                return
+
             Invoice.deleteSelectedInvoice(row)
+            return
+
+        Invoice.showInvoiceInfo()

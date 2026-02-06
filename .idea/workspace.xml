@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d7662a6-e650-4107-8b59-e8e8f88efefb" name="Changes" comment="pinche borrado en la tabla de ventas &gt;:v">
+    <list default="true" id="7d7662a6-e650-4107-8b59-e8e8f88efefb" name="Changes" comment="extras del profe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Events.py" beforeDir="false" afterPath="$PROJECT_DIR$/Events.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Invoice.py" beforeDir="false" afterPath="$PROJECT_DIR$/Invoice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/bbdd.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/data/bbdd.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/window.ui" beforeDir="false" afterPath="$PROJECT_DIR$/templates/window.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/window.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +31,12 @@
     &quot;assignee&quot;: &quot;IsolracI&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/IsolracI/Proyecto_DI.git&quot;,
-    &quot;accountId&quot;: &quot;306ce0a0-9735-48de-b300-58392727212e&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/IsolracI/Proyecto_DI.git",
+    "accountId": "69b42fbc-e612-4e42-b245-3a2f1020df3a"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -227,6 +225,7 @@
       <workItem from="1770063777345" duration="62000" />
       <workItem from="1770117447230" duration="10597000" />
       <workItem from="1770281717820" duration="8102000" />
+      <workItem from="1770371841117" duration="2584000" />
     </task>
     <task id="LOCAL-00001" summary="proyecto sin venv">
       <option name="closed" value="true" />
@@ -652,7 +651,7 @@
     <SUITE FILE_PATH="coverage/DiacichMancilla$Customers.coverage" NAME="Customers Coverage Results" MODIFIED="1763059330540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiacichMancilla$Sphinx_apidoc.coverage" NAME="Sphinx-apidoc Coverage Results" MODIFIED="1770194042697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Gabriel\DI\DiacichMancilla\docs" />
     <SUITE FILE_PATH="coverage/Proyecto_DI$Main.coverage" NAME="Main Coverage Results" MODIFIED="1769638350536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DiacichMancilla$Main.coverage" NAME="Main Coverage Results" MODIFIED="1770292320994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DiacichMancilla$Main.coverage" NAME="Main Coverage Results" MODIFIED="1770373564410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiacichMancilla$sphinx_build_exe.coverage" NAME="sphinx-build.exe Coverage Results" MODIFIED="1770194074327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Gabriel\DI\DiacichMancilla\docs" />
     <SUITE FILE_PATH="coverage/DiacichMancilla$Reports.coverage" NAME="Reports Coverage Results" MODIFIED="1763026608952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

@@ -122,7 +122,6 @@ class Main(QtWidgets.QMainWindow):
 
         # Invoice invoices table Functions
         Invoice.loadTableFac()
-        Globals.ui.tbl_invoiceTable.clicked.connect(Invoice.showInvoiceInfo)
         Globals.ui.tbl_invoiceTable.cellClicked.connect(Events.onInvoiceClick)
         Invoice.activeSales()
 

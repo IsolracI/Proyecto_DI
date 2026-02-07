@@ -117,13 +117,13 @@ class Connection:
         """
         if activeOnly:
             queryOrder = ("SELECT  *"
-                          "    FROM customers"
-                          "    WHERE historical = 'True'"
+                          "    FROM customers"                          
                           "    ORDER BY surname")
 
         else:
             queryOrder = ("SELECT  *"
                           "    FROM customers"
+                          "    WHERE historical = 'True'"
                           "    ORDER BY surname")
 
         customersList = []

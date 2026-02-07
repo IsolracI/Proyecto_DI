@@ -120,18 +120,19 @@ class Customers:
 
 
     @staticmethod
-    def loadCustomerTable(historicalOnly = True):   #loadTableCli
+    def loadCustomerTable():   #loadTableCli
         """
 
         Carga la tabla de clientes en la interfaz.
 
-        :param historicalOnly: True para mostrar solo clientes activos, False para mostrar todos
-        :type historicalOnly: bool
         :return: None
 
         """
         try:
-            customers = Connection.getCustomers(historicalOnly)
+            if not Globals.ui.chk_historico.isChecked():
+                customers = Connection.getCustomers(False)
+            else:
+                customers = Connection.getCustomers(True)
 
             index = 0
             uiTable = Globals.ui.tbl_customerList
@@ -424,8 +425,7 @@ class Customers:
 
         """
         try:
-            checkedHistorical = Globals.ui.chk_historico.isChecked()
-            Customers.loadCustomerTable(checkedHistorical)
+            Customers.loadCustomerTable()
 
         except Exception as error:
             print("There was an error in customerhistorical: ", error)

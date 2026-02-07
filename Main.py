@@ -49,9 +49,12 @@ class Main(QtWidgets.QMainWindow):
         ####   ##-## CUSTOMERS ##-##   ####
                #####################
 
+        # Customers check Historical
+        Globals.ui.chk_historico.stateChanged.connect(Customers.customersHistorical)
+
         # Customers DB connection
-        historicalOnly = True
-        Customers.loadCustomerTable(historicalOnly)
+#        historicalOnly = True
+        Customers.loadCustomerTable()
         Events.resizeCustomerTable()
 
         # Customers lineEdit Functions:
@@ -77,10 +80,6 @@ class Main(QtWidgets.QMainWindow):
         # Customers table Functions
         Globals.ui.tbl_customerList.clicked.connect(Customers.showCustomerInfo)
         Globals.ui.tbl_customerList_3.clicked.connect(Customers.showCustomerInfo)
-
-        # Customers check Historical
-        Globals.ui.chk_historico.setChecked(True)
-        Globals.ui.chk_historico.stateChanged.connect(Customers.customersHistorical)
 
 
                 ####################

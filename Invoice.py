@@ -102,7 +102,7 @@ class Invoice:
         """
         try:
             dni = Globals.ui.txt_dniFactura.text()
-            date = datetime.now().strftime("%d/%m/%Y")
+            date = datetime.datetime.now().strftime("%d/%m/%Y")
             if dni != "" and date != "":
                 Globals.ui.lbl_dateFactura.setText(date)
                 if Connection.addInvoice(dni, date):
@@ -142,7 +142,9 @@ class Invoice:
 
             index = 0
             uiTable = Globals.ui.tbl_invoiceTable
-            icon = QtGui.QIcon("templates/assets/garbage_bin_icon.jpg")
+            delete = QtGui.QIcon("templates/assets/garbage_bin_icon.jpg")
+
+
 
 
             for invoice in invoices:
@@ -152,14 +154,16 @@ class Invoice:
                 uiTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(invoice[2])))
 
                 item = QtWidgets.QTableWidgetItem()
-                item.setIcon(icon)
+                item.setIcon(delete)
                 invoiceId = invoice[0]
                 hasSales = Connection.verifyInvoiceSale(invoiceId)
 
                 if hasSales:
+
                     item.setToolTip("This invoice cannot be deleted")
                     item.setFlags(QtCore.Qt.ItemFlag.NoItemFlags)
                 else:
+
                     item.setToolTip("Delete invoice")
                     item.setFlags(QtCore.Qt.ItemFlag.ItemIsEnabled)
 
@@ -209,6 +213,7 @@ class Invoice:
             selectedInvoiceId = Globals.ui.tbl_invoiceTable.item(row, 0).text()
 
             if Connection.verifyInvoiceSale(selectedInvoiceId):
+
                 QtWidgets.QMessageBox.warning(None, "Warning", "This invoice has registered sales, it cannot be deleted.")
                 return
 
@@ -257,14 +262,17 @@ class Invoice:
         :rtype: QTableWidgetItem
 
         """
-        item = QtWidgets.QTableWidgetItem(str(text))
-        flags = item.flags()
+        try:
+            item = QtWidgets.QTableWidgetItem(str(text))
+            flags = item.flags()
 
-        if not editable:
-            item.setFlags(flags & ~QtCore.Qt.ItemFlag.ItemIsEditable)
-            item.setBackground(QtGui.QColor(245, 245, 245))
+            if not editable:
+                item.setFlags(flags & ~QtCore.Qt.ItemFlag.ItemIsEditable)
+                item.setBackground(QtGui.QColor(245, 245, 245))
 
-        return item
+            return item
+        except Exception as error:
+            print("(Invoice._makeItem) There was an error while creating item for sales table: ", error)
 
 
     @staticmethod
@@ -279,13 +287,16 @@ class Invoice:
         :rtype: QToolButton
 
         """
-        btn = QtWidgets.QToolButton()
-        btn.setIcon(QtGui.QIcon("templates/assets/garbage_bin_icon.jpg"))
-        btn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        btn.setToolTip("Delete row")
+        try:
+            btn = QtWidgets.QToolButton()
+            btn.setIcon(QtGui.QIcon("templates/assets/garbage_bin_icon.jpg"))
+            btn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+            btn.setToolTip("Delete row")
 
-        btn.clicked.connect(lambda: Invoice.deleteSaleRow(row))
-        return btn
+            btn.clicked.connect(lambda: Invoice.deleteSaleRow(row))
+            return btn
+        except Exception as error:
+            print("(Invoice._createDeleteButton) There was an error while creating button for sales table: ", error)
 
 
     @staticmethod
@@ -297,11 +308,30 @@ class Invoice:
         :return: None
 
         """
-        table = Globals.ui.tbl_ventas
+        try:
+            table = Globals.ui.tbl_ventas
 
-        for row in range(table.rowCount()):
-            btn = Invoice._createDeleteButton(row)
-            table.setCellWidget(row, 5, btn)
+            for row in range(table.rowCount()):
+                btn = Invoice._createDeleteButton(row)
+                table.setCellWidget(row, 5, btn)
+        except Exception as error:
+            print("(Invoice.refreshDeleteButtons) There was an error while trying to update the delete buttons: ", error)
+
+
+    @staticmethod
+    def _clearSalesRow(row):
+        table = Globals.ui.tbl_ventas
+        cols = table.columnCount()
+
+        for col in range(cols):
+            widget = table.cellWidget(row, col)
+            if widget:
+                table.removeCellWidget(row, col)
+                continue
+
+            item = table.item(row, col)
+            if item:
+                item.setText("")
 
 
     @staticmethod
@@ -313,14 +343,23 @@ class Invoice:
         :return: None
 
         """
-        table = Globals.ui.tbl_ventas
+        try:
+            table = Globals.ui.tbl_ventas
+            rows = table.rowCount()
 
-        table.blockSignals(True)
-        table.deleteRow(row)
-        table.blockSignals(False)
+            table.blockSignals(True)
 
-        Invoice.refreshDeleteButtons()
-        Invoice.calculateTotals()
+            if rows > 1:
+                table.removeRow(row)
+            else:
+                Invoice._clearSalesRow(0)
+
+            table.blockSignals(False)
+
+            Invoice.refreshDeleteButtons()
+            Invoice.calculateTotals()
+        except Exception as error:
+            print("(Invoice.deleteSaleRow) There was an error while deleting the sales row: ", error)
 
 
     @staticmethod
@@ -561,6 +600,8 @@ class Invoice:
                 mbox.setText("Successfully saved the sales")
                 mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.exec()
+
+                Invoice.loadTableFac()
 
             else:
                 QtWidgets.QMessageBox.warning(None, "Error", "Please fill all the fields")

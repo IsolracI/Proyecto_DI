@@ -570,18 +570,18 @@ class Connection:
         """
         try:
             query = QtSql.QSqlQuery()
-            invoiceInfo = query.prepare("SELECT  id_fac"
+            query.prepare("SELECT  id_fac"
                                         "    FROM invoices"
                                         "    WHERE dni_nie = :dni;")
             query.bindValue(":dni", dni)
 
-            if query.exec():
-                while query.next():
-                    invoiceInfo = query.value("id_fac")
-            return invoiceInfo
+            if query.exec()and query.next():
+                    return query.value("id_fac")
+
+            return None
 
         except Exception as error:
-            print("There was an error trying to get the invoice information: ", error)
+            print("(Connection.getInvoiceId) There was an error trying to get the invoice information: ", error)
 
 
     @staticmethod
@@ -611,7 +611,7 @@ class Connection:
             return invoiceInfo
 
         except Exception as error:
-            print("There was an error trying to get the invoice information: ", error)
+            print("(Connection.getInvoiceInfo) There was an error while trying to get the all of the invoice's information: ", error)
 
 
     @staticmethod
@@ -704,7 +704,7 @@ class Connection:
             query = QtSql.QSqlQuery()
             query.prepare("SELECT  *"
                           "    FROM sales"
-                          "    WHERE idfac = :invoice")
+                          "    WHERE invoice_id = :invoice")
             query.bindValue(":invoice", int(invoice))
             if query.exec():
                 if query.next():

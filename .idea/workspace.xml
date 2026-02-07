@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d7662a6-e650-4107-8b59-e8e8f88efefb" name="Changes" comment="extras del profe">
+    <list default="true" id="7d7662a6-e650-4107-8b59-e8e8f88efefb" name="Changes" comment="moheheheheheeee i can delete rows now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Invoice.py" beforeDir="false" afterPath="$PROJECT_DIR$/Invoice.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/bbdd.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/data/bbdd.sqlite" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -600,7 +598,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770209359136</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="moheheheheheeee i can delete rows now">
+      <option name="closed" value="true" />
+      <created>1770424134586</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1770424134586</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,13 +648,14 @@
     <MESSAGE value="docu de clase" />
     <MESSAGE value="docu terminada" />
     <MESSAGE value="pinche borrado en la tabla de ventas &gt;:v" />
-    <option name="LAST_COMMIT_MESSAGE" value="pinche borrado en la tabla de ventas &gt;:v" />
+    <MESSAGE value="moheheheheheeee i can delete rows now" />
+    <option name="LAST_COMMIT_MESSAGE" value="moheheheheheeee i can delete rows now" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DiacichMancilla$Main.coverage" NAME="Main Coverage Results" MODIFIED="1770373564410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiacichMancilla$Sphinx_apidoc.coverage" NAME="Sphinx-apidoc Coverage Results" MODIFIED="1770194042697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Gabriel\DI\DiacichMancilla\docs" />
     <SUITE FILE_PATH="coverage/DiacichMancilla$Reports.coverage" NAME="Reports Coverage Results" MODIFIED="1763026608952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Proyecto_DI$Main.coverage" NAME="Main Coverage Results" MODIFIED="1770423827504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Proyecto_DI$Main.coverage" NAME="Main Coverage Results" MODIFIED="1770424979677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiacichMancilla$Customers.coverage" NAME="Customers Coverage Results" MODIFIED="1763059330540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiacichMancilla$sphinx_build_exe.coverage" NAME="sphinx-build.exe Coverage Results" MODIFIED="1770194074327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Gabriel\DI\DiacichMancilla\docs" />
   </component>

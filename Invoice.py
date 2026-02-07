@@ -143,9 +143,7 @@ class Invoice:
             index = 0
             uiTable = Globals.ui.tbl_invoiceTable
             delete = QtGui.QIcon("templates/assets/garbage_bin_icon.jpg")
-
-
-
+            noDelete = QtGui.QIcon("templates/assets/cant_delete.jpg")
 
             for invoice in invoices:
                 uiTable.setRowCount(index + 1)
@@ -154,16 +152,16 @@ class Invoice:
                 uiTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(invoice[2])))
 
                 item = QtWidgets.QTableWidgetItem()
-                item.setIcon(delete)
+
                 invoiceId = invoice[0]
                 hasSales = Connection.verifyInvoiceSale(invoiceId)
 
                 if hasSales:
-
+                    item.setIcon(noDelete)
                     item.setToolTip("This invoice cannot be deleted")
                     item.setFlags(QtCore.Qt.ItemFlag.NoItemFlags)
                 else:
-
+                    item.setIcon(delete)
                     item.setToolTip("Delete invoice")
                     item.setFlags(QtCore.Qt.ItemFlag.ItemIsEnabled)
 
@@ -213,7 +211,6 @@ class Invoice:
             selectedInvoiceId = Globals.ui.tbl_invoiceTable.item(row, 0).text()
 
             if Connection.verifyInvoiceSale(selectedInvoiceId):
-
                 QtWidgets.QMessageBox.warning(None, "Warning", "This invoice has registered sales, it cannot be deleted.")
                 return
 

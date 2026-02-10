@@ -531,6 +531,7 @@ class Connection:
          ###################
     #### ##-## INVOICE ##-## ####   ##########################################################################################
          ###################
+
     @staticmethod
     def getInvoices():  ### allInvoices
         """
@@ -643,6 +644,7 @@ class Connection:
 
         except Exception as error:
             print("There was an error inserting the invoice", error)
+
 
     @staticmethod
     def deleteInvoice(invoiceId):

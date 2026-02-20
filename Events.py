@@ -267,6 +267,28 @@ class Events:
 
 
     @staticmethod
+    def opendlgProvinces():
+
+        try:
+            Globals.ui.dlgProvinces.show()
+            Globals.ui.dlgProvinces.addItems(["  — Select a Province —"])
+            provinces = Connection.getProvinces()
+            Globals.ui.dlgProvinces.addItems(provinces)
+
+        except Exception as error:
+            print("There was an error with openCalendar: ", error)
+
+
+    @staticmethod
+    def closedlgProvinces():
+        try:
+            Globals.ui.dlgProvinces.hide()
+
+        except Exception as error:
+            print("There was an error with closeAbout: ", error)
+
+
+    @staticmethod
     def loadCities():   ###loadMuniCli
         """
 

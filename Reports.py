@@ -1,7 +1,9 @@
 from reportlab.pdfgen import canvas
+from dlgProvinces import Ui_Dialog
 from Connection import *
 import datetime
 import Globals
+import Events
 import os
 
 class Reports:
@@ -16,6 +18,35 @@ class Reports:
 
         """
         try:
+            # mbox = QtWidgets.QMessageBox()
+            # mbox.setWindowTitle("Information")
+            # mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+            # mbox.setText("Do you want to filter the Customers by province?")
+            # mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+            # mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
+            #
+            # if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
+            #     Events.Events.opendlgProvinces()
+            #     province = Globals.ui.dlgProvinces.cmb_province.currentText()
+
+
+
+                # if Connection.deleteInvoice(selectedInvoiceId):
+                #     successMbox = QtWidgets.QMessageBox()
+                #     successMbox.setWindowTitle("Information")
+                #     successMbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                #     successMbox.setText("The Invoice has been deleted.")
+                #     successMbox.exec()
+                #     Invoice.loadTableFac()
+                #     return
+                #
+                # mbox = QtWidgets.QMessageBox()
+                # mbox.setWindowTitle("Error")
+                # mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                # mbox.setText("An error has occurred while trying to delete the invoice.")
+                # mbox.exec()
+                # return
+
             rootPath = ".\\reports"
             data = datetime.datetime.now().strftime("%d_%m_%Y %H_%M_%S")
             customerReportName = data + "_reportCustomers.pdf"

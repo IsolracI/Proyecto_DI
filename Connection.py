@@ -200,6 +200,24 @@ class Connection:
 
 
     @staticmethod
+    def getCustomersByProvince(province):
+        try:
+            customers = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT  *"
+                          "    FROM customers"
+                          "    WHERE province = :province")
+            query.bindValue(":province", province)
+            if query.exec():
+                while query.next():
+                    row = [query.value(i) for i in range(query.record().count())]
+                    customers.append(row)
+            return customers
+        except Exception as error:
+            print("(Connection.getCustomersByProvince) There was an error trying to get the invoice records: ", error)
+
+
+    @staticmethod
     def deleteCustomer(dni):   ###deleteCli
         """
 
@@ -418,6 +436,22 @@ class Connection:
 
 
     @staticmethod
+    def getProductStock(code):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT  Stock"
+                          "    FROM products"
+                          "    WHERE Code = :code")
+            query.bindValue(":code", code)
+
+            if query.exec() and query.next():
+                return query.value("Stock")
+
+        except Exception as error:
+            print("(Connection.getProductStock) An error ocurred while trying to get the product stock: ", error)
+
+
+    @staticmethod
     def addProduct(data):
         """
 
@@ -555,6 +589,24 @@ class Connection:
             return invoices
         except Exception as error:
             print("There was an error trying to get the invoice records: ", error)
+
+    @staticmethod
+    def filteredInvoices(dni):
+        try:
+            invoices = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT  *"
+                          "    FROM invoices"
+                          "    WHERE dni_nie = :dni"
+                          "    ORDER BY id_fac DESC")
+            query.bindValue(":dni", dni)
+            if query.exec():
+                while query.next():
+                    row = [query.value(i) for i in range(query.record().count())]
+                    invoices.append(row)
+            return invoices
+        except Exception as error:
+            print("(Connection.filteredInvoices) There was an error trying to get the invoice records: ", error)
 
 
     @staticmethod

@@ -1,4 +1,5 @@
 disabledLineEdits = []
+dlgProvinces = None
 subtotal = 0.00
 lineSales = []
 dlgOpen = None

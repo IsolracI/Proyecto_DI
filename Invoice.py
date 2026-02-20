@@ -1,5 +1,8 @@
 from PyQt6 import QtWidgets, QtCore, QtGui
 from datetime import datetime
+
+from PyQt6.QtWidgets import QMessageBox
+
 from Connection import *
 from time import sleep
 from Reports import *
@@ -36,6 +39,8 @@ class Invoice:
                     Globals.ui.lbl_statusFac.setText("Activo")
                 else:
                     Globals.ui.lbl_statusFac.setText("Inactivo")
+
+                Invoice.loadFilteredFac(widget)
 
             else:
                 mbox = QtWidgets.QMessageBox()
@@ -86,6 +91,8 @@ class Invoice:
             Globals.ui.lbl_statusFac.setText("")
             Globals.ui.lbl_invoiceType.setText("")
             Globals.ui.lbl_mobileFac.setText("")
+
+            Invoice.loadTableFac()
 
         except Exception as e:
             print("(Invoice.cleanFac) There was an error while clearing the Invoice fields: ", e)
@@ -175,6 +182,53 @@ class Invoice:
 
         except Exception as e:
             print("(Invoice.loadTableFac) There was an error while loading the Invoice table: ", e)
+
+
+    @staticmethod
+    def loadFilteredFac(dni):
+
+        try:
+            invoices = Connection.filteredInvoices(dni)
+
+            index = 0
+            uiTable = Globals.ui.tbl_invoiceTable
+            delete = QtGui.QIcon("templates/assets/garbage_bin_icon.jpg")
+            noDelete = QtGui.QIcon("templates/assets/cant_delete.jpg")
+
+            for invoice in invoices:
+                uiTable.setRowCount(index + 1)
+                uiTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(invoice[0])))
+                uiTable.setItem(index, 1, QtWidgets.QTableWidgetItem(str(invoice[1])))
+                uiTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(invoice[2])))
+
+                item = QtWidgets.QTableWidgetItem()
+
+                invoiceId = invoice[0]
+                hasSales = Connection.verifyInvoiceSale(invoiceId)
+
+                if hasSales:
+                    item.setIcon(noDelete)
+                    item.setToolTip("This invoice cannot be deleted")
+                    item.setFlags(QtCore.Qt.ItemFlag.NoItemFlags)
+                else:
+                    item.setIcon(delete)
+                    item.setToolTip("Delete invoice")
+                    item.setFlags(QtCore.Qt.ItemFlag.ItemIsEnabled)
+
+                uiTable.setItem(index, 3, item)
+
+                uiTable.item(index, 0).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                uiTable.item(index, 1).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                uiTable.item(index, 2).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                uiTable.item(index, 3).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                index += 1
+
+        except Exception as e:
+            print("(Invoice.loadFilteredFac) There was an error while loading the Invoice table: ", e)
 
 
     @staticmethod

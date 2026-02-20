@@ -26,12 +26,14 @@ class Products:
                 uiTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(product[2])))
                 uiTable.setItem(index, 3, QtWidgets.QTableWidgetItem(str(product[3])))
                 uiTable.setItem(index, 4, QtWidgets.QTableWidgetItem(str(product[4])))
+                uiTable.setItem(index, 5, QtWidgets.QTableWidgetItem(str(product[5])))
 
                 uiTable.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 uiTable.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 uiTable.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 uiTable.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 uiTable.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                uiTable.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 index += 1
 
         except Exception as error:
@@ -96,7 +98,7 @@ class Products:
 
             productData = Connection.getProductInfo(selectedProductId)
 
-            allDataBoxes = [Globals.ui.lbl_productCodeBox, Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice]
+            allDataBoxes = [Globals.ui.lbl_productCodeBox, Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice, Globals.ui.txt_discount]
 
             for i in range(len(allDataBoxes)):
 

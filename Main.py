@@ -16,6 +16,7 @@ class Main(QtWidgets.QMainWindow):
         super(Main, self).__init__()
         Globals.ui = Ui_MainWindow()
         Globals.ui.setupUi(self)
+        Globals.ui.dlgProvinces = Ui_Dialog()
 
 
                ###################
@@ -128,7 +129,7 @@ class Main(QtWidgets.QMainWindow):
         Globals.ui.tbl_ventas.itemChanged.connect(Invoice.cellChangedSales)
 
         # guardar venta en bd
-#       self.scCleanFac = QtGui.QShortcut(QtGui.QKeySequence("F11"), self) para guardar la venta en la tabla ventas usando una tecla en lugar de un boton
+#        self.scCleanFac = QtGui.QShortcut(QtGui.QKeySequence("F11"), self) para guardar la venta en la tabla ventas usando una tecla en lugar de un boton
 #        self.scCleanFac.activated.connect(Invoice.saveSales)
 
 if __name__ == '__main__':

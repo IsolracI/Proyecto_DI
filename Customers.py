@@ -1,4 +1,4 @@
-from PyQt6 import QtCore
+from PyQt6 import QtCore, QtGui
 from Connection import *
 import Globals
 import re
@@ -134,30 +134,32 @@ class Customers:
             else:
                 customers = Connection.getCustomers(True)
 
-            index = 0
             uiTable = Globals.ui.tbl_customerList
+            uiTable.clearContents()
+            uiTable.setRowCount(0)
 
-            for customer in customers:
-                uiTable.setRowCount(index + 1)
-                uiTable.setItem(index, 0, QtWidgets.QTableWidgetItem(str(customer[2])))
-                uiTable.setItem(index, 1, QtWidgets.QTableWidgetItem(str(customer[3])))
-                uiTable.setItem(index, 2, QtWidgets.QTableWidgetItem(str(customer[5])))
-                uiTable.setItem(index, 3, QtWidgets.QTableWidgetItem(str(customer[7])))
-                uiTable.setItem(index, 4, QtWidgets.QTableWidgetItem(str(customer[8])))
-                uiTable.setItem(index, 5, QtWidgets.QTableWidgetItem(str(customer[9])))
-                uiTable.setItem(index, 6, QtWidgets.QTableWidgetItem(str(customer[10])))
+            for index, customer in enumerate(customers):
+                uiTable.insertRow(index)
 
-                uiTable.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                uiTable.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                uiTable.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                uiTable.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                uiTable.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                uiTable.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                uiTable.item(index, 6).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                index += 1
+                for col, value in enumerate([
+                    customer[2],
+                    customer[3],
+                    customer[5],
+                    customer[7],
+                    customer[8],
+                    customer[9],
+                    customer[10],
+                ]):
+                    item = QtWidgets.QTableWidgetItem(str(value))
+                    item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                    uiTable.setItem(index, col, item)
+
+                if str(customer[10]) == "False":
+                    for col in range(uiTable.columnCount()):
+                        uiTable.item(index, col).setBackground(QtGui.QColor(255, 200, 200))
 
         except Exception as error:
-            print("There was an error while loading customer table: ", error)
+            print("(Customers.loadCustomerTable) There was an error while loading customer table: ", error)
 
 
     @staticmethod

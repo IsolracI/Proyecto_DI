@@ -887,26 +887,40 @@
        <widget class="QLabel" name="lbl_productCodeBox">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>130</x>
           <y>10</y>
-          <width>40</width>
-          <height>25</height>
+          <width>50</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>25</height>
+          <width>50</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>40</width>
-          <height>25</height>
+          <width>50</width>
+          <height>30</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid black;</string>
+        </property>
         <property name="frameShape">
-         <enum>QFrame::Box</enum>
+         <enum>QFrame::Panel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWidth">
+         <number>2</number>
         </property>
         <property name="text">
          <string/>
@@ -917,21 +931,26 @@
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>85</width>
-          <height>25</height>
+          <width>120</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>85</width>
-          <height>25</height>
+          <width>120</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>85</width>
-          <height>25</height>
+          <width>120</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Product's Code:</string>
@@ -940,23 +959,28 @@
        <widget class="QLabel" name="lbl_productName">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>30</x>
           <y>50</y>
-          <width>40</width>
-          <height>25</height>
+          <width>55</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>25</height>
+          <width>55</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>40</width>
-          <height>25</height>
+          <width>55</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Name:</string>
@@ -965,45 +989,55 @@
        <widget class="QLineEdit" name="txt_productName">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>20</x>
           <y>80</y>
-          <width>150</width>
-          <height>20</height>
+          <width>300</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>150</width>
-          <height>20</height>
+          <width>300</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>150</width>
-          <height>20</height>
+          <width>300</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
        </widget>
        <widget class="QLabel" name="lbl_stockAvailable">
         <property name="geometry">
          <rect>
-          <x>220</x>
+          <x>390</x>
           <y>50</y>
-          <width>90</width>
-          <height>25</height>
+          <width>120</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>90</width>
-          <height>25</height>
+          <width>120</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>90</width>
-          <height>25</height>
+          <width>120</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Stock available:</string>
@@ -1012,33 +1046,55 @@
        <widget class="QLineEdit" name="txt_stockAvailable">
         <property name="geometry">
          <rect>
-          <x>220</x>
+          <x>380</x>
           <y>80</y>
-          <width>113</width>
-          <height>20</height>
+          <width>300</width>
+          <height>30</height>
          </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
        </widget>
        <widget class="QLabel" name="lbl_productFamily">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>120</y>
-          <width>45</width>
-          <height>25</height>
+          <x>740</x>
+          <y>50</y>
+          <width>60</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>45</width>
-          <height>25</height>
+          <width>60</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>45</width>
-          <height>25</height>
+          <width>60</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Family:</string>
@@ -1047,23 +1103,28 @@
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
-          <x>220</x>
-          <y>120</y>
-          <width>45</width>
-          <height>25</height>
+          <x>20</x>
+          <y>130</y>
+          <width>55</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>45</width>
-          <height>25</height>
+          <width>55</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>45</width>
-          <height>25</height>
+          <width>55</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Price:</string>
@@ -1072,44 +1133,49 @@
        <widget class="QLineEdit" name="txt_productPrice">
         <property name="geometry">
          <rect>
-          <x>220</x>
-          <y>150</y>
-          <width>80</width>
-          <height>25</height>
+          <x>20</x>
+          <y>160</y>
+          <width>150</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>80</width>
-          <height>25</height>
+          <width>150</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>80</width>
-          <height>25</height>
+          <width>150</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
        </widget>
        <widget class="QTableWidget" name="tbl_productList">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>260</y>
+          <y>310</y>
           <width>1371</width>
-          <height>550</height>
+          <height>500</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
           <width>1371</width>
-          <height>550</height>
+          <height>500</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>1371</width>
-          <height>550</height>
+          <height>500</height>
          </size>
         </property>
         <property name="editTriggers">
@@ -1151,12 +1217,17 @@
           <string>Discount</string>
          </property>
         </column>
+        <column>
+         <property name="text">
+          <string>Final Price</string>
+         </property>
+        </column>
        </widget>
        <widget class="QWidget" name="layoutWidget_2">
         <property name="geometry">
          <rect>
           <x>210</x>
-          <y>220</y>
+          <y>270</y>
           <width>872</width>
           <height>27</height>
          </rect>
@@ -1284,45 +1355,55 @@
        <widget class="QComboBox" name="cmb_productFamily">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>150</y>
-          <width>100</width>
-          <height>25</height>
+          <x>730</x>
+          <y>80</y>
+          <width>200</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>100</width>
-          <height>25</height>
+          <width>200</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>100</width>
-          <height>25</height>
+          <width>200</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
        </widget>
        <widget class="QLabel" name="lbl_discount">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>120</y>
-          <width>60</width>
-          <height>25</height>
+          <x>220</x>
+          <y>130</y>
+          <width>75</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>60</width>
-          <height>25</height>
+          <width>75</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>60</width>
-          <height>25</height>
+          <width>75</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Discount:</string>
@@ -1331,23 +1412,91 @@
        <widget class="QLineEdit" name="txt_discount">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>150</y>
-          <width>80</width>
-          <height>25</height>
+          <x>220</x>
+          <y>160</y>
+          <width>120</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
-          <width>80</width>
-          <height>25</height>
+          <width>120</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>80</width>
-          <height>25</height>
+          <width>120</width>
+          <height>30</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_finalPrice">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>130</y>
+          <width>85</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>85</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>85</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Final Price:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_finalPrice">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>160</y>
+          <width>150</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
        </widget>
       </widget>

@@ -102,6 +102,8 @@ class Main(QtWidgets.QMainWindow):
 
         # Products lineEdit Functions
         Globals.ui.txt_productName.editingFinished.connect(lambda: Products.capitalizeProductName(Globals.ui.txt_productName.text(), Globals.ui.txt_productName))
+        Globals.ui.txt_productPrice.editingFinished.connect(Products.calculateFinalPrice)
+        Globals.ui.txt_discount.editingFinished.connect(Products.calculateFinalPrice)
 
 
                ###################

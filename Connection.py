@@ -432,7 +432,7 @@ class Connection:
             return productData
 
         except Exception as error:
-            print("An error ocurred while trying to get the product info: ", error)
+            print("(Connection.getProductInfo) An error ocurred while trying to get the product info: ", error)
 
 
     @staticmethod
@@ -466,13 +466,13 @@ class Connection:
         try:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO products "
-                           "(Name, Stock, Family, UnitPrice)"
+                           "(Name, Stock, Family, UnitPrice, Discount, FinalPrice)"
                            "VALUES "
-                           "(:Name, :Stock, :Family, :UnitPrice)")
+                           "(:Name, :Stock, :Family, :UnitPrice, :Discount, :FinalPrice)")
 
             data[3] = Connection._checkPrice(data[3].text())
 
-            orderValues = [":Name", ":Stock", ":Family", ":UnitPrice"]
+            orderValues = [":Name", ":Stock", ":Family", ":UnitPrice", ":Discount", ":FinalPrice"]
 
             for i in range(len(orderValues)):
                 value = data[i]
@@ -536,12 +536,12 @@ class Connection:
         try:
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE products set "
-                          "Stock = :Stock, Family = :Family, UnitPrice = :UnitPrice "
+                          "Stock = :Stock, Family = :Family, UnitPrice = :UnitPrice, Discount = :Discount, FinalPrice = :FinalPrice "
                           "WHERE Name = :Name;")
 
             data[3] = Connection._checkPrice(data[3].text())
 
-            orderValues = [":Name", ":Stock", ":Family", ":UnitPrice"]
+            orderValues = [":Name", ":Stock", ":Family", ":UnitPrice", ":Discount", ":FinalPrice"]
 
             for i in range(len(orderValues)):
                 value = data[i]

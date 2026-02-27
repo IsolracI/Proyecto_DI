@@ -1,8 +1,6 @@
 from PyQt6 import QtWidgets, QtCore, QtGui
-from datetime import datetime
-
 from PyQt6.QtWidgets import QMessageBox
-
+from datetime import datetime
 from Connection import *
 from time import sleep
 from Reports import *
@@ -15,7 +13,7 @@ class Invoice:
         """
 
         Busca un cliente de la base de datos para cargarlo en el panel de ventas.
-        Si la caja de texto del DNI está vacia, muestra el cliente anónimo.
+        Si la caja de texto del DNI está vacía, muestra el cliente anónimo.
 
         :param widget: Campo de texto que contiene el DNI del cliente a buscar.
         :type widget: QLineEdit
@@ -485,7 +483,6 @@ class Invoice:
             salesTable = Globals.ui.tbl_ventas
             currentRow = item.row()
             currentCol = item.column()
-            sales = []
 
             if currentCol not in (0, 3, 5):
                 return
@@ -601,7 +598,7 @@ class Invoice:
                 "name": data[1],
                 "quantity": data[2],
                 "type": data[3],
-                "price": data[4]
+                "price": data[6]
             }
         except Exception as error:
             print("(Invoice.productRawDataToMap) There was an error while trying to insert the data into a map: ", error)

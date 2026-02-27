@@ -1,3 +1,4 @@
+from decimal import Decimal, ROUND_HALF_UP
 from PyQt6 import QtWidgets, QtGui
 from mailbox import mbox
 

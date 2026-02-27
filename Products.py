@@ -27,6 +27,7 @@ class Products:
                 uiTable.setItem(index, 3, QtWidgets.QTableWidgetItem(str(product[3])))
                 uiTable.setItem(index, 4, QtWidgets.QTableWidgetItem(str(product[4])))
                 uiTable.setItem(index, 5, QtWidgets.QTableWidgetItem(str(product[5])))
+                uiTable.setItem(index, 6, QtWidgets.QTableWidgetItem(str(product[6])))
 
                 uiTable.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 uiTable.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
@@ -34,10 +35,11 @@ class Products:
                 uiTable.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 uiTable.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 uiTable.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                uiTable.item(index, 6).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 index += 1
 
         except Exception as error:
-            print("There was an error while loading products table: ", error)
+            print("(Products.loadProductsTable) There was an error while loading products table: ", error)
 
 
     @staticmethod
@@ -58,7 +60,27 @@ class Products:
             widget.setText(text)
 
         except Exception as error:
-            print("There was an error while capitalizing: ", error)
+            print("(Products.capitalizeProductName) There was an error while capitalizing: ", error)
+
+    @staticmethod
+    def calculateFinalPrice():
+        """
+
+        Calcula el precio final aplicando el descuento.
+
+        """
+        try:
+            price = Decimal(str(Globals.ui.txt_productPrice.text()))
+            discount = Decimal(str(Globals.ui.txt_discount.text()))
+
+            finalPrice = price * (Decimal("1") - discount / Decimal("100"))
+            finalPrice = finalPrice.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+            Globals.ui.txt_finalPrice.setText(str(finalPrice))
+
+        except Exception as error:
+            print("(Products.calculateFinalPrice) There was an error while trying to calculate the final price", error)
+            return Decimal("0.00")
 
 
     @staticmethod
@@ -71,7 +93,7 @@ class Products:
 
         """
         try:
-            allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.txt_productPrice]
+            allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.txt_productPrice, Globals.ui.txt_discount, Globals.ui.txt_finalPrice]
 
             for i in range(len(allDataBoxes)):
                 allDataBoxes[i].clear()
@@ -80,7 +102,7 @@ class Products:
 
 
         except Exception as error:
-            print("There was an error while clearing the fields: ", error)
+            print("(Product.clearProductFields) There was an error while clearing the fields: ", error)
 
 
     @staticmethod
@@ -98,7 +120,7 @@ class Products:
 
             productData = Connection.getProductInfo(selectedProductId)
 
-            allDataBoxes = [Globals.ui.lbl_productCodeBox, Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice, Globals.ui.txt_discount]
+            allDataBoxes = [Globals.ui.lbl_productCodeBox, Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice, Globals.ui.txt_discount, Globals.ui.txt_finalPrice]
 
             for i in range(len(allDataBoxes)):
 
@@ -108,7 +130,7 @@ class Products:
                     allDataBoxes[i].setCurrentText(str(productData[i]))
 
         except Exception as error:
-            print("There was an error while showing product info: ", error)
+            print("(Products.showProductInfo) There was an error while showing product info: ", error)
 
 
     @staticmethod
@@ -121,7 +143,7 @@ class Products:
 
         """
         try:
-            allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice]
+            allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice, Globals.ui.txt_discount, Globals.ui.txt_finalPrice]
 
             if Connection.addProduct(allDataBoxes):
                 mbox = QtWidgets.QMessageBox()
@@ -134,12 +156,13 @@ class Products:
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle("Error")
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
-                mbox.setText("An error has occurred while adding the product.")
+                mbox.setText("An error has occurred while adding the product.\n"
+                             "Please, make sure you filled all the fields correctly.")
                 mbox.exec()
 
 
         except Exception as error:
-            print("There was an error while adding the product: ", error)
+            print("(Products.saveNewProduct) There was an error while adding the product: ", error)
 
 
     @staticmethod
@@ -175,7 +198,7 @@ class Products:
             mbox.setText("An error has occurred while deleting the product.")
 
         except Exception as error:
-            print("There was an error while deleting the product: ", error)
+            print("(Products.deleteSelectedProduct) There was an error while deleting the product: ", error)
 
 
     @staticmethod
@@ -199,7 +222,7 @@ class Products:
                 mbox.hide()
                 return
 
-            allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice]
+            allDataBoxes = [Globals.ui.txt_productName, Globals.ui.txt_stockAvailable, Globals.ui.cmb_productFamily, Globals.ui.txt_productPrice, Globals.ui.txt_discount, Globals.ui.txt_finalPrice]
 
             if Connection.modifyProductData(allDataBoxes):
                 mbox = QtWidgets.QMessageBox()
@@ -217,4 +240,4 @@ class Products:
                 mbox.exec()
 
         except Exception as error:
-            print("There was an error while modifying the products's data: ", error)
+            print("(Products.modifyProduct) There was an error while modifying the products's data: ", error)
